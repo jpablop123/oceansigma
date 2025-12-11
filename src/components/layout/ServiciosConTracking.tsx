@@ -1,112 +1,122 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Package, Plane, Ship, ShieldCheck, Search } from "lucide-react"; // Importamos 'Search' para el CTA
-import { useState } from "react"; 
-// Aunque useState se mantiene para la estructura, ya no se usa 'tracking'
+import { Package, Plane, Ship, ShieldCheck, ArrowRight, Lock } from "lucide-react";
 
 const servicios = [
   {
     icon: Package,
     title: "Casillero en Miami",
-    desc: "Compra en tus tiendas favoritas de EE. UU. y recibe en Colombia sin complicaciones.",
+    desc: "Dirección física gratuita para tus compras en USA con reempaque incluido.",
   },
   {
     icon: Plane,
-    title: "Envío Aéreo",
-    desc: "Transporte rápido y seguro para paquetes urgentes o de poco volumen.",
+    title: "Carga Aérea",
+    desc: "La opción más veloz para paquetería urgente y compras personales.",
   },
   {
     icon: Ship,
-    title: "Envío Marítimo",
-    desc: "La mejor opción para grandes volúmenes y carga pesada.",
+    title: "Carga Marítima",
+    desc: "Consolidación de carga para grandes volúmenes y mercancía pesada.",
   },
   {
     icon: ShieldCheck,
-    title: "Asesoría en Aduanas",
-    desc: "Te guiamos con trámites y regulaciones para que no tengas sorpresas.",
+    title: "Aduana y Seguros",
+    desc: "Gestión aduanal completa y seguro al 100% sobre el valor declarado.",
   },
 ];
 
-// URL de inicio de sesión de Globus Cargo
 const LOGIN_URL = "https://www.globuscargo.us/#/sign-in";
 
 export default function ServiciosConTracking() {
-  // El estado 'tracking' y las funciones relacionadas con el input han sido eliminados del uso.
-  // Mantenemos useState solo por convención si en el futuro se planea usar.
-
   return (
-    <section className="relative py-28 px-6 bg-gradient-to-b from-white via-orange-50/40 to-white overflow-hidden">
-      {/* Glow decorativo */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-orange-200/30 rounded-full blur-3xl -z-10" />
+    <section className="relative py-24 px-6 bg-[#f8f9fa] overflow-hidden">
+      
+      {/* Fondo técnico sutil */}
+      <div className="absolute inset-0 z-0 opacity-[0.03]" 
+           style={{ 
+             backgroundImage: "linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px)", 
+             backgroundSize: "40px 40px" 
+           }}>
+      </div>
 
-      <div className="max-w-6xl mx-auto text-center">
-        {/* === SECCIÓN DE RASTREO (Ahora un CTA) === */}
-        <motion.h2
-          className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Rastrea tu envío
-        </motion.h2>
-
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* === 1. BANNER DE RASTREO (Diseño tipo Dashboard) === */}
         <motion.div
-          className="bg-white/70 backdrop-blur-md border border-gray-200 shadow-xl 
-                   rounded-3xl p-8 md:p-12 max-w-2xl mx-auto flex flex-col items-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-24"
         >
-          <Search size={40} className="text-[#f58220] mb-4" />
-          
-          <p className="text-lg text-gray-700 mb-6">
-            Para garantizar la privacidad y ver el detalle completo de tu envío, el rastreo se realiza
-            <span className="font-semibold text-gray-900"> iniciando sesión en nuestro sistema</span>.
-          </p>
+          <div className="flex flex-col md:flex-row items-center">
+            
+            {/* Lado Izquierdo: Icono y Texto */}
+            <div className="p-8 md:p-12 flex-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#f58220] text-xs font-bold uppercase tracking-wide mb-4">
+                <Lock size={12} /> Área Segura de Clientes
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a] mb-4">
+                Rastrea tu envío en tiempo real
+              </h2>
+              <p className="text-gray-500 text-lg max-w-xl">
+                Por seguridad y privacidad de la información, el estado detallado de tus paquetes está disponible exclusivamente en tu portal de cliente.
+              </p>
+            </div>
 
-          <motion.a
-            href={LOGIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-10 py-4 rounded-full bg-[#f58220] text-white font-semibold 
-            shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-95 transition-all duration-300 text-lg"
-          >
-            Iniciar Sesión para Rastrear
-          </motion.a>
+            {/* Lado Derecho: Botón de Acción Grande */}
+            <div className="p-8 md:p-12 bg-gray-50 w-full md:w-auto h-full flex items-center justify-center border-t md:border-t-0 md:border-l border-gray-100">
+              <a
+                href={LOGIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex items-center gap-3 px-8 py-4 bg-[#f58220] text-white font-bold text-lg rounded-xl shadow-lg shadow-orange-500/20 hover:bg-[#d96d15] transition-all transform hover:scale-[1.02]"
+              >
+                Ingresar al Sistema
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
         </motion.div>
 
-        {/* === SERVICIOS === */}
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold text-gray-900 mt-28"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Nuestros Servicios
-        </motion.h2>
 
-        <div className="grid md:grid-cols-4 gap-10 mt-16">
+        {/* === 2. SERVICIOS (Grid Limpio) === */}
+        <div className="text-center mb-16">
+          <span className="text-[#f58220] font-bold tracking-widest uppercase text-xs mb-2 block">
+            Nuestras Soluciones
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a]">
+            Todo lo que necesitas para importar
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {servicios.map((s, i) => (
             <motion.div
               key={i}
-              className="p-10 rounded-3xl bg-white/70 backdrop-blur-xl shadow-lg 
-              hover:shadow-2xl transition-all duration-500 flex flex-col items-center text-center
-              hover:-translate-y-2 border border-gray-100"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
               viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="group p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-orange-500/5 hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="w-16 h-16 flex items-center justify-center rounded-2xl 
-              bg-gradient-to-br from-[#f58220] to-orange-400 text-white shadow-lg mb-6">
-                <s.icon size={30} />
+              {/* Icono con efecto hover */}
+              <div className="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-[#f58220] mb-6 group-hover:bg-[#f58220] group-hover:text-white transition-colors duration-300">
+                <s.icon size={28} />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">{s.title}</h3>
-              <p className="mt-4 text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+              
+              <h3 className="text-xl font-bold text-[#1a1a1a] mb-3 group-hover:text-[#f58220] transition-colors">
+                {s.title}
+              </h3>
+              
+              <p className="text-gray-500 text-sm leading-relaxed">
+                {s.desc}
+              </p>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

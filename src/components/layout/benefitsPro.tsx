@@ -10,6 +10,7 @@ import {
   Headphones,
   Truck,
   Boxes,
+  ArrowRight
 } from "lucide-react";
 
 const beneficios = [
@@ -20,7 +21,7 @@ const beneficios = [
   },
   {
     icon: Package,
-    title: "Casillero Gratuito en Miami",
+    title: "Casillero Gratuito",
     desc: "Obtén tu dirección en EE. UU. y recibe todas tus compras sin costo de registro.",
   },
   {
@@ -36,7 +37,7 @@ const beneficios = [
   {
     icon: Boxes,
     title: "Consolidación Inteligente",
-    desc: "Ahorra uniendo varios paquetes en un solo envío. Sin costos ocultos ni sorpresas.",
+    desc: "Ahorra uniendo varios paquetes en un solo envío. Sin costos ocultos.",
   },
   {
     icon: Headphones,
@@ -48,75 +49,84 @@ const beneficios = [
 export default function BenefitsPro() {
   return (
     <section className="relative py-24 px-6 overflow-hidden bg-[#AFAFAF] text-white">
-      {/* === Fondo con logo gigante === */}
-      <div className="absolute inset-0 opacity-[0.08] flex justify-center items-center select-none">
-      <Image
-  src={globusWhite}
-  alt="Globus Cargo Logo Marca"
-  width={900}
-  height={900}
-  className="object-contain scale-150"
-  priority
-/>
+      
+      {/* === 1. FONDO CON LOGO RECTO (Centrado y sutil) === */}
+      <div className="absolute inset-0 opacity-[0.1] flex justify-center items-center select-none pointer-events-none">
+        <Image
+          src={globusWhite}
+          alt="Globus Cargo Logo Marca"
+          width={1200}
+          height={1200}
+          className="object-contain" // Sin rotación, totalmente recto
+          priority
+        />
       </div>
 
-      {/* === Gradiente sutil naranja === */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#f58220]/10 via-transparent to-transparent pointer-events-none" />
+      {/* Gradiente muy sutil para que no se vea plano el gris */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 pointer-events-none"></div>
 
-      {/* === Contenido === */}
-      <div className="relative max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-sm">
-          Beneficios Exclusivos de{" "}
-          <span className="text-[#f58220]">Globus Cargo</span>
-        </h2>
+      {/* === CONTENIDO === */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        
+        {/* Encabezado */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
+            Beneficios Exclusivos <span className="text-[#f58220]">Globus Cargo</span>
+          </h2>
+          <p className="mt-4 max-w-2xl mx-auto text-white text-lg font-medium drop-shadow-sm">
+            Diseñamos nuestra logística pensando en tu tranquilidad y ahorro.
+          </p>
+        </div>
 
-        <p className="mt-4 max-w-2xl mx-auto text-white/90 text-base md:text-lg">
-          Cada detalle de nuestro servicio está diseñado para que tus envíos sean
-          más fáciles, rápidos y seguros.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-10 mt-16">
+        {/* Grid de 3 Columnas (Mejor organización) */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {beneficios.map((b, i) => (
             <motion.div
               key={i}
-              className="flex items-start gap-6 p-6 rounded-2xl bg-[#ffffff10] border border-white/30
-              hover:border-[#f58220]/60 hover:shadow-[0_0_25px_rgba(245,130,32,0.3)]
-              transition-all duration-300"
-              initial={{ opacity: 0, y: 40 }}
+              className="group p-8 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm
+              hover:bg-white/20 hover:border-[#f58220]/50 transition-all duration-300
+              hover:-translate-y-1 shadow-lg"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
             >
+              {/* Icono */}
               <div
-                className="w-16 h-16 flex items-center justify-center rounded-full 
-                bg-gradient-to-tr from-[#f58220] to-[#ff944d]
-                text-white shadow-[0_0_20px_rgba(245,130,32,0.4)] flex-shrink-0"
+                className="w-14 h-14 flex items-center justify-center rounded-xl 
+                bg-[#f58220] text-white shadow-md mb-5 group-hover:scale-110 transition-transform duration-300"
               >
-                <b.icon size={30} />
+                <b.icon size={28} />
               </div>
 
+              {/* Texto */}
               <div className="text-left">
-                <h3 className="text-xl font-semibold text-white">{b.title}</h3>
-                <p className="mt-2 text-sm text-white/80">{b.desc}</p>
+                <h3 className="text-xl font-bold text-white mb-2 drop-shadow-sm">
+                    {b.title}
+                </h3>
+                <p className="text-white/90 text-sm leading-relaxed font-medium">
+                    {b.desc}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
 
+        {/* Botón CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-20"
+          className="mt-16 text-center"
         >
           <a
             href="https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7"
-            className="inline-block px-10 py-4 rounded-full bg-[#f58220] text-white font-bold 
-            hover:bg-[#ff944d] hover:scale-105 shadow-[0_10px_30px_rgba(245,130,32,0.4)] 
-            transition-all duration-300"
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-[#f58220] text-white font-bold text-lg
+            hover:bg-[#d96d15] shadow-xl hover:shadow-orange-500/30 transition-all transform hover:scale-105"
           >
-            Abrir mi Casillero Gratis 
+            Abrir mi Casillero Gratis
+            <ArrowRight size={20} />
           </a>
         </motion.div>
       </div>

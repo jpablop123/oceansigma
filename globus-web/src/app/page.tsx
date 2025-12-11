@@ -13,6 +13,7 @@ import ChatBubble from "@/components/layout/ChatBubble"; // 👈 importa aquí
 export default function HomePage() {
   return (
     <div className="font-sans text-gray-800 relative">
+     
       <Header />
       <Hero />
       <ServiciosConTracking />
@@ -21,9 +22,10 @@ export default function HomePage() {
       <StepCards />
       <Testimonials />
       <Footer />
+      <ChatBubble/>
 
       {/* 👇 Chatbase se carga aquí */}
-      <ChatBubble />
+    
     </div>
   );
 }

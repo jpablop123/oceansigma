@@ -98,7 +98,9 @@ export default function Footer() {
                         <div className="bg-white/10 p-2 rounded-lg group-hover:bg-[#f58220] transition-colors shadow-sm">
                             <MapPin className="text-white" size={18} />
                         </div>
-                        <span className="mt-1">2120 NW 96th Ave<br/>Doral, FL 33172, USA</span>
+                        <span className="mt-1">
+  1414 NW 82nd Ave<br/>Doral, FL 33126
+</span>
                     </li>
                     <li className="flex items-center gap-4 text-white/90 text-sm font-medium group">
                         <div className="bg-white/10 p-2 rounded-lg group-hover:bg-[#f58220] transition-colors shadow-sm">

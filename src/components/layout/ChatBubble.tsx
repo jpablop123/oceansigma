@@ -1,80 +1,155 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { MessageCircle, X } from "lucide-react";
 
-// === Configuración del Chatbot ===
+// ==== Declaración global para TypeScript ====
+declare global {
+  interface Window {
+    chatbase?: {
+      (...args: any[]): void;
+      q?: any[];
+    };
+    chatbaseConfig?: any;
+  }
+}
+
+// === Configuración ===
 const CHATBOT_ID = "w8KioDPJAl3hBxWR8jt7_";
 const SCRIPT_URL = "https://www.chatbase.co/embed.min.js";
-const IFRAME_TITLE = "Chatbase Chatbot"; // Título usado por Chatbase para el iframe
+const BRAND_COLOR = "#FF8313";
 
-/**
- * Hook personalizado para manejar la carga del script del chatbot
- * y la inyección de estilos, asegurando que solo se ejecute una vez.
- */
-function useChatbotLoader() {
-  const isComponentMounted = useRef(false);
+export default function CustomChatbot() {
+  const [isScriptInjected, setIsScriptInjected] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // 1. Efecto principal: Carga el script y añade estilos
+  // 1. Verificar al cargar si el script ya existe
   useEffect(() => {
-    // 1a. Prevención de carga: Chequea si ya se cargó globalmente (entre navegaciones SPA)
-    // o si el componente está siendo montado por primera vez en este ciclo.
-    if (isComponentMounted.current || window.chatbaseLoaded) {
-      return;
+    if (typeof window !== "undefined" && document.getElementById("chatbase-script")) {
+      setIsScriptInjected(true);
+    }
+  }, []);
+
+  // 2. Observer para sincronizar estado si el usuario cierra el chat desde la "X" interna
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const observer = new MutationObserver(() => {
+      const chatWindow = document.getElementById("chatbase-bubble-window");
+      if (!chatWindow) return;
+
+      const isVisible = chatWindow.style.display !== "none";
+
+      setIsOpen((prev) => (prev !== isVisible ? isVisible : prev));
+    });
+
+    const intervalId = setInterval(() => {
+      const chatWindow = document.getElementById("chatbase-bubble-window");
+      if (chatWindow) {
+        observer.observe(chatWindow, {
+          attributes: true,
+          attributeFilter: ["style", "class"],
+        });
+        clearInterval(intervalId);
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(intervalId);
+      observer.disconnect();
+    };
+  }, [isScriptInjected]);
+
+  const toggleChatbot = () => {
+    if (typeof window === "undefined") return;
+
+    // Stub básico si aún no existe window.chatbase
+    if (!window.chatbase) {
+      const cbStub: any = (...args: any[]) => {
+        if (!cbStub.q) cbStub.q = [];
+        cbStub.q.push(args);
+      };
+      window.chatbase = cbStub;
     }
 
-    // 1b. Marcar como cargado (para prevenir recargas en futuras navegaciones SPA)
-    window.chatbaseLoaded = true;
-    isComponentMounted.current = true;
+    if (isOpen) {
+      // Cerrar
+      window.chatbase?.("close");
+      setIsOpen(false);
+    } else {
+      // Abrir
+      if (!isScriptInjected) {
+        injectChatbaseScript();
+        setIsScriptInjected(true);
+      }
+      window.chatbase?.("open");
+      setIsOpen(true);
+    }
+  };
 
-    // --- Cargar script del chatbot ---
-    const script = document.createElement("script");
-    script.src = SCRIPT_URL;
-    script.setAttribute("chatbotId", CHATBOT_ID);
-    script.defer = true;
-    document.body.appendChild(script);
+  const injectChatbaseScript = () => {
+    if (typeof window === "undefined") return;
 
-    // --- Inyectar estilos para asegurar la visibilidad del iframe ---
+    // Configuración previa
+    window.chatbaseConfig = {
+      chatbotId: CHATBOT_ID,
+      ui: {
+        fontSize: 16,
+        primaryColor: BRAND_COLOR,
+        backgroundColor: "#FFFFFF",
+      },
+      autoOpen: false,
+    };
+
+    // Estilos para ocultar la burbuja original y ajustar el widget
     const style = document.createElement("style");
-    style.textContent = `
-      iframe[title="${IFRAME_TITLE}"] {
-        z-index: 9999 !important;
+    style.id = "chatbase-styles";
+    style.innerHTML = `
+      #chatbase-bubble-button { 
+        display: none !important; 
+      }
+      
+      /* Desktop */
+      #chatbase-bubble-window { 
+        z-index: 9999 !important; 
+        bottom: 84px !important; 
+        right: 24px !important;
+        max-height: 700px !important;
+      }
+
+      /* Mobile Bottom Sheet */
+      @media (max-width: 768px) {
+        #chatbase-bubble-window {
+          position: fixed !important;
+          bottom: 0 !important;
+          right: 0 !important;
+          left: 0 !important;
+          width: 100% !important;
+          height: 80vh !important; 
+          border-radius: 20px 20px 0 0 !important;
+          box-shadow: 0 -4px 20px rgba(0,0,0,0.15) !important;
+        }
       }
     `;
     document.head.appendChild(style);
 
-    // 1c. Función de limpieza al desmontar el componente (solo remueve estilos)
-    return () => {
-      if (document.head.contains(style)) {
-        document.head.removeChild(style);
-      }
-      // NOTA: El script del chatbot se deja en el DOM (<body>) hasta el cierre
-      // total de la página para evitar parpadeos y problemas de persistencia.
-    };
-  }, []); // El array vacío asegura que solo se ejecute al montar
+    // Script de Chatbase
+    const script = document.createElement("script");
+    script.id = "chatbase-script";
+    script.src = SCRIPT_URL;
+    script.setAttribute("chatbotId", CHATBOT_ID);
+    script.defer = true;
+    document.body.appendChild(script);
+  };
 
-  // 2. Efecto secundario: Limpieza del marcador global al cerrar la ventana
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      // Restablece la bandera global solo cuando la página se va a descargar completamente
-      window.chatbaseLoaded = false;
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    // Función de limpieza para remover el listener
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []); // Este efecto solo se ejecuta una vez al montar
-
-}
-
-/**
- * Componente principal para integrar el chatbot de Chatbase.
- * No renderiza elementos visibles, solo maneja el efecto lateral de carga.
- */
-export default function ChatbotLoader() {
-  useChatbotLoader();
-
-  return null;
+  return (
+    <button
+      onClick={toggleChatbot}
+      className="fixed bottom-6 right-6 z-[10000] flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-105 hover:shadow-xl focus:outline-none"
+      style={{ backgroundColor: BRAND_COLOR }}
+      aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
+    >
+      {isOpen ? <X size={28} /> : <MessageCircle size={28} fill="white" />}
+    </button>
+  );
 }

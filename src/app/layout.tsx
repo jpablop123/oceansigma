@@ -1,12 +1,19 @@
 import "./globals.css";
 import "@/styles/header.css";
 import { Montserrat } from "next/font/google";
-import ClientWrapper from "@/components/layout/ClientWrapper"; // ✅ Este ya incluye ChatBubble
+import ClientWrapper from "@/components/layout/ClientWrapper"; 
+// Importas tu logo
+import logo from "@/assets/img/logo/globus21.png";
 
 export const metadata = {
   title: "Globus Cargo | Envíos desde USA a Colombia",
   description:
     "Envíos desde Estados Unidos a Colombia de forma rápida, segura y confiable. Casillero gratuito en Miami, consolidación de paquetes, servicio aéreo y marítimo con cobertura nacional.",
+  // ✅ AQUÍ SE AGREGA: Usamos logo.src porque es un archivo importado
+  icons: {
+    icon: logo.src,
+    apple: logo.src, 
+  },
 };
 
 const montserrat = Montserrat({
