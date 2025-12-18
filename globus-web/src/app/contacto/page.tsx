@@ -10,17 +10,18 @@ const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "600", "700"
 
 export default function ContactoPage() {
   const locations = [
+ 
     {
       name: "Bodega Miami 1",
-      address: "2120 NW 96th Ave, Doral, FL 33172",
-      country: "Estados Unidos",
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3588.1908285950935!2d-80.3658321!3d25.7948293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b9203e4edb2f%3A0x2485f0da27d9e74e!2s2120%20NW%2096th%20Ave%2C%20Doral%2C%20FL%2033172%2C%20EE.%20UU.!5e0!3m2!1ses!2sus!4v1728253105000!5m2!1ses!2sus",
-    },
-    {
-      name: "Bodega Miami 2",
       address: "1414 NW 82nd Ave, Doral, FL 33126",
       country: "Estados Unidos",
       map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3588.6852045560734!2d-80.33082568461692!3d25.7898699129559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b898ba1c891b%3A0x91d9d9b7f7c7d5e!2s1414%20NW%2082nd%20Ave%2C%20Doral%2C%20FL%2033126%2C%20EE.%20UU.!5e0!3m2!1ses!2sus!4v1731031000000!5m2!1ses!2sus",
+    },
+    {
+      name: "Bodega Miami 2",
+      address: "2120 NW 96th Ave, Doral, FL 33172",
+      country: "Estados Unidos",
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3588.1908285950935!2d-80.3658321!3d25.7948293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b9203e4edb2f%3A0x2485f0da27d9e74e!2s2120%20NW%2096th%20Ave%2C%20Doral%2C%20FL%2033172%2C%20EE.%20UU.!5e0!3m2!1ses!2sus!4v1728253105000!5m2!1ses!2sus",
     },
     {
       name: "Bodega Bogotá",
@@ -37,7 +38,7 @@ export default function ContactoPage() {
   ];
 
   const contacts = [
-    { icon: <Phone className="text-[#f58220]" size={30} />, title: "Teléfono", text: "+1 (786) 531-7987" },
+    { icon: <Phone className="text-[#f58220]" size={30} />, title: "Teléfono", text: "+57 315 0122626" },
     { icon: <Mail className="text-[#f58220]" size={30} />, title: "Correo", text: "info@globuscargo.com" },
     { icon: <Clock className="text-[#f58220]" size={30} />, title: "Horario", text: "Lunes a Viernes: 9:00 AM – 6:00 PM" },
   ];

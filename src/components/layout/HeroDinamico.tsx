@@ -123,7 +123,7 @@ export default function HeroDinamico({
           Abrir Casillero 
         </a>
         <a
-          href="https://wa.me/573001112233"
+          href="https://wa.me/573150122626"
           target="_blank"
           rel="noopener noreferrer"
           className="border border-white text-white px-10 py-3 rounded-full font-semibold text-lg hover:bg-white/15 hover:scale-105 transition-all duration-300"

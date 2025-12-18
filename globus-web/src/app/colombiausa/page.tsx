@@ -57,7 +57,7 @@ export default function EnviosColombiaUSA() {
 
             <div className="mt-8 flex gap-4 flex-wrap">
               <a
-                href="https://wa.me/573001112233"
+                href="https://wa.me/573150122626"
                 className="bg-white text-[#f58220] px-8 py-4 rounded-full font-semibold shadow-lg hover:scale-105 hover:shadow-xl transition"
               >
                 Contactar con un asesor
@@ -211,7 +211,7 @@ export default function EnviosColombiaUSA() {
 
           <div className="text-center mt-16">
             <a
-              href="https://wa.me/573001112233"
+              href="https://wa.me/573150122626"
               className="bg-[#f58220] text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:scale-105 hover:shadow-xl transition"
             >
               Contactar con un asesor
@@ -247,7 +247,7 @@ export default function EnviosColombiaUSA() {
             Abrir Casillero Gratis
           </a>
           <a
-            href="https://wa.me/573001112233"
+            href="/573001112233"
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 bg-white/10 border border-white text-white rounded-full font-semibold shadow-xl hover:bg-white/20 transition"

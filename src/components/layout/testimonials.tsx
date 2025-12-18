@@ -13,7 +13,7 @@ import nicoCortes from "@/assets/img/logo/fotosreveladas/nicolas cortes.jpeg";
 import joseBravo from "@/assets/img/logo/fotosreveladas/josebravo.jpeg";
 import eduard from "@/assets/img/logo/fotosreveladas/eduardo oliveros.jpeg";
 import jose from "@/assets/img/logo/fotosreveladas/josealejandro.jpeg";
-import marcela from "@/assets/img/logo/fotosreveladas/marcela.jpeg";
+import sebastian from "@/assets/img/logo/fotosreveladas/sebastian.jpeg";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
@@ -63,22 +63,14 @@ const testimonials = [
     imgSrc: eduard,
     rating: 5,
   },
+  
   {
-    name: "Jose Alejandro",
-    city: "Barranquilla",
-    role: "Cliente Satisfecho",
-    ig: "@jpinva2003",
-    text: "Pensé que sería complicado, pero todo fue transparente y confiable. Muy satisfecho.",
-    imgSrc: jose,
-    rating: 5,
-  },
-  {
-    name: "Marcela Vasquez",
-    city: "Barranquilla",
+    name: "Sebastian Amaya",
+    city: "Bogota",
     role: "Cliente Frecuente",
-    ig: "@marcela.v.galeano.3",
+    ig: "@sebastianamaya",
     text: "Yo solo quería que llegara bien… y llegó perfecto, sin enredos ni vueltas raras. Hasta me sorprendió lo fácil que fue.",
-    imgSrc: marcela,
+    imgSrc: sebastian,
     rating: 5,
   },
 ];

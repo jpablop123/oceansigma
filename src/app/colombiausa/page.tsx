@@ -77,7 +77,7 @@ export default function EnviosColombiaUSA() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <a href="https://wa.me/573001112233" className="px-8 py-4 bg-white text-[#f58220] font-bold rounded-xl shadow-lg shadow-orange-900/20 hover:scale-105 transition-transform flex items-center gap-2">
+              <a href="https://wa.me/573150122626" className="px-8 py-4 bg-white text-[#f58220] font-bold rounded-xl shadow-lg shadow-orange-900/20 hover:scale-105 transition-transform flex items-center gap-2">
                 Hablar con un Asesor <ArrowRight size={18}/>
               </a>
               <a href="https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7" className="px-8 py-4 bg-white/10 border border-white/30 backdrop-blur-md text-white font-bold rounded-xl hover:bg-white/20 transition-colors">
@@ -234,7 +234,7 @@ export default function EnviosColombiaUSA() {
         <div className="mt-12 text-center bg-blue-50 p-6 rounded-2xl border border-blue-100">
             <p className="text-blue-800 text-sm font-medium">
                 ¿Tienes dudas sobre algún producto específico? 
-                <a href="https://wa.me/573001112233" className="underline ml-1 font-bold hover:text-blue-900">Consúltanos antes de enviar</a>
+                <a href="https://wa.me/573150122626" className="underline ml-1 font-bold hover:text-blue-900">Consúltanos antes de enviar</a>
             </p>
         </div>
       </section>
@@ -262,7 +262,7 @@ export default function EnviosColombiaUSA() {
             <a href="https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7" className="px-10 py-4 bg-white text-[#f58220] hover:bg-gray-50 font-bold rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
                 Abrir Casillero Gratis
             </a>
-            <a href="https://wa.me/573001112233" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-[#ffffff20] border-2 border-white text-white hover:bg-white/30 font-bold rounded-full transition-all">
+            <a href="https://wa.me/573150122626" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-[#ffffff20] border-2 border-white text-white hover:bg-white/30 font-bold rounded-full transition-all">
                 Contactar Asesor
             </a>
           </div>

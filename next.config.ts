@@ -13,6 +13,19 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      // === AGREGADO PARA INSTAGRAM ===
+      {
+        protocol: 'https',
+        hostname: '**.cdninstagram.com', // Cubre todos los subdominios de Instagram (scontent, etc.)
+      },
+      {
+        protocol: 'https',
+        hostname: '**.fbcdn.net', // A veces Instagram sirve imágenes desde servidores de Facebook
+      },
+      {
+        protocol: 'https',
+        hostname: 'feeds.behold.so', // Por si Behold sirve alguna imagen cacheada
+      },
     ],
   },
 };

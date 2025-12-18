@@ -160,7 +160,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-4">Contáctanos</h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-center gap-2">
-              <Phone size={16} className="text-[#f58220]" /> +1 (786) 531-7987
+              <Phone size={16} className="text-[#f58220]" /> +57 315 0122626
             </li>
             <li className="flex items-center gap-2">
               <Mail size={16} className="text-[#f58220]" /> info@globuscargo.com

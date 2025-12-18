@@ -344,7 +344,7 @@ export default function CotizarEnvioPage() {
                         </button>
 
                         <a
-                            href={`https://wa.me/573001112233?text=${encodeURIComponent(
+                            href={`https://wa.me/573150122626?text=${encodeURIComponent(
                             `Hola Globus Cargo 📦, quiero realizar este envío:
 📍 Destino: ${form.departamento?.label || "Colombia"} - ${form.ciudad}
 ⚖️ Peso: ${form.peso} lb

@@ -96,7 +96,7 @@ export default function EnvioDinamicoPage() {
             
             {/* Botón Secundario: Transparente con borde blanco */}
             <a
-              href="https://wa.me/573001112233"
+              href="https://wa.me/573150122626"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-medium text-lg rounded-xl hover:bg-white/20 transition-all"

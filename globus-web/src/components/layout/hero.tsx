@@ -66,7 +66,7 @@ export default function HeroDinamico() {
               Regístrate Gratis
             </a>
             <a
-              href="https://wa.me/573001112233"
+              href="https://wa.me/573150122626"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-[#f58220] text-[#f58220] px-6 py-3 rounded-full font-semibold hover:bg-[#f58220]/10 transition"

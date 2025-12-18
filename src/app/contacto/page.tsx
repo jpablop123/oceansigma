@@ -35,7 +35,7 @@ export default function ContactoPage() {
     const whatsappMessage = `Hola Globus Cargo 👋,%0A%0AMi nombre es: *${formData.name}*%0ACorreo: ${formData.email}%0A%0AMensaje:%0A${formData.message}`;
     
     window.open(
-      `https://wa.me/573001112233?text=${whatsappMessage}`,
+      `https://wa.me/573150122626?text=${whatsappMessage}`,
       "_blank"
     );
   };

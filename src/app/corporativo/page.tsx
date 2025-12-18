@@ -19,7 +19,7 @@ import {
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
-const WHATSAPP_NUMBER = "573001112233";
+const WHATSAPP_NUMBER = "573150122626";
 
 // Variantes de animación
 const fadeInUp = {

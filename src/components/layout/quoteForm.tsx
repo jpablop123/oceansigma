@@ -300,7 +300,7 @@ export default function CotizadorEnvio() {
                             </button>
 
                             <a
-                                href={`https://wa.me/573001112233?text=${encodeURIComponent(
+                                href={`https://wa.me/573150122626?text=${encodeURIComponent(
                                 `Hola Globus Cargo ✈️. Quiero enviar un paquete a ${form.departamento?.label}, ${form.ciudad}.
 📦 Peso: ${form.peso} lb
 💰 Valor: $${form.valor} USD

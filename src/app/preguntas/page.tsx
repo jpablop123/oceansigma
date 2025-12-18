@@ -273,7 +273,7 @@ export default function PreguntasFrecuentesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                    href="https://wa.me/573001112233"
+                    href="https://wa.me/573150122626"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-8 py-3 bg-[#25D366] text-white font-bold rounded-full shadow-lg hover:bg-[#20b358] transition-colors flex items-center justify-center gap-2"

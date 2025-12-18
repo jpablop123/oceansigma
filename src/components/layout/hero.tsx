@@ -77,7 +77,7 @@ export default function HeroDinamico() {
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="https://wa.me/573001112233"
+                href="https://wa.me/573150122626"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-[#f58220] hover:text-[#f58220] transition-all hover:bg-orange-50"

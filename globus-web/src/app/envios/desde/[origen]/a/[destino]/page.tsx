@@ -148,7 +148,7 @@ export default function EnvioDinamicoPage() {
           </a>
 
           <a
-            href="https://wa.me/573001112233"
+            href="https://wa.me/573150122626"
             target="_blank"
             rel="noopener noreferrer"
             className="px-14 py-4 border-2 border-white text-white rounded-full font-semibold text-xl transition-all duration-300 transform hover:bg-white/20 hover:scale-[1.05]"
@@ -324,7 +324,7 @@ export default function EnvioDinamicoPage() {
           </a>
 
           <a
-            href="https://wa.me/573001112233"
+            href="https://wa.me/573150122626"
             target="_blank"
             className="px-16 py-5 bg-transparent border-2 border-white text-white rounded-full font-semibold text-xl transition-all duration-300 transform hover:scale-105 hover:bg-white/20"
           >

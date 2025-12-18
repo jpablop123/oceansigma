@@ -3,11 +3,16 @@
 import { motion } from "framer-motion";
 import { Package, Home, Boxes, Truck } from "lucide-react";
 
+// URL para el paso de registro (la que solicitaste)
+const REGISTRATION_URL = "https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7";
+
 const steps = [
   {
     icon: Package,
     title: "Regístrate",
     desc: "Crea tu casillero en Miami en menos de un minuto, gratis y sin trámites complicados.",
+    // Propiedad añadida para identificar este como un enlace
+    href: REGISTRATION_URL,
   },
   {
     icon: Boxes,
@@ -41,30 +46,48 @@ export default function StepCards() {
         </p>
 
         <div className="grid md:grid-cols-4 gap-8 mt-14">
-          {steps.map((step, i) => (
-            <motion.div
-              key={i}
-              className="relative bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition hover:-translate-y-2 flex flex-col items-center text-center group"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              {/* Números grandes en background */}
-              <span className="absolute top-4 left-4 text-6xl font-extrabold text-gray-100 opacity-50">
-                {`0${i + 1}`}
-              </span>
+          {steps.map((step, i) => {
+            // 1. Determina si el componente debe ser un enlace (a) o un div
+            const CardComponent = step.href ? motion.a : motion.div;
+            
+            // Clases base para la tarjeta
+            const cardClasses = "relative bg-white rounded-xl p-8 shadow-md transition flex flex-col items-center text-center group";
 
-              {/* Icono */}
-              <div className="w-16 h-16 flex items-center justify-center bg-[#f58220]/10 text-[#f58220] rounded-full mb-6 group-hover:bg-[#f58220] group-hover:text-white transition">
-                <step.icon size={30} />
-              </div>
+            return (
+              <CardComponent
+                key={i}
+                // 2. Aplica atributos específicos si es un enlace (step.href existe)
+                {...(step.href ? {
+                  href: step.href,
+                  target: "_blank", // Abre en una nueva pestaña
+                  rel: "noopener noreferrer",
+                  // Clases específicas para el enlace: cursor y efecto hover
+                  className: `${cardClasses} hover:shadow-xl hover:-translate-y-2 cursor-pointer`
+                } : {
+                  // Clases para los demás pasos (solo div)
+                  className: `${cardClasses} hover:shadow-xl hover:-translate-y-2`
+                })}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                {/* Números grandes en background */}
+                <span className="absolute top-4 left-4 text-6xl font-extrabold text-gray-100 opacity-50">
+                  {`0${i + 1}`}
+                </span>
 
-              {/* Título y texto */}
-              <h3 className="text-lg font-semibold">{step.title}</h3>
-              <p className="mt-3 text-sm text-gray-600">{step.desc}</p>
-            </motion.div>
-          ))}
+                {/* Icono */}
+                <div className="w-16 h-16 flex items-center justify-center bg-[#f58220]/10 text-[#f58220] rounded-full mb-6 group-hover:bg-[#f58220] group-hover:text-white transition">
+                  <step.icon size={30} />
+                </div>
+
+                {/* Título y texto */}
+                <h3 className="text-lg font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm text-gray-600">{step.desc}</p>
+              </CardComponent>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -154,7 +154,7 @@ export default function RastrearPaquetePage() {
         <div className="text-center mt-12">
             <p className="text-sm text-gray-500">
                 ¿Olvidaste tu contraseña o no tienes cuenta? <br className="md:hidden"/>
-                <a href="https://wa.me/573001112233" className="text-[#f58220] font-bold hover:underline ml-1">
+                <a href="https://wa.me/573150122626" className="text-[#f58220] font-bold hover:underline ml-1">
                     Contacta a soporte técnico
                 </a>
             </p>

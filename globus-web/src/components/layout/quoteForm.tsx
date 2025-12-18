@@ -254,7 +254,7 @@ export default function CotizadorEnvio() {
                 </button>
 
                 <a
-                  href={`https://wa.me/573001112233?text=${encodeURIComponent(
+                  href={`https://wa.me/573150122626?text=${encodeURIComponent(
                     `Hola, quiero enviar un paquete desde USA a ${form.departamento?.label || "Colombia"}, ${form.ciudad}.
 Peso: ${form.peso} lb.
 Valor declarado: $${form.valor} USD.

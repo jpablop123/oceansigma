@@ -10,6 +10,7 @@ import QuoteForm from "@/components/layout/quoteForm";
 import Footer from "@/components/layout/footer";
 import ChatBubble from "@/components/layout/ChatBubble"; // 👈 importa aquí
 import Videos from "@/components/layout/videos";
+import InstagramFeed from "@/components/layout/instagramFeed";
 
 export default function HomePage() {
   return (
@@ -19,7 +20,9 @@ export default function HomePage() {
       <ServiciosConTracking />
       <QuoteForm />
       <BenefitsPro />
+      <InstagramFeed/>
       <StepCards />
+ 
       <Videos/>
       <Testimonials />
       <Footer />

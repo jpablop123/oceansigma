@@ -20,6 +20,9 @@ import {
   AlertTriangle
 } from "lucide-react";
 
+// URL para el paso de registro (usada en Hero y en la sección "Cómo funciona")
+const REGISTRATION_URL = "https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7";
+
 // Variantes de animación
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -62,13 +65,13 @@ export default function CasilleroPage() {
 
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7"
+                href={REGISTRATION_URL}
                 className="px-8 py-4 bg-white text-[#f58220] font-bold rounded-xl shadow-lg shadow-orange-900/20 hover:scale-105 transition-transform flex items-center gap-2"
               >
                 Abrir Casillero Gratis <ArrowRight size={18}/>
               </a>
               <a
-                href="https://wa.me/573001112233"
+                href="https://wa.me/573150122626"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-white/10 border border-white/30 backdrop-blur-md text-white font-bold rounded-xl hover:bg-white/20 transition-colors"
@@ -93,11 +96,11 @@ export default function CasilleroPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 
-                {/* Badge Flotante */}
+                {/* Badge Flotante - Dirección Actualizada */}
                 <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-xl p-4 rounded-2xl shadow-lg border border-white max-w-xs">
                     <p className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Dirección Gratuita</p>
                     <p className="text-gray-900 font-bold text-sm leading-tight">
-                        2120 NW 96th Ave, Doral, FL 33172
+                        1414 NW 82nd Ave, Doral, FL 33126
                     </p>
                 </div>
              </div>
@@ -120,30 +123,51 @@ export default function CasilleroPage() {
              <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-0.5 border-t-2 border-dashed border-orange-100 z-0"></div>
 
              {[
-                { icon: Home, title: "Regístrate", desc: "Obtén tu dirección física y virtual en Miami totalmente gratis." },
+                // El primer elemento ahora incluye la URL de registro
+                { 
+                  icon: Home, 
+                  title: "Regístrate", 
+                  desc: "Obtén tu dirección física y virtual en Miami totalmente gratis.",
+                  href: REGISTRATION_URL
+                },
                 { icon: ShoppingCart, title: "Compra", desc: "Usa tu nueva dirección al comprar en Amazon, eBay, etc." },
                 { icon: Package, title: "Recibimos", desc: "Tus paquetes llegan a nuestra bodega, los pesamos y notificamos." },
                 { icon: Plane, title: "Enviamos", desc: "Despachamos a Colombia y recibes en la puerta de tu casa." },
-             ].map((step, i) => (
-                <motion.div
-                    key={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    custom={i * 0.1}
-                    variants={fadeInUp}
-                    viewport={{ once: true }}
-                    className="relative z-10 text-center group"
-                >
-                    <div className="w-24 h-24 mx-auto bg-white border-4 border-orange-50 rounded-full flex items-center justify-center text-[#f58220] mb-6 shadow-lg group-hover:scale-110 group-hover:border-[#f58220] transition-all duration-300">
-                        <step.icon size={32} />
-                        <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#f58220] text-white rounded-full flex items-center justify-center font-bold text-sm border-2 border-white">
-                            {i + 1}
-                        </div>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed px-4">{step.desc}</p>
-                </motion.div>
-             ))}
+             ].map((step, i) => {
+                // Lógica para determinar si es un enlace o un div
+                const CardComponent = step.href ? motion.a : motion.div;
+                
+                // Clases base y de hover
+                const cardClasses = "relative z-10 text-center group transition-all duration-300";
+                const hoverClasses = step.href ? "hover:scale-[1.03] cursor-pointer" : "";
+
+                return (
+                  <CardComponent
+                      key={i}
+                      // Atributos de enlace solo si existe step.href
+                      {...(step.href ? { 
+                        href: step.href, 
+                        target: "_blank", 
+                        rel: "noopener noreferrer",
+                      } : {})}
+                      className={`${cardClasses} ${hoverClasses}`}
+                      initial="hidden"
+                      whileInView="visible"
+                      custom={i * 0.1}
+                      variants={fadeInUp}
+                      viewport={{ once: true }}
+                  >
+                      <div className="w-24 h-24 mx-auto bg-white border-4 border-orange-50 rounded-full flex items-center justify-center text-[#f58220] mb-6 shadow-lg group-hover:scale-110 group-hover:border-[#f58220] transition-all duration-300">
+                          <step.icon size={32} />
+                          <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#f58220] text-white rounded-full flex items-center justify-center font-bold text-sm border-2 border-white">
+                              {i + 1}
+                          </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                      <p className="text-gray-500 text-sm leading-relaxed px-4">{step.desc}</p>
+                  </CardComponent>
+                );
+             })}
           </div>
         </div>
       </section>
@@ -209,13 +233,13 @@ export default function CasilleroPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-                href="https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7" 
+                href={REGISTRATION_URL} 
                 className="px-10 py-4 bg-[#f58220] hover:bg-[#e07116] text-white font-bold rounded-full transition-colors shadow-lg shadow-orange-900/40"
             >
                 Crear Casillero Gratis
             </a>
             <a 
-                href="https://wa.me/573001112233" 
+                href="https://wa.me/573150122626" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="px-10 py-4 bg-transparent border border-gray-700 text-white hover:bg-white hover:text-black font-bold rounded-full transition-all"

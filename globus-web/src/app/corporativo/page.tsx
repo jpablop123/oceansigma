@@ -15,7 +15,7 @@ import {
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "600", "700"] });
 
-const WHATSAPP_NUMBER = "573001112233";
+const WHATSAPP_NUMBER = "+57 315 0122626";
 
 export default function EmpresasPage() {
   const mensaje = encodeURIComponent(
