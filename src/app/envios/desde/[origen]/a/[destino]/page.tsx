@@ -20,7 +20,8 @@ import {
   FaPlane,
   FaShip,
   FaCalculator,
-  FaInfoCircle
+  FaInfoCircle,
+  FaExclamationTriangle
 } from "react-icons/fa";
 
 // URL OFICIAL DE REGISTRO
@@ -33,6 +34,7 @@ export default function EnvioDinamicoPage() {
   // --- ESTADOS DE LA CALCULADORA ---
   const [quickWeight, setQuickWeight] = useState(""); 
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null); // ✅ Estado para manejar errores
 
   const origen = params.origen?.toString() || "usa";
   const destino = params.destino?.toString() || "colombia";
@@ -65,6 +67,13 @@ export default function EnvioDinamicoPage() {
     if (estimatedCost === null) {
       const weight = parseFloat(quickWeight);
       if (!isNaN(weight) && weight > 0) {
+        
+        // Safeguard adicional (aunque el input ya bloquea)
+        if (weight > 2000) {
+          setError("El peso máximo permitido es de 2000 lbs.");
+          return;
+        }
+
         let total = 0;
         // Regla: 1ra Libra = $12, Adicionales = $1.8
         if (weight <= 1) {
@@ -73,6 +82,7 @@ export default function EnvioDinamicoPage() {
           total = 12 + ((weight - 1) * 1.8);
         }
         setEstimatedCost(total);
+        setError(null);
       }
     } else {
       // Si YA está calculado, entonces redirigimos a la cotización completa
@@ -193,15 +203,52 @@ export default function EnvioDinamicoPage() {
                               placeholder="0" 
                               value={quickWeight}
                               onChange={(e) => {
-                                setQuickWeight(e.target.value);
-                                setEstimatedCost(null); // 👈 IMPORTANTE: Ocultamos el resultado al editar
+                                const val = e.target.value;
+
+                                // 1. Si borra todo, reseteamos
+                                if (val === "") {
+                                  setQuickWeight("");
+                                  setEstimatedCost(null);
+                                  setError(null);
+                                  return;
+                                }
+
+                                const num = parseFloat(val);
+
+                                // 2. Bloqueo estricto: Si intenta escribir > 2000, NO actualizamos el valor y mostramos error
+                                if (!isNaN(num) && num > 2000) {
+                                  setError("¡No puedes exceder 2000 lbs! Contáctanos para carga mayor.");
+                                  // 🚫 Aquí está la clave: NO llamamos a setQuickWeight, bloqueando la escritura
+                                  return; 
+                                }
+
+                                // 3. Si es válido, permitimos escribir y limpiamos errores
+                                setQuickWeight(val);
+                                setEstimatedCost(null); 
+                                setError(null);
                               }}
                               onKeyDown={handleKeyDown}
-                              className="w-full bg-gray-50 border border-gray-200 text-3xl font-bold text-[#1a1a1a] rounded-xl px-4 py-3 focus:outline-none focus:border-[#f58220] focus:ring-2 focus:ring-[#f58220]/20 transition-all placeholder:text-gray-300"
+                              className={`w-full bg-gray-50 border ${error ? "border-red-500 text-red-600 focus:border-red-500 focus:ring-red-500/20" : "border-gray-200 text-[#1a1a1a] focus:border-[#f58220] focus:ring-[#f58220]/20"} text-3xl font-bold rounded-xl px-4 py-3 focus:outline-none focus:ring-2 transition-all placeholder:text-gray-300`}
                               min="1"
+                              max="2000" // Ayuda nativa del navegador
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">LB</span>
                         </div>
+
+                        {/* 🚨 Mensaje de Error con Animación */}
+                        <AnimatePresence>
+                          {error && (
+                            <motion.div 
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              className="text-red-500 text-xs font-bold flex items-start gap-1 overflow-hidden"
+                            >
+                              <FaExclamationTriangle className="shrink-0 mt-0.5" /> 
+                              <span>{error}</span>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                     </div>
 
                     <AnimatePresence>
