@@ -21,7 +21,9 @@ import {
   FaShip,
   FaCalculator,
   FaInfoCircle,
-  FaExclamationTriangle
+  FaExclamationTriangle,
+  FaChevronDown,
+  FaChevronUp
 } from "react-icons/fa";
 
 // URL OFICIAL DE REGISTRO
@@ -34,7 +36,10 @@ export default function EnvioDinamicoPage() {
   // --- ESTADOS DE LA CALCULADORA ---
   const [quickWeight, setQuickWeight] = useState(""); 
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
-  const [error, setError] = useState<string | null>(null); // ✅ Estado para manejar errores
+  const [error, setError] = useState<string | null>(null);
+  
+  // --- ESTADO PARA FAQ (SEO) ---
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const origen = params.origen?.toString() || "usa";
   const destino = params.destino?.toString() || "colombia";
@@ -44,6 +49,57 @@ export default function EnvioDinamicoPage() {
 
   const formattedOrigen = format(origen);
   const formattedDestino = format(destino);
+
+  // --- DATOS FAQ DINÁMICOS (SEO LONG-TAIL) ---
+  const faqData = [
+    {
+      q: `¿Cuánto tiempo tarda el envío de ${formattedOrigen} a ${formattedDestino}?`,
+      a: "Nuestros envíos aéreos express toman entre 3 a 5 días hábiles, mientras que los envíos marítimos económicos pueden tomar de 15 a 20 días hábiles dependiendo de la aduana."
+    },
+    {
+      q: "¿Debo pagar impuestos por mis compras?",
+      a: "Depende del valor declarado y la regulación local. Para envíos aéreos bajo la modalidad 4x4 (paquetes menores a 4KG y $200 USD), generalmente están exentos o tienen tarifas reducidas."
+    },
+    {
+      q: "¿El casillero tiene algún costo de mantenimiento?",
+      a: "No. Abrir y mantener tu casillero en Globus Cargo es 100% gratuito. Solo pagas por el peso o volumen de lo que envías."
+    },
+    {
+      q: "¿Cómo aseguran mi mercancía?",
+      a: "Todos los envíos cuentan con un seguro básico incluido. Adicionalmente, aseguramos el 100% del valor declarado por una pequeña prima del 5%."
+    }
+  ];
+
+  // --- GENERACIÓN DE JSON-LD (SCHEMA MARKUP) ---
+  // Esto ayuda a Google a entender que esto es un servicio logístico específico
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "International Shipping",
+    "provider": {
+      "@type": "Organization",
+      "name": "Globus Cargo",
+      "url": "https://globuscargo.us"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": formattedDestino
+    },
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceLocation": {
+        "@type": "Place",
+        "name": `Warehouse in ${formattedOrigen}`
+      }
+    },
+    "description": `Servicio de envíos internacionales y casillero virtual desde ${formattedOrigen} hacia ${formattedDestino}.`,
+    "offers": {
+      "@type": "Offer",
+      "price": "12.00",
+      "priceCurrency": "USD",
+      "unitCode": "LBR"
+    }
+  };
 
   useEffect(() => {
     const title = `Envíos Internacionales desde ${formattedOrigen} a ${formattedDestino} | Globus Cargo`;
@@ -63,19 +119,17 @@ export default function EnvioDinamicoPage() {
   const handleCalculateOrContinue = () => {
     if (!quickWeight) return;
 
-    // Si aún no se ha calculado (es null), hacemos el cálculo
     if (estimatedCost === null) {
       const weight = parseFloat(quickWeight);
       if (!isNaN(weight) && weight > 0) {
         
-        // Safeguard adicional (aunque el input ya bloquea)
+        // Safeguard adicional
         if (weight > 2000) {
           setError("El peso máximo permitido es de 2000 lbs.");
           return;
         }
 
         let total = 0;
-        // Regla: 1ra Libra = $12, Adicionales = $1.8
         if (weight <= 1) {
           total = 12;
         } else {
@@ -85,7 +139,6 @@ export default function EnvioDinamicoPage() {
         setError(null);
       }
     } else {
-      // Si YA está calculado, entonces redirigimos a la cotización completa
       router.push(`/cotizar?peso=${quickWeight}`);
     }
   };
@@ -96,7 +149,6 @@ export default function EnvioDinamicoPage() {
     }
   };
 
-  // ✅ NUEVA ANIMACIÓN: Blur Reveal (Más suave y moderna)
   const heroReveal = {
     hidden: { opacity: 0, filter: "blur(10px)", y: 10 },
     visible: { 
@@ -109,13 +161,27 @@ export default function EnvioDinamicoPage() {
 
   return (
     <main className="bg-white text-[#1a1a1a] min-h-screen font-sans selection:bg-[#f58220] selection:text-white overflow-x-hidden">
+      
+      {/* 🟢 SEO: JSON-LD Script para Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <Header />
 
+      {/* 🟢 UX/SEO: Breadcrumbs para navegación */}
+      <div className="pt-24 pb-2 px-6 bg-orange-50/50 hidden md:block">
+        <div className="max-w-7xl mx-auto text-xs text-gray-500 font-medium">
+          <span className="hover:text-[#f58220] cursor-pointer">Inicio</span> &gt; 
+          <span className="hover:text-[#f58220] cursor-pointer ml-1">Envíos</span> &gt; 
+          <span className="text-[#f58220] ml-1 font-bold">De {formattedOrigen} a {formattedDestino}</span>
+        </div>
+      </div>
+
       {/* === HERO SECTION === */}
-      {/* CAMBIO: Gradiente hacia tonos más claros (Orange-300) en lugar de oscuros para reducir el contraste agresivo */}
-      <section className="relative min-h-[85vh] flex items-center pt-32 pb-20 px-6 overflow-hidden bg-gradient-to-br from-[#f58220] via-[#ff9f50] to-[#ffb675]">
+      <section className="relative min-h-[85vh] flex items-center pt-10 pb-20 px-6 overflow-hidden bg-gradient-to-br from-[#f58220] via-[#ff9f50] to-[#ffb675]">
         
-        {/* Decoración Fondo: Sutiles curvas en lugar de cuadrícula */}
         <div className="absolute inset-0 z-0 opacity-[0.4]" 
              style={{ 
                backgroundImage: "radial-gradient(circle at 10% 20%, rgba(255,255,255,0.2) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255,255,255,0.2) 0%, transparent 20%)" 
@@ -124,7 +190,6 @@ export default function EnvioDinamicoPage() {
         
         <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
           
-          {/* Texto Hero */}
           <motion.div 
             initial="hidden"
             animate="visible"
@@ -176,14 +241,12 @@ export default function EnvioDinamicoPage() {
             </motion.div>
           </motion.div>
 
-          {/* === TARJETA: CALCULADORA RÁPIDA (Diseño más ligero) === */}
           <motion.div 
             initial={{ opacity: 0, filter: "blur(20px)", scale: 0.95 }}
             animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             className="hidden lg:block relative"
           >
-            {/* Fondo más claro y translúcido */}
             <div className="relative z-10 bg-white/10 backdrop-blur-xl border border-white/30 p-8 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.05)]">
                 <div className="flex justify-between items-start mb-6">
                     <div>
@@ -204,25 +267,17 @@ export default function EnvioDinamicoPage() {
                               value={quickWeight}
                               onChange={(e) => {
                                 const val = e.target.value;
-
-                                // 1. Si borra todo, reseteamos
                                 if (val === "") {
                                   setQuickWeight("");
                                   setEstimatedCost(null);
                                   setError(null);
                                   return;
                                 }
-
                                 const num = parseFloat(val);
-
-                                // 2. Bloqueo estricto: Si intenta escribir > 2000, NO actualizamos el valor y mostramos error
                                 if (!isNaN(num) && num > 2000) {
                                   setError("¡No puedes exceder 2000 lbs! Contáctanos para carga mayor.");
-                                  // 🚫 Aquí está la clave: NO llamamos a setQuickWeight, bloqueando la escritura
                                   return; 
                                 }
-
-                                // 3. Si es válido, permitimos escribir y limpiamos errores
                                 setQuickWeight(val);
                                 setEstimatedCost(null); 
                                 setError(null);
@@ -230,12 +285,11 @@ export default function EnvioDinamicoPage() {
                               onKeyDown={handleKeyDown}
                               className={`w-full bg-gray-50 border ${error ? "border-red-500 text-red-600 focus:border-red-500 focus:ring-red-500/20" : "border-gray-200 text-[#1a1a1a] focus:border-[#f58220] focus:ring-[#f58220]/20"} text-3xl font-bold rounded-xl px-4 py-3 focus:outline-none focus:ring-2 transition-all placeholder:text-gray-300`}
                               min="1"
-                              max="2000" // Ayuda nativa del navegador
+                              max="2000"
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">LB</span>
                         </div>
 
-                        {/* 🚨 Mensaje de Error con Animación */}
                         <AnimatePresence>
                           {error && (
                             <motion.div 
@@ -288,7 +342,6 @@ export default function EnvioDinamicoPage() {
                 </div>
             </div>
             
-            {/* Decoración Flotante */}
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -391,7 +444,44 @@ export default function EnvioDinamicoPage() {
         </div>
       </section>
 
-      {/* === VIDEOS (NUEVA SECCIÓN) === */}
+      {/* 🟢 NUEVA SECCIÓN: FAQ PARA SEO LONG-TAIL */}
+      <section className="py-24 px-6 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+             <span className="text-[#f58220] font-bold tracking-widest uppercase text-xs mb-3 block">Preguntas Frecuentes</span>
+             <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a]">Resolvemos tus dudas</h2>
+          </div>
+          
+          <div className="space-y-4">
+            {faqData.map((item, idx) => (
+              <div key={idx} className="border border-gray-200 rounded-2xl overflow-hidden hover:border-[#f58220]/30 transition-colors">
+                <button
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full flex items-center justify-between p-6 bg-gray-50 text-left font-bold text-[#1a1a1a] hover:bg-white transition-colors"
+                >
+                  <span className="pr-8">{item.q}</span>
+                  {openFaq === idx ? <FaChevronUp className="text-[#f58220] shrink-0" /> : <FaChevronDown className="text-gray-400 shrink-0" />}
+                </button>
+                <AnimatePresence>
+                  {openFaq === idx && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="bg-white"
+                    >
+                      <div className="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-100 mt-4">
+                        {item.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div className="border-t border-gray-100">
         <Videos />
       </div>
@@ -413,9 +503,8 @@ export default function EnvioDinamicoPage() {
       </section>
 
       {/* === CTA FINAL (LIMPIO Y CORPORATIVO) === */}
-      <section className="relative py-32 px-6 overflow-hidden bg-gray-50">
+      <section className="relative py-32 px-6 overflow-hidden bg-gray-50 pb-40"> {/* pb-40 para dar espacio a la barra móvil */}
         
-        {/* Decoración Corporativa */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f58220] opacity-[0.05] blur-[120px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#f58220] opacity-[0.05] blur-[120px] rounded-full pointer-events-none"></div>
         
@@ -454,6 +543,25 @@ export default function EnvioDinamicoPage() {
           </div>
         </div>
       </section>
+
+      {/* 🟢 MARKETING: STICKY MOBILE CTA (SOLO VISIBLE EN MÓVIL AL SCROLEAR) */}
+      <motion.div 
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 2 }}
+        className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-[0_-10px_20px_rgba(0,0,0,0.1)] z-50 md:hidden flex items-center justify-between gap-4"
+      >
+        <div className="flex flex-col">
+           <span className="text-[10px] uppercase font-bold text-gray-400">Oferta Especial</span>
+           <span className="text-sm font-bold text-[#1a1a1a]">Casillero Gratis</span>
+        </div>
+        <a 
+          href={REGISTER_URL} 
+          className="bg-[#f58220] text-white px-6 py-3 rounded-full font-bold text-sm shadow-md"
+        >
+          Registrarme
+        </a>
+      </motion.div>
 
       <Footer />
     </main>
