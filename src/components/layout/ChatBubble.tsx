@@ -26,22 +26,21 @@ export default function CustomChatbot() {
   const [isScriptInjected, setIsScriptInjected] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   
-  // ✅ NUEVO: Ref para bloquear el observador mientras animamos el cierre manual
+  // Ref para bloquear el observador mientras animamos el cierre manual
   const isTogglingRef = useRef(false);
 
-  // 1. Verificar al cargar si el script ya existe
+  // 1. Verificar persistencia del script
   useEffect(() => {
     if (typeof window !== 'undefined' && document.getElementById("chatbase-script")) {
       setIsScriptInjected(true);
     }
   }, []);
 
-  // 2. Sincronización Automática (Observer)
+  // 2. Observer para sincronización
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const observer = new MutationObserver(() => {
-      // Si estamos en medio de un toggle manual, ignoramos al observador
       if (isTogglingRef.current) return;
 
       const chatWindow = document.getElementById("chatbase-bubble-window");
@@ -69,13 +68,15 @@ export default function CustomChatbot() {
     };
   }, [isScriptInjected]);
 
-  const toggleChatbot = () => {
+  // ✅ CORRECCIÓN: Simplificamos para usar solo eventos nativos de React
+  const toggleChatbot = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
     if (typeof window === "undefined") return;
 
-    // Activamos el bloqueo del observador
     isTogglingRef.current = true;
 
-    // Inicialización del Stub
+    // Inicialización Stub: Aseguramos que window.chatbase EXISTA
     if (!window.chatbase) {
       const cbStub: any = (...args: any[]) => {
         if (!cbStub.q) cbStub.q = [];
@@ -86,8 +87,11 @@ export default function CustomChatbot() {
 
     if (isOpen) {
       // CERRAR
-      // CORRECCIÓN AQUÍ: Agregamos ?. antes de ("close")
-      window.chatbase?.("close");
+      // ✅ CORRECCIÓN CRÍTICA: Quitamos el `?.` para evitar que Next.js use .call() internamente
+      // Como ya garantizamos arriba que window.chatbase existe, esto es seguro.
+      if (typeof window.chatbase === "function") {
+        window.chatbase("close");
+      }
       setIsOpen(false);
     } else {
       // ABRIR
@@ -95,12 +99,15 @@ export default function CustomChatbot() {
         injectChatbaseScript();
         setIsScriptInjected(true);
       }
-      // CORRECCIÓN AQUÍ: Agregamos ?. por seguridad también
-      window.chatbase?.("open");
+      
+      // ✅ CORRECCIÓN CRÍTICA: Llamada directa sin `?.`
+      if (typeof window.chatbase === "function") {
+        window.chatbase("open");
+      }
       setIsOpen(true);
     }
 
-    // Desactivamos el bloqueo después de que termine la animación (aprox 1s para seguridad)
+    // Desbloqueamos después de 1 segundo
     setTimeout(() => {
       isTogglingRef.current = false;
     }, 1000);
@@ -142,6 +149,7 @@ export default function CustomChatbot() {
           height: 80vh !important; 
           border-radius: 20px 20px 0 0 !important;
           box-shadow: 0 -4px 20px rgba(0,0,0,0.15) !important;
+          pointer-events: auto !important;
         }
       }
     `;
@@ -159,15 +167,19 @@ export default function CustomChatbot() {
     <button
       onClick={toggleChatbot}
       className={`
-        fixed z-[10000] flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all focus:outline-none overflow-hidden
+        fixed z-[2147483647] flex h-14 w-14 cursor-pointer items-center justify-center rounded-full text-white shadow-lg transition-all focus:outline-none overflow-hidden active:scale-95 select-none
         ${isOpen 
-          // En móvil: Arriba a la derecha para no estorbar
-          ? "bottom-6 right-6 max-md:bottom-auto max-md:top-4 max-md:right-4" 
-          // Cerrado: Abajo a la derecha normal
+          // En móvil: Arriba a la derecha. Ajustado a top-6/right-6 para evitar área segura (notch/status bar)
+          ? "bottom-6 right-6 max-md:bottom-auto max-md:top-6 max-md:right-6" 
+          // Cerrado: Abajo a la derecha
           : "bottom-6 right-6 hover:scale-105 hover:shadow-xl"
         }
       `}
-      style={{ backgroundColor: BRAND_COLOR }}
+      style={{ 
+        backgroundColor: BRAND_COLOR,
+        pointerEvents: 'auto',
+        WebkitTapHighlightColor: 'transparent'
+      }}
       aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
     >
       {isOpen ? (
@@ -179,6 +191,7 @@ export default function CustomChatbot() {
             alt="Chat" 
             className="h-9 w-9 object-contain drop-shadow-sm filter brightness-0 invert" 
             style={{ filter: "none" }} 
+            draggable={false}
           />
         ) : (
           <div className="h-6 w-6 bg-white rounded-full opacity-50" />

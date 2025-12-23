@@ -9,11 +9,8 @@ import { FaInstagram, FaExternalLinkAlt, FaArrowRight, FaPlay, FaClone, FaTimes 
 const INSTAGRAM_FEED_URL = "https://feeds.behold.so/7h145nVZyZOfwQmsbbAi"; 
 
 export default function InstagramFeed() {
-  // CORRECCIÓN AQUÍ: <any[]> permite que el array reciba datos después
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  
-  // Estado para saber qué post está abierto (null = ninguno)
   const [selectedPost, setSelectedPost] = useState<any>(null);
 
   useEffect(() => {
@@ -22,7 +19,6 @@ export default function InstagramFeed() {
         const response = await fetch(INSTAGRAM_FEED_URL);
         const data = await response.json();
         
-        // Corrección de estructura de datos
         const validPosts = data.posts ? data.posts : data;
         if (Array.isArray(validPosts)) {
             setPosts(validPosts.slice(0, 4));
@@ -37,7 +33,6 @@ export default function InstagramFeed() {
     fetchPosts();
   }, []);
 
-  // Función para cerrar el modal
   const closeModal = () => setSelectedPost(null);
 
   return (
@@ -89,8 +84,8 @@ export default function InstagramFeed() {
               return (
                 <motion.div
                   key={post.id}
-                  layoutId={`post-${post.id}`} // Animación mágica al abrir
-                  onClick={() => setSelectedPost(post)} // AL CLIC: Abrir Modal
+                  layoutId={`post-${post.id}`} 
+                  onClick={() => setSelectedPost(post)}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -128,44 +123,49 @@ export default function InstagramFeed() {
         </div>
       </div>
 
-      {/* === MODAL / LIGHTBOX (REPRODUCTOR) === */}
+      {/* === MODAL / LIGHTBOX (CORREGIDO MOBILE) === */}
       <AnimatePresence>
         {selectedPost && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-md"
-            onClick={closeModal} // Cerrar al hacer clic fuera
+            // z-[99999] para asegurar que tape todo excepto quizás el chatbot si es muy intrusivo
+            className="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8 bg-slate-900/95 backdrop-blur-md"
+            onClick={closeModal}
           >
-            {/* Botón cerrar */}
+            {/* Botón cerrar mejor posicionado para dedos en móvil */}
             <button 
               onClick={closeModal}
-              className="absolute top-6 right-6 text-white/70 hover:text-white hover:bg-white/10 p-3 rounded-full transition-all"
+              className="absolute top-4 right-4 z-[100] text-white/80 hover:text-white bg-black/20 hover:bg-white/10 backdrop-blur-sm p-3 rounded-full transition-all"
             >
-              <FaTimes className="text-3xl" />
+              <FaTimes className="text-2xl md:text-3xl" />
             </button>
 
-            {/* Contenido del Modal */}
+            {/* Contenedor del Modal */}
             <motion.div 
               layoutId={`post-${selectedPost.id}`}
-              className="relative w-full max-w-4xl max-h-[90vh] bg-black rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
-              onClick={(e) => e.stopPropagation()} // Evitar cerrar al hacer clic dentro
+              // Altura dinámica: max-h-[85vh] evita que se salga de pantalla en móviles con barra de navegación
+              className="relative w-full max-w-5xl max-h-[85vh] md:max-h-[90vh] bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
+              onClick={(e) => e.stopPropagation()}
             >
               
-              {/* LADO IZQUIERDO: MEDIA (VIDEO O FOTO) */}
-              <div className="flex-1 bg-black flex items-center justify-center relative min-h-[50vh] md:min-h-[70vh]">
+              {/* LADO IZQUIERDO: MEDIA */}
+              {/* flex-1 y overflow-hidden aseguran que la imagen/video ocupe el espacio disponible sin empujar el texto fuera */}
+              <div className="flex-1 bg-black flex items-center justify-center relative overflow-hidden min-h-[40vh] md:min-h-[60vh]">
                 {selectedPost.mediaType === "VIDEO" ? (
-                  // REPRODUCTOR DE VIDEO
+                  // CORRECCIÓN VIDEO: muted, playsInline y loop son vitales para mobile
                   <video 
                     src={selectedPost.mediaUrl} 
                     controls 
                     autoPlay 
-                    className="w-full h-full max-h-[85vh] object-contain"
+                    muted 
+                    loop
+                    playsInline
+                    className="w-full h-full max-h-[50vh] md:max-h-full object-contain"
                   />
                 ) : (
-                  // VISOR DE IMAGEN
-                  <div className="relative w-full h-full min-h-[50vh]">
+                  <div className="relative w-full h-full">
                     <Image
                       src={selectedPost.mediaUrl}
                       alt="Post Full"
@@ -177,12 +177,14 @@ export default function InstagramFeed() {
                 )}
               </div>
 
-              {/* LADO DERECHO: INFO (Solo en Desktop para no tapar el video en móvil) */}
-              <div className="w-full md:w-80 bg-white p-6 flex flex-col overflow-y-auto max-h-[30vh] md:max-h-auto">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-slate-100 rounded-full overflow-hidden">
-                     {/* Aquí podrías poner el logo de Globus si quieres */}
-                     <FaInstagram className="w-full h-full p-2 text-slate-400"/>
+              {/* LADO DERECHO: INFO */}
+              {/* Ajuste Mobile: Altura máxima controlada y scroll suave */}
+              <div className="w-full md:w-96 bg-white p-5 md:p-8 flex flex-col shrink-0 overflow-y-auto max-h-[40vh] md:max-h-auto">
+                <div className="flex items-center gap-3 mb-4 shrink-0">
+                  <div className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 p-[2px] rounded-full">
+                     <div className="bg-white w-full h-full rounded-full p-[2px] overflow-hidden">
+                       <FaInstagram className="w-full h-full text-slate-800"/>
+                     </div>
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-slate-900">@globuscargo_</h4>
@@ -198,9 +200,9 @@ export default function InstagramFeed() {
                   href={selectedPost.permalink} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mt-auto flex items-center justify-center gap-2 w-full py-3 bg-[#f58220] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors text-sm"
+                  className="mt-auto shrink-0 flex items-center justify-center gap-2 w-full py-3 bg-[#f58220] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors text-sm shadow-md hover:shadow-orange-500/20"
                 >
-                  <FaInstagram /> Ver en Instagram App
+                  <FaInstagram className="text-lg" /> Ver publicación
                 </a>
               </div>
 
