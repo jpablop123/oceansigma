@@ -58,7 +58,7 @@ export default function EnvioDinamicoPage() {
     },
     {
       q: "¿Debo pagar impuestos por mis compras?",
-      a: "Depende del valor declarado y la regulación local. Para envíos aéreos bajo la modalidad 4x4 (paquetes menores a 4KG y $200 USD), generalmente están exentos o tienen tarifas reducidas."
+      a: "Depende del valor declarado. Si tu paquete vale menos de $200 USD (y pesa menos de 50KG), está 100% exento de impuestos. En caso de ser más de $200 USD, se deben pagar impuestos (IVA y Arancel)"
     },
     {
       q: "¿El casillero tiene algún costo de mantenimiento?",
@@ -66,7 +66,7 @@ export default function EnvioDinamicoPage() {
     },
     {
       q: "¿Cómo aseguran mi mercancía?",
-      a: "Todos los envíos cuentan con un seguro básico incluido. Adicionalmente, aseguramos el 100% del valor declarado por una pequeña prima del 5%."
+      a: "Todos los envíos cuentan con un seguro básico incluido. Adicionalmente, aseguramos el 100% del valor declarado por una pequeña prima del 2%."
     }
   ];
 

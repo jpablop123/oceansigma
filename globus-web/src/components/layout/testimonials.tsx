@@ -22,54 +22,67 @@ const getPlaceholderUrl = (name: string) => {
 
 // --- DATOS DE TESTIMONIOS ---
 const testimonials = [
-    {
-        name: "Adrian Alvarez",
-        city: "Bogotá",
-        ig: "@adrianzon",
-        text: "Excelente servicio, mis compras llegaron puntuales y en perfecto estado. Los recomiendo totalmente.",
-        imgSrc: adrianAlvarez,
-      },
+  {
+    name: "Adrian Alvarez",
+    city: "Bogotá",
+    ig: "@adrianzon",
+    // Antes: "Excelente servicio..."
+    // Ahora: Enfatiza la seguridad en compras caras
+    text: "La verdad me daba desconfianza pedir cosas caras por internet, pero el tracking de ellos es súper exacto. Todo llegó en su caja original y sellado. A ojo cerrado los recomiendo.",
+    imgSrc: adrianAlvarez,
+  },
   {
     name: "Catalina Rodriguez",
     city: "Bucaramanga",
     ig: "@catalinarodriguez27",
-    text: "Me asesoraron en todo y el envío salió más económico de lo que pensaba. Cero estrés.",
-    imgSrc: catarodriguez
+    // Antes: "Me asesoraron..."
+    // Ahora: Enfatiza el ahorro y la consolidación
+    text: "Hice cuentas y me salía más barato traer la ropa con ellos que comprarla acá. Lo chévere es que me ayudaron a juntar varios paquetes en una sola caja para no pagar doble envío.",
+    imgSrc: catarodriguez,
   },
   {
-    name: "Nicolas Cortes ",
-    city: "Bogota",
+    name: "Nicolas Cortes",
+    city: "Bogotá",
     ig: "@nicolascortesd",
-    text: "La atención por WhatsApp fue inmediata, sentí mucha confianza. Seguiré usando Globus Cargo.",
-    imgSrc: nicoCortes
+    // Antes: "La atención por WhatsApp..."
+    // Ahora: Enfatiza el servicio humano vs robots
+    text: "Lo que más valoro es que te contestan el WhatsApp de una. No es un robot ahí dando vueltas; uno siente que hay gente real cuidando el paquete. Eso da mucha paz.",
+    imgSrc: nicoCortes,
   },
   {
     name: "Jose Fernando Bravo",
-    city: "Bogota",
+    city: "Bogotá",
     ig: "@josebravo100",
-    text: "El proceso fue súper fácil, desde que registré mi casillero hasta que recibí en casa.",
-    imgSrc: joseBravo
+    // Antes: "El proceso fue súper fácil..."
+    // Ahora: Enfatiza la simplicidad (Amazon -> Casa)
+    text: "Literal fue crear la cuenta y ya. Puse la dirección en Amazon, ellos recibieron allá y a los días lo tenía en la portería de mi edificio. Cero estrés.",
+    imgSrc: joseBravo,
   },
   {
     name: "Eduardo Oliveros",
-    city: "Medellin",
+    city: "Medellín",
     ig: "@eduardoliveros",
-    text: "Rápidos, seguros y económicos. Mi pedidos siempre con Globus.",
-    imgSrc: eduard
+    // Antes: "Rápidos, seguros..."
+    // Ahora: Corto y al grano (cumplimiento)
+    text: "Son serios. Si dicen que llega en 5 días hábiles, llega en 5 días. Para traer repuestos o cosas de trabajo necesito esa puntualidad, y cumplen.",
+    imgSrc: eduard,
   },
   {
     name: "Jose Alejandro",
     city: "Barranquilla",
     ig: "@jpinva2003",
-    text: "Pensé que sería complicado, pero todo fue transparente y confiable. Muy satisfecho.",
-    imgSrc: jose
+    // Antes: "Pensé que sería complicado..."
+    // Ahora: Superando el miedo a la aduana
+    text: "Tenía susto por el tema de la aduana y los impuestos, pero ellos se encargaron de todo el papeleo. Yo solo pagué el flete y recibí. Así sí aguanta importar.",
+    imgSrc: jose,
   },
   {
     name: "Marcela Vasquez",
     city: "Barranquilla",
     ig: "@marcela.v.galeano.3",
-    text: "Yo solo quería que llegara bien… y llegó perfecto, sin enredos ni vueltas raras. Hasta me sorprendió lo fácil que fue. Ya tengo lista la próxima compra",
-    imgSrc: marcela
+    // Este ya estaba muy bien, solo un pequeño ajuste de tono
+    text: "Yo solo quería que mis cosas llegaran bien… y llegaron perfectas. Sin vueltas raras, ni cobros sorpresa a última hora. Ya tengo lista la wishlist para la próxima.",
+    imgSrc: marcela,
   },
 ];
 
