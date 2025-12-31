@@ -2,21 +2,21 @@ import { StaticImageData } from "next/image";
 
 // Importa todas las imágenes locales del blog
 import blog1 from "@/assets/img/blog/Gemini_Generated_Image_cu2nwscu2nwscu2n.png";
-import blog2 from "@/assets/img/blog/blog1.avif";
-import blog3 from "@/assets/img/blog/blog2.avif";
-import blog4 from "@/assets/img/blog/blog3.avif";
-import blog5 from "@/assets/img/blog/blog4.avif";
-import blog6 from "@/assets/img/blog/blog5.jpg";
-import blog7 from "@/assets/img/blog/blog6.jpg";
-import blog9 from "@/assets/img/blog/blog7.avif";
-import blog8 from "@/assets/img/blog/blog8.jpg"; // Nota: blog8 no se estaba usando en el array original, verifícalo si lo necesitas
-import blog10 from "@/assets/img/blog/blogfit8.avif"
-import blog11 from "@/assets/img/blog/paquete.jpg"
-import compras from "@/assets/img/blog/compras.jpg"
-import emprender from "@/assets/img/blog/emprender.jpg"
-import electro from "@/assets/img/blog/electro.jpg"
-import tracking from "@/assets/img/blog/tracking.jpg"
-import customs from "@/assets/img/blog/customs.jpg"
+import blog2 from "@/assets/img/blog/blog1.webp";
+import blog3 from "@/assets/img/blog/blog2.webp";
+import blog4 from "@/assets/img/blog/blog3.webp";
+import blog5 from "@/assets/img/blog/blog4.webp";
+import blog6 from "@/assets/img/blog/blog5.webp";
+import blog7 from "@/assets/img/blog/blog6.webp";
+import blog9 from "@/assets/img/blog/blog7.webp";
+import blog8 from "@/assets/img/blog/blog8.webp"; // Nota: blog8 no se estaba usando en el array original, verifícalo si lo necesitas
+import blog10 from "@/assets/img/blog/blogfit8.webp"
+import blog11 from "@/assets/img/blog/paquete.webp"
+import compras from "@/assets/img/blog/compras.webp"
+import emprender from "@/assets/img/blog/emprender.webp"
+import electro from "@/assets/img/blog/electro.webp"
+import tracking from "@/assets/img/blog/tracking.webp"
+import customs from "@/assets/img/blog/customs.webp"
 
 // 🟢 TIPO DEFINIDO CON CAMPOS SEO
 export type BlogPost = {

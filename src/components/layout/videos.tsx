@@ -4,9 +4,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 
-import img1 from "@/assets/img/logo/fotosreveladas/registratenglobus.avif";
-import img2 from "@/assets/img/logo/fotosreveladas/compraonlineamazon.avif";
-import img3 from "@/assets/img/logo/fotosreveladas/recibeenpuerta.avif";
+import img1 from "@/assets/img/logo/fotosreveladas/registratenglobus.webp";
+import img2 from "@/assets/img/logo/fotosreveladas/compraonlineamazon.webp";
+import img3 from "@/assets/img/logo/fotosreveladas/recibeenpuerta.webp";
 
 import {
   FaPlay,
