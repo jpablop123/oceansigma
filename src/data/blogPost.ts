@@ -9,7 +9,7 @@ import blog5 from "@/assets/img/blog/blog4.avif";
 import blog6 from "@/assets/img/blog/blog5.jpg";
 import blog7 from "@/assets/img/blog/blog6.jpg";
 import blog9 from "@/assets/img/blog/blog7.avif";
-import blog8 from "@/assets/img/blog/blog8.jpg";
+import blog8 from "@/assets/img/blog/blog8.jpg"; // Nota: blog8 no se estaba usando en el array original, verifícalo si lo necesitas
 import blog10 from "@/assets/img/blog/blogfit8.avif"
 import blog11 from "@/assets/img/blog/paquete.jpg"
 import compras from "@/assets/img/blog/compras.jpg"
@@ -18,30 +18,36 @@ import electro from "@/assets/img/blog/electro.jpg"
 import tracking from "@/assets/img/blog/tracking.jpg"
 import customs from "@/assets/img/blog/customs.jpg"
 
-
-
+// 🟢 TIPO DEFINIDO CON CAMPOS SEO
 export type BlogPost = {
   id: number;
-  title: string;
-  excerpt: string;
+  slug: string;             // URL amigable para Google
+  title: string;            // H1: Título visible en la página
+  seoTitle: string;         // Title Tag: Título azul en resultados de Google (max 60 chars)
+  excerpt: string;          // Resumen visible en la tarjeta del blog
+  seoDescription: string;   // Meta Description: Texto gris en Google (max 160 chars)
   date: string;
   category: string;
   image: StaticImageData;
+  imageAlt: string;         // Descripción para ciegos y SEO de imágenes
   content: string;
 };
 
 export const blogPosts: BlogPost[] = [
   // ----------------------------------------------------------------
-  // ARTÍCULO 1: EL HERO (CÓMO FUNCIONA EL CASILLERO)
+  // ARTÍCULO 1
   // ----------------------------------------------------------------
   {
     id: 1,
+    slug: "como-funciona-casillero-virtual-miami-colombia",
     title: "¿Cómo funciona un casillero en Miami y por qué lo necesitas?",
-    excerpt:
-      "Deja de limitarte por los envíos internacionales. Descubre paso a paso cómo recibir tus compras de Amazon, eBay y Apple en Colombia sin complicaciones y ahorrando en impuestos.",
+    seoTitle: "Casillero Virtual en Miami para Colombia | Guía 2025",
+    seoDescription: "Aprende cómo traer tus compras de Amazon y eBay a Colombia. Guía paso a paso para usar tu casillero virtual, ahorrar impuestos y recibir en casa.",
+    excerpt: "Deja de limitarte por los envíos internacionales. Descubre paso a paso cómo recibir tus compras de Amazon, eBay y Apple en Colombia sin complicaciones.",
     date: "04 Dic 2025",
     category: "Guía Principiantes",
     image: blog1,
+    imageAlt: "Persona recibiendo paquete de compras online en su casa",
     content: `
         <p class="lead">Comprar en Estados Unidos y recibir en la puerta de tu casa en Colombia ya no es un lujo, es una necesidad para ahorrar dinero y acceder a productos exclusivos. Pero, ¿cómo lograrlo si la tienda no envía internacionalmente o cobra demasiado?</p>
         
@@ -68,16 +74,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 2: LA REGLA DE LOS 200 USD (IMPUESTOS)
+  // ARTÍCULO 2
   // ----------------------------------------------------------------
   {
     id: 2,
+    slug: "regla-200-usd-impuestos-aduaneros-colombia",
     title: "La regla de los $200 USD: Compra sin pagar IVA",
-    excerpt:
-      "Aprovecha el decreto 4x4. Te explicamos qué artículos están legalmente exentos de IVA y aranceles para que maximices tu cupo de importación mensual.",
+    seoTitle: "Impuestos Aduaneros en Colombia: La Regla de los $200 USD",
+    seoDescription: "¿Debo pagar impuestos por mis compras? Conoce la modalidad 4x4 y cómo importar a Colombia sin pagar IVA ni arancel legalmente.",
+    excerpt: "Aprovecha el decreto 4x4. Te explicamos qué artículos están legalmente exentos de IVA y aranceles para que maximices tu cupo de importación mensual.",
     date: "02 Dic 2025",
     category: "Ahorro e Impuestos",
     image: blog2,
+    imageAlt: "Calculadora y dinero mostrando ahorro en impuestos de aduana",
     content: `
         <p>Esta es la pregunta del millón: <em>"¿Cuánto tengo que pagar de impuestos?"</em>. La buena noticia es que, gracias a los tratados de libre comercio y la modalidad de tráfico postal, puedes importar muchas cosas pagando <strong>$0 pesos en impuestos</strong>.</p>
   
@@ -103,16 +112,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 3: IMPORTAR TECNOLOGÍA (CELULARES)
+  // ARTÍCULO 3
   // ----------------------------------------------------------------
   {
     id: 3,
+    slug: "guia-importar-celulares-tecnologia-colombia",
     title: "Guía para importar tecnología y celulares sin decomisos",
-    excerpt:
-      "La DIAN tiene reglas estrictas sobre la importación de móviles y Laptops. Conoce la homologación de IMEI y cuántos dispositivos puedes traer por envío.",
+    seoTitle: "Guía para Importar Celulares y Laptops a Colombia 2025",
+    seoDescription: "Normativa DIAN para importar celulares: Homologación IMEI, límites de unidades y cómo evitar decomisos al traer tecnología de USA.",
+    excerpt: "La DIAN tiene reglas estrictas sobre la importación de móviles y Laptops. Conoce la homologación de IMEI y cuántos dispositivos puedes traer por envío.",
     date: "28 Nov 2025",
     category: "Tecnología y Normativa",
     image: blog3,
+    imageAlt: "Smartphones modernos y laptops listos para envío",
     content: `
         <p>Traer el último iPhone o una Laptop Gamer desde USA puede ahorrarte millones de pesos comparado con los precios locales. Sin embargo, la tecnología es la categoría más vigilada por la Aduana colombiana.</p>
   
@@ -134,16 +146,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 4: CONSOLIDACIÓN (SHEIN / AMAZON)
+  // ARTÍCULO 4
   // ----------------------------------------------------------------
   {
     id: 4,
+    slug: "consolidacion-paquetes-ahorro-envios",
     title: "¿Shein o Amazon? Cómo consolidar paquetes y ahorrar hasta un 50%",
-    excerpt:
-      "No pagues un envío por cada blusa. Aprende a usar nuestro servicio de reempaque para juntar tus compras de múltiples tiendas en una sola caja segura.",
+    seoTitle: "Consolidación de Casillero: Ahorra 50% en Envíos de USA",
+    seoDescription: "No envíes caja por caja. Aprende a consolidar tus compras de Shein, Amazon y Carter's en un solo envío económico a Colombia.",
+    excerpt: "No pagues un envío por cada blusa. Aprende a usar nuestro servicio de reempaque para juntar tus compras de múltiples tiendas en una sola caja segura.",
     date: "25 Nov 2025",
     category: "Tips de Compras",
     image: blog4,
+    imageAlt: "Cajas de Amazon y Shein siendo consolidadas en un solo paquete",
     content: `
         <p class="lead">Uno de los errores más costosos de los importadores novatos es el "envío hormiga": comprar una carcasa en Amazon, una blusa en Shein y unas vitaminas en Walmart, y enviarlos a Colombia por separado. <strong>Esto es un suicidio financiero.</strong></p>
         
@@ -174,16 +189,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 5: ZAPATILLAS Y MODA (ORIGINALES VS RÉPLICAS)
+  // ARTÍCULO 5
   // ----------------------------------------------------------------
   {
     id: 5,
+    slug: "importar-zapatillas-originales-vs-replicas",
     title: "Zapatillas de marca: ¿Originales o Réplicas? Cuidado con la Aduana",
-    excerpt:
-      "Traer Nike o Adidas exclusivos es rentable, pero las regulaciones de propiedad intelectual son severas. Evita multas y aprende a declarar correctamente tu calzado.",
+    seoTitle: "Importar Zapatillas a Colombia: Riesgos de Réplicas y Aduana",
+    seoDescription: "¿Es seguro traer réplicas AAA? Evita problemas con la DIAN al importar zapatillas Nike o Adidas. Consejos para declarar correctamente.",
+    excerpt: "Traer Nike o Adidas exclusivos es rentable, pero las regulaciones de propiedad intelectual son severas. Evita multas y aprende a declarar correctamente.",
     date: "20 Nov 2025",
     category: "Moda y Lifestyle",
     image: blog5,
+    imageAlt: "Colección de zapatillas de marca Nike y Adidas",
     content: `
         <p>El mercado de las "Sneakers" ha explotado. Traer unos <strong>Jordan Retro</strong> o unos <strong>Yeezy</strong> desde USA puede ser un gran negocio o un capricho personal increíble. Sin embargo, hay una línea delgada que puede hacer que tu inversión termine incinerada en una bodega de la DIAN.</p>
   
@@ -211,16 +229,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 6: ARTÍCULOS PROHIBIDOS (SEGURIDAD)
+  // ARTÍCULO 6
   // ----------------------------------------------------------------
   {
     id: 6,
+    slug: "articulos-prohibidos-envios-aereos-colombia",
     title: "¡Alerta! 5 cosas que está terminantemente prohibido traer a Colombia",
-    excerpt:
-      "Evita que tu paquete sea destruido. Perfumes, aerosoles, juguetes bélicos y semillas tienen restricciones aéreas severas que debes conocer antes de comprar.",
+    seoTitle: "Artículos Prohibidos en Envíos Aéreos a Colombia (Lista 2025)",
+    seoDescription: "Evita decomisos. Lista actualizada de mercancía peligrosa: aerosoles, armas de juguete, semillas y perfumes en envíos courier a Colombia.",
+    excerpt: "Evita que tu paquete sea destruido. Perfumes, aerosoles, juguetes bélicos y semillas tienen restricciones aéreas severas que debes conocer antes de comprar.",
     date: "18 Nov 2025",
     category: "Seguridad y Restricciones",
     image: blog6,
+    imageAlt: "Señal de alerta sobre mercancía peligrosa en aeropuerto",
     content: `
         <p>Nada duele más que recibir un correo diciendo: <em>"Tu paquete contiene mercancía prohibida y no puede viajar"</em>. No es capricho nuestro; son regulaciones internacionales de la IATA (Asociación de Transporte Aéreo Internacional) y normas aduaneras colombianas.</p>
   
@@ -245,17 +266,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 7: REPUESTOS DE AUTOS
+  // ARTÍCULO 7
   // ----------------------------------------------------------------
   {
     id: 7,
-    title:
-      "Importar repuestos de autos: Lo que nadie te dice sobre el peso volumétrico",
-    excerpt:
-      "Desde bujías hasta computadoras de motor. Traer autopartes de USA es 40% más barato, pero requiere saber clasificar el peso y dimensiones volumétricas.",
+    slug: "importar-repuestos-autos-usa-colombia",
+    title: "Importar repuestos de autos: Lo que nadie te dice sobre el peso volumétrico",
+    seoTitle: "Cómo Importar Repuestos de Autos de USA a Colombia",
+    seoDescription: "Guía para traer autopartes baratas: Cuidado con el peso volumétrico. Compra repuestos en RockAuto o eBay y recíbelos en Colombia.",
+    excerpt: "Desde bujías hasta computadoras de motor. Traer autopartes de USA es 40% más barato, pero requiere saber clasificar el peso y dimensiones volumétricas.",
     date: "15 Nov 2025",
     category: "Nichos Especiales",
     image: blog7,
+    imageAlt: "Repuestos automotrices y herramientas mecánicas",
     content: `
         <p>Mantener un carro en Colombia es costoso. Los concesionarios a veces cobran el triple por un repuesto que en Estados Unidos es genérico y barato. Sitios como <strong>RockAuto, eBay Motors o Amazon Automotive</strong> son el paraíso de los mecánicos y dueños de vehículos.</p>
         
@@ -278,16 +301,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 8: ERRORES DE DECLARACIÓN (SEGURIDAD LEGAL)
+  // ARTÍCULO 8
   // ----------------------------------------------------------------
   {
     id: 8,
+    slug: "errores-declaracion-valor-aduanas",
     title: "Errores comunes al declarar el valor de tu paquete",
-    excerpt:
-      "¿Subvaluar o declarar real? Te contamos los riesgos de mentir en la factura comercial y cómo Globus Cargo te protege con pre-alertas transparentes.",
+    seoTitle: "Errores al Declarar Valor en Aduana: Evita Multas DIAN",
+    seoDescription: "¿Subvaluar o declarar real? Conoce las consecuencias de mentir en la factura comercial y cómo la pre-alerta protege tu mercancía.",
+    excerpt: "¿Subvaluar o declarar real? Te contamos los riesgos de mentir en la factura comercial y cómo Globus Cargo te protege con pre-alertas transparentes.",
     date: "10 Nov 2025",
     category: "Seguridad Legal",
     image: customs,
+    imageAlt: "Oficial de aduanas revisando documentación de importación",
     content: `
         <p class="lead">Existe un mito urbano muy peligroso en el mundo de las importaciones: <em>"Pídele al vendedor que ponga que es un regalo (Gift) o que vale $10 dólares"</em>. Hacer esto en 2025 no solo es inútil, sino que puede costarte tu mercancía y una multa.</p>
   
@@ -313,16 +339,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 9: AÉREO VS MARÍTIMO (LOGÍSTICA)
+  // ARTÍCULO 9
   // ----------------------------------------------------------------
   {
     id: 9,
+    slug: "diferencia-envio-aereo-vs-maritimo",
     title: "Envíos urgentes: Diferencias entre aéreo y marítimo",
-    excerpt:
-      "¿Necesitas tu carga en 4 días o puedes esperar 3 semanas? Comparativa de costos y tiempos para que elijas la logística que se adapta a tu bolsillo.",
+    seoTitle: "Envío Aéreo vs Marítimo: ¿Cuál elegir para traer de USA?",
+    seoDescription: "Comparativa de costos y tiempos. ¿Cuándo usar casillero aéreo y cuándo carga marítima para importar a Colombia desde Miami?",
+    excerpt: "¿Necesitas tu carga en 4 días o puedes esperar 3 semanas? Comparativa de costos y tiempos para que elijas la logística que se adapta a tu bolsillo.",
     date: "05 Nov 2025",
     category: "Logística 101",
     image: blog9,
+    imageAlt: "Contenedores marítimos y avión de carga logística",
     content: `
         <p>Al momento de traer mercancía de USA a Colombia, existen dos autopistas principales: el cielo y el mar. Elegir la incorrecta puede hacerte gastar el doble de dinero o esperar el triple de tiempo.</p>
   
@@ -348,16 +377,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 10: NEGOCIOS B2B (EL CIERRE DE VENTA)
+  // ARTÍCULO 10
   // ----------------------------------------------------------------
   {
     id: 10,
+    slug: "como-iniciar-negocio-importaciones",
     title: "Emprender importando: Cómo iniciar tu tienda online",
-    excerpt:
-      "Convierte las importaciones en un negocio rentable. Estrategias para comprar al por mayor en USA y revender en Colombia con margen de ganancia.",
+    seoTitle: "Emprender Importando: Inicia tu Tienda Online con Casillero",
+    seoDescription: "Estrategias B2B para importar al por mayor de USA y revender en Colombia. Calcula márgenes de ganancia y encuentra nichos rentables.",
+    excerpt: "Convierte las importaciones en un negocio rentable. Estrategias para comprar al por mayor en USA y revender en Colombia con margen de ganancia.",
     date: "01 Nov 2025",
     category: "Negocios B2B",
     image: emprender,
+    imageAlt: "Emprendedor gestionando pedidos de su tienda online",
     content: `
         <p class="lead">¿Sabías que muchos de los productos que ves en Instagram o MercadoLibre son traídos usando casilleros como el nuestro? Convertirte en importador no requiere millones de pesos, solo estrategia.</p>
   
@@ -388,16 +420,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 11: RASTREO Y TRAZABILIDAD (SEGURIDAD)
+  // ARTÍCULO 11
   // ----------------------------------------------------------------
   {
     id: 11,
+    slug: "rastreo-paquetes-tracking-internacional",
     title: "Rastreo 24/7: Cómo seguir tu paquete desde Miami hasta tu casa",
-    excerpt:
-      "La incertidumbre es el peor enemigo de las compras online. Aprende a interpretar los estados de tu guía (tracking) y por qué a veces Amazon dice 'entregado' pero no lo ves en tu casillero.",
+    seoTitle: "Rastreo de Paquetes: Sigue tu compra de Miami a Colombia",
+    seoDescription: "Entiende los estados de tu guía de rastreo. Qué significa 'Delivered to Agent' y cómo monitorear el tránsito aduanero paso a paso.",
+    excerpt: "La incertidumbre es el peor enemigo de las compras online. Aprende a interpretar los estados de tu guía (tracking) y por qué a veces Amazon dice 'entregado' pero no lo ves.",
     date: "28 Oct 2025",
     category: "Logística y Tecnología",
     image: tracking,
+    imageAlt: "Mapa digital mostrando rastreo de paquete internacional",
     content: `
         <p class="lead">Haces clic en 'Comprar', esperas unos días y luego la ansiedad ataca: <em>¿Dónde está mi paquete?</em>. Entender la logística detrás del rastreo te dará paz mental y te ayudará a detectar problemas a tiempo.</p>
   
@@ -424,17 +459,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 12: SUPLEMENTOS Y VITAMINAS (INVIMA)
+  // ARTÍCULO 12
   // ----------------------------------------------------------------
   {
     id: 12,
-    title:
-      "Guía fit: Cómo importar proteínas y vitaminas sin problemas con el INVIMA",
-    excerpt:
-      "¿Quieres traer tus suplementos de USA? Descubre qué permite la regulación sanitaria en Colombia y cuántos frascos puedes traer antes de que se considere comercio ilegal.",
+    slug: "importar-suplementos-vitaminas-invima",
+    title: "Guía fit: Cómo importar proteínas y vitaminas sin problemas con el INVIMA",
+    seoTitle: "Importar Suplementos y Vitaminas a Colombia: Reglas INVIMA",
+    seoDescription: "¿Cuántas proteínas puedo traer? Normativa postal para importar vitaminas y suplementos fit de USA sin problemas sanitarios.",
+    excerpt: "¿Quieres traer tus suplementos de USA? Descubre qué permite la regulación sanitaria en Colombia y cuántos frascos puedes traer antes de que se considere comercio ilegal.",
     date: "22 Oct 2025",
     category: "Salud y Bienestar",
     image: blog10,
+    imageAlt: "Suplementos deportivos, proteínas y vitaminas",
     content: `
         <p class="lead">El mercado fitness en USA es gigante y barato. Marcas como <em>Optimum Nutrition</em>, <em>GNC</em> o <em>Bloom</em> cuestan la mitad que en Colombia. Pero cuidado: son productos de ingestión humana y tienen vigilancia especial.</p>
   
@@ -462,17 +499,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 13: SEGUROS DE CARGA
+  // ARTÍCULO 13
   // ----------------------------------------------------------------
   {
     id: 13,
-    title:
-      "¿Tu paquete se perdió o llegó roto? Todo sobre el Seguro de Carga",
-    excerpt:
-      "Nadie quiere pensar en desastres, pero ocurren. Aprende la diferencia entre el valor declarado y el valor asegurado, y cómo proteger tus compras de alto valor.",
+    slug: "seguro-carga-envios-internacionales",
+    title: "¿Tu paquete se perdió o llegó roto? Todo sobre el Seguro de Carga",
+    seoTitle: "Seguro de Carga Internacional: Protege tus Compras",
+    seoDescription: "¿Qué pasa si mi paquete se pierde o llega roto? Diferencia entre valor declarado y asegurado en envíos internacionales. Protege tu inversión.",
+    excerpt: "Nadie quiere pensar en desastres, pero ocurren. Aprende la diferencia entre el valor declarado y el valor asegurado, y cómo proteger tus compras de alto valor.",
     date: "15 Oct 2025",
     category: "Seguridad Legal",
     image: blog11,
+    imageAlt: "Paquete dañado y concepto de seguro de mercancía",
     content: `
         <p class="lead">Imagina que compras una Laptop de $800 USD. El avión atraviesa una turbulencia severa o el camión de reparto sufre un accidente. ¿Quién responde por tu dinero?</p>
   
@@ -499,17 +538,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 14: PREPARACIÓN BLACK FRIDAY (TEMPORADA)
+  // ARTÍCULO 14
   // ----------------------------------------------------------------
   {
     id: 14,
-    title:
-      "Sobreviviendo al Black Friday: Estrategias para que tus regalos lleguen antes de Navidad",
-    excerpt:
-      "Noviembre y Diciembre son el caos logístico mundial. Te damos 3 estrategias probadas para evitar que tus regalos de Navidad se queden atrapados en aduana.",
+    slug: "estrategias-compras-black-friday-navidad",
+    title: "Sobreviviendo al Black Friday: Estrategias para que tus regalos lleguen antes de Navidad",
+    seoTitle: "Black Friday y Navidad: Estrategias de Envío a Tiempo",
+    seoDescription: "Que tus regalos no se queden en aduana. Fechas límite de envío para recibir antes del 24 de Diciembre en Colombia. Estrategias Black Friday.",
+    excerpt: "Noviembre y Diciembre son el caos logístico mundial. Te damos 3 estrategias probadas para evitar que tus regalos de Navidad se queden atrapados en aduana.",
     date: "10 Oct 2025",
     category: "Tips de Compras",
     image: compras,
+    imageAlt: "Compras de navidad y black friday online",
     content: `
         <p class="lead">El último trimestre del año es la "Tormenta Perfecta" logística: Black Friday, Cyber Monday y Navidad. Los aeropuertos colapsan y las aduanas se vuelven lentas. Si no te preparas, tu "Niño Dios" llegará en Enero.</p>
   
@@ -531,16 +572,19 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 15: ELECTRODOMÉSTICOS (HOGAR)
+  // ARTÍCULO 15
   // ----------------------------------------------------------------
   {
     id: 15,
+    slug: "importar-electrodomesticos-usa-voltaje",
     title: "Traer electrodomésticos de USA: ¿Mito o realidad rentable?",
-    excerpt:
-      "Desde Air Fryers hasta Robots aspiradora. Analizamos cuándo vale la pena importar aparatos para el hogar y el tema crucial del voltaje eléctrico.",
+    seoTitle: "Importar Electrodomésticos de USA: Voltaje y Costos",
+    seoDescription: "¿Sirven los electrodomésticos de USA en Colombia? Guía sobre voltaje 110v, peso volumétrico y cuándo vale la pena importar Air Fryers o Robots.",
+    excerpt: "Desde Air Fryers hasta Robots aspiradora. Analizamos cuándo vale la pena importar aparatos para el hogar y el tema crucial del voltaje eléctrico.",
     date: "05 Oct 2025",
     category: "Nichos Especiales",
     image: electro,
+    imageAlt: "Electrodomésticos de cocina modernos air fryer",
     content: `
         <p class="lead">Entras a Amazon y ves esa batidora KitchenAid por $200 USD que en Colombia cuesta $1.500.000 COP. Parece el negocio del siglo, pero debes hacer bien las cuentas del peso y la electricidad.</p>
   

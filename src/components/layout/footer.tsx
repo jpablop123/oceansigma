@@ -49,9 +49,9 @@ export default function Footer() {
                 </p>
                 <div className="flex gap-4 pt-2">
                     {[
-                        { icon: Instagram, href: "https://instagram.com" },
-                        { icon: Facebook, href: "https://facebook.com" },
-                        { icon: Linkedin, href: "https://linkedin.com" }
+                        { icon: Instagram, href: "https://www.instagram.com/globuscargo_/?hl=en" },
+                        { icon: Facebook, href: "https://www.facebook.com/GlobusInternatinonalCargoCorp/" },
+                        { icon: Linkedin, href: "linkedin.com/company/globus-international-cargo/" }
                     ].map((social, i) => (
                         <a 
                             key={i} 

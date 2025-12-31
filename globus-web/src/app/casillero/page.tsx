@@ -124,7 +124,7 @@ export default function CasilleroPage() {
             { title: "Casillero Gratis", desc: "Sin cuotas de mantenimiento ni costos ocultos." },
             { title: "Consolidación", desc: "Agrupamos tus paquetes para que pagues un solo envío." },
             { title: "Rastreo 24/7", desc: "Monitorea tus compras en tiempo real desde nuestra App." },
-            { title: "Seguro Incluido", desc: "Tus paquetes viajan protegidos automáticamente." },
+            { title: "Seguro ", desc: "Tus paquetes viajan protegidos automáticamente." },
           ].map((benefit, i) => (
             // FIX: Reemplazamos motion.div por div
             <div

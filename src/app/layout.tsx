@@ -3,7 +3,7 @@ import "@/styles/header.css";
 import { Montserrat } from "next/font/google";
 import ClientWrapper from "@/components/layout/ClientWrapper"; 
 // Importas tu logo
-import logo from "@/assets/img/logo/globus21.png";
+import logo from "@/assets/img/logo/logotab.png";
 
 export const metadata = {
   title: "Globus Cargo | Envíos desde USA a Colombia",

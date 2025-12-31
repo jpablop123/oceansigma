@@ -47,7 +47,7 @@ export default function TarifasPage() {
 
   const beneficios = [
     { icon: Zap, title: "Velocidad Premium", text: "Entregas en 3 a 7 días hábiles." },
-    { icon: Shield, title: "Seguro Incluido", text: "Cobertura básica hasta $200 USD." },
+    { icon: Shield, title: "Seguro", text: "Cobertura básica por valor declarado." },
     { icon: Globe, title: "Cobertura Nacional", text: "Llegamos a cualquier rincón de Colombia." },
     { icon: Package, title: "Consolidación", text: "Agrupa tus compras gratis y ahorra." },
   ];

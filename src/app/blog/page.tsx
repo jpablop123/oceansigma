@@ -5,7 +5,7 @@ import { blogPosts } from "@/data/blogPost";
 import BlogCard from "@/components/blogCard";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import Link from "next/link"; // Asegúrate de importar esto
+import Link from "next/link"; 
 
 const POSTS_PER_PAGE = 9;
 
@@ -51,10 +51,10 @@ export default function BlogPage() {
 
           {/* --- HERO SECTION (Solo visible en página 1) --- */}
           {currentPage === 1 && heroPost && (
-            <Link href={`/blog/${heroPost.id}`} className="block mb-20 group cursor-pointer">
+            // ✅ CAMBIO 1: Usamos heroPost.slug en vez de heroPost.id
+            <Link href={`/blog/${heroPost.slug}`} className="block mb-20 group cursor-pointer">
               <div className="relative h-[500px] w-full rounded-3xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-200/50">
                 
-                {/* Fondo base oscuro + Gradiente */}
                 <div className="absolute inset-0 bg-gray-800 transition-transform duration-700 group-hover:scale-105">
                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
                 </div>
@@ -77,17 +77,17 @@ export default function BlogPage() {
             </Link>
           )}
 
-          {/* --- GRID DE ARTÍCULOS (CORREGIDO) --- */}
+          {/* --- GRID DE ARTÍCULOS --- */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {gridPosts.map((post) => (
-              /* AQUÍ ESTABA EL ERROR: FALTABA EL LINK */
-              <Link key={post.id} href={`/blog/${post.id}`} className="group block h-full">
+              // ✅ CAMBIO 2: Usamos post.slug en vez de post.id
+              <Link key={post.id} href={`/blog/${post.slug}`} className="group block h-full">
                 <BlogCard post={post} />
               </Link>
             ))}
           </div>
 
-          {/* --- PAGINACIÓN --- */}
+          {/* --- PAGINACIÓN (Igual que antes) --- */}
           <div className="mt-24 pt-12 border-t border-gray-200 flex justify-center items-center gap-4">
             
             <button 

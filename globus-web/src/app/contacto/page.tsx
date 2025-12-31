@@ -136,7 +136,7 @@ export default function ContactoPage() {
           onSubmit={(e) => {
             e.preventDefault();
             window.open(
-              `https://wa.me/573001112233?text=${encodeURIComponent(
+              `https://wa.me/573150122626?text=${encodeURIComponent(
                 "Hola 👋, quiero más información sobre los servicios de Globus Cargo."
               )}`,
               "_blank"
