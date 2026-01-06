@@ -17,7 +17,11 @@ import {
   Minus
 } from "lucide-react";
 
-// Definimos tipos para TypeScript (opcional pero buena práctica)
+// --- IMPORTACIÓN DE LA CONFIGURACIÓN ---
+// Esto asegura que la respuesta del FAQ siempre coincida con la calculadora
+import { TAX_LIMIT_TEXT } from "@/utils/config";
+
+// Definimos tipos para TypeScript
 type FAQItem = {
   pregunta: string;
   respuesta: string;
@@ -70,8 +74,10 @@ export default function PreguntasFrecuentesPage() {
       items: [
         {
           pregunta: "¿Cuáles son los impuestos de envío?",
+          // --- AQUÍ ESTÁ EL CAMBIO ---
+          // Usamos template literals (las comillas invertidas ` `) para inyectar la variable.
           respuesta:
-            "Los impuestos dependen del tipo de producto y su valor declarado. Si el valor declarado es menor a 200 USD, el envío puede estar exento (bajo ciertas condiciones de la ley 2155). Para montos superiores, se aplican impuestos de importación e IVA.",
+            `Los impuestos dependen del tipo de producto y su valor declarado. Si el valor declarado es menor a ${TAX_LIMIT_TEXT}, el envío puede estar exento (según normativa vigente). Para montos superiores, se aplican impuestos de importación e IVA.`,
         },
         {
           pregunta: "¿Cuáles son las restricciones de envío?",

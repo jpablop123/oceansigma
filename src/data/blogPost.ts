@@ -1,6 +1,9 @@
 import { StaticImageData } from "next/image";
 
-// Importa todas las imágenes locales del blog
+// --- IMPORTACIÓN DE LA CONFIGURACIÓN (CLAVE PARA EL CAMBIO DINÁMICO) ---
+import { TAX_LIMIT_TEXT } from "@/utils/config"; 
+
+// --- IMPORTACIÓN DE IMÁGENES ---
 import blog1 from "@/assets/img/blog/Gemini_Generated_Image_cu2nwscu2nwscu2n.png";
 import blog2 from "@/assets/img/blog/blog1.webp";
 import blog3 from "@/assets/img/blog/blog2.webp";
@@ -9,33 +12,34 @@ import blog5 from "@/assets/img/blog/blog4.webp";
 import blog6 from "@/assets/img/blog/blog5.webp";
 import blog7 from "@/assets/img/blog/blog6.webp";
 import blog9 from "@/assets/img/blog/blog7.webp";
-import blog8 from "@/assets/img/blog/blog8.webp"; // Nota: blog8 no se estaba usando en el array original, verifícalo si lo necesitas
-import blog10 from "@/assets/img/blog/blogfit8.webp"
-import blog11 from "@/assets/img/blog/paquete.webp"
-import compras from "@/assets/img/blog/compras.webp"
-import emprender from "@/assets/img/blog/emprender.webp"
-import electro from "@/assets/img/blog/electro.webp"
-import tracking from "@/assets/img/blog/tracking.webp"
-import customs from "@/assets/img/blog/customs.webp"
+import blog10 from "@/assets/img/blog/blogfit8.webp";
+import blog11 from "@/assets/img/blog/paquete.webp";
+import compras from "@/assets/img/blog/compras.webp";
+import emprender from "@/assets/img/blog/emprender.webp";
+import electro from "@/assets/img/blog/electro.webp";
+import tracking from "@/assets/img/blog/tracking.webp";
+import customs from "@/assets/img/blog/customs.webp";
+// Agrega esta línea junto a tus otras importaciones de imágenes
+import emergenciaImg from "@/assets/img/emergencia globus.webp";
 
 // 🟢 TIPO DEFINIDO CON CAMPOS SEO
 export type BlogPost = {
   id: number;
-  slug: string;             // URL amigable para Google
-  title: string;            // H1: Título visible en la página
-  seoTitle: string;         // Title Tag: Título azul en resultados de Google (max 60 chars)
-  excerpt: string;          // Resumen visible en la tarjeta del blog
-  seoDescription: string;   // Meta Description: Texto gris en Google (max 160 chars)
+  slug: string;
+  title: string;
+  seoTitle: string;
+  excerpt: string;
+  seoDescription: string;
   date: string;
   category: string;
   image: StaticImageData;
-  imageAlt: string;         // Descripción para ciegos y SEO de imágenes
+  imageAlt: string;
   content: string;
 };
 
 export const blogPosts: BlogPost[] = [
   // ----------------------------------------------------------------
-  // ARTÍCULO 1
+  // ARTÍCULO 1 (Sin cambios de $200)
   // ----------------------------------------------------------------
   {
     id: 1,
@@ -74,14 +78,15 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 2
+  // ARTÍCULO 2 (DINÁMICO - ESTE CAMBIA CON EL CONFIG)
   // ----------------------------------------------------------------
   {
     id: 2,
     slug: "regla-200-usd-impuestos-aduaneros-colombia",
-    title: "La regla de los $200 USD: Compra sin pagar IVA",
-    seoTitle: "Impuestos Aduaneros en Colombia: La Regla de los $200 USD",
-    seoDescription: "¿Debo pagar impuestos por mis compras? Conoce la modalidad 4x4 y cómo importar a Colombia sin pagar IVA ni arancel legalmente.",
+    // Título dinámico
+    title: `La regla de los ${TAX_LIMIT_TEXT}: Compra sin pagar IVA`,
+    seoTitle: `Impuestos Aduaneros en Colombia: La Regla de los ${TAX_LIMIT_TEXT}`,
+    seoDescription: `¿Debo pagar impuestos por mis compras? Conoce la modalidad 4x4 y cómo importar a Colombia sin pagar IVA si tu compra es menor a ${TAX_LIMIT_TEXT}.`,
     excerpt: "Aprovecha el decreto 4x4. Te explicamos qué artículos están legalmente exentos de IVA y aranceles para que maximices tu cupo de importación mensual.",
     date: "02 Dic 2025",
     category: "Ahorro e Impuestos",
@@ -93,26 +98,26 @@ export const blogPosts: BlogPost[] = [
         <h2>¿Qué es la modalidad 4x4?</h2>
         <p>Para que tu paquete esté exento de IVA (19%) y Arancel (10%), debe cumplir con estos requisitos simultáneamente:</p>
         <ul>
-          <li><strong>Valor declarado:</strong> La mercancía debe costar menos de $200 USD.</li>
+          <li><strong>Valor declarado:</strong> La mercancía debe costar menos de <strong>${TAX_LIMIT_TEXT}</strong>.</li>
           <li><strong>Peso:</strong> El paquete no puede pesar más de 50 Kg (110 libras).</li>
           <li><strong>Cantidad:</strong> No más de 6 unidades de la misma referencia.</li>
           <li><strong>Destino:</strong> Debe ser para uso personal, no comercial masivo.</li>
         </ul>
   
-        <h2>¿Qué pasa si me paso de $200 USD?</h2>
-        <p>Si tu compra cuesta $201 USD, automáticamente cambia de categoría. En ese caso, deberás pagar:</p>
+        <h2>¿Qué pasa si me paso de ${TAX_LIMIT_TEXT}?</h2>
+        <p>Si tu compra supera el límite de <strong>${TAX_LIMIT_TEXT}</strong>, automáticamente cambia de categoría. En ese caso, deberás pagar:</p>
         <ul>
           <li>Arancel del 10%</li>
           <li>IVA del 19%</li>
         </ul>
-        <p>Esto suma casi un 30% adicional al costo de tu producto. Por eso, la estrategia inteligente es dividir tus compras. Si vas a comprar $300 USD en ropa, haz dos envíos de $150 USD en días diferentes. ¡Así ambos llegarán sin impuestos!</p>
+        <p>Esto suma casi un 30% adicional al costo de tu producto. Por eso, la estrategia inteligente es dividir tus compras. Si tienes varios productos, haz envíos separados que no superen los ${TAX_LIMIT_TEXT} cada uno. ¡Así llegarán sin impuestos!</p>
   
         <p><strong>Nota importante:</strong> En Globus Cargo te asesoramos antes de enviar para asegurar que tu declaración sea correcta y aproveches este beneficio legal.</p>
       `,
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 3
+  // ARTÍCULO 3 (DINÁMICO - CELULARES)
   // ----------------------------------------------------------------
   {
     id: 3,
@@ -135,18 +140,18 @@ export const blogPosts: BlogPost[] = [
   
         <h2>Paso a paso para importar tu celular seguro:</h2>
         <ol>
-          <li><strong>Verifica el precio:</strong> Si cuesta menos de $200 USD, no paga IVA. Si cuesta más (como la mayoría de smartphones gama alta), pagarás el 19% de IVA (los celulares están exentos de arancel, solo pagan IVA).</li>
+          <li><strong>Verifica el precio:</strong> Si cuesta menos de <strong>${TAX_LIMIT_TEXT}</strong>, no paga IVA. Si cuesta más (como la mayoría de smartphones gama alta), pagarás el 19% de IVA (los celulares están exentos de arancel, solo pagan IVA).</li>
           <li><strong>Desbloqueado de fábrica:</strong> Asegúrate de comprar equipos "Unlocked".</li>
           <li><strong>Homologación de IMEI:</strong> Una vez recibas el equipo en Colombia, debes registrar el IMEI ante tu operador móvil local usando la factura de compra o el comprobante de importación que te entrega Globus Cargo.</li>
         </ol>
   
         <h2>¿Y las Laptops y Tablets?</h2>
-        <p>Tienen reglas más flexibles. Las computadoras (portátiles o de escritorio) cuyo valor sea inferior a 50 UVT (aprox $2.3 millones de pesos) están exentas de IVA si las compras en Colombia, pero al importarlas bajo modalidad postal, rige la norma de los $200 USD para la exención total.</p>
+        <p>Tienen reglas más flexibles. Las computadoras (portátiles o de escritorio) cuyo valor sea inferior a 50 UVT (aprox $2.3 millones de pesos) están exentas de IVA si las compras en Colombia, pero al importarlas bajo modalidad postal, rige la norma de los <strong>${TAX_LIMIT_TEXT}</strong> para la exención total en envíos urgentes.</p>
       `,
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 4
+  // ARTÍCULO 4 (Sin cambios específicos de límite, solo ejemplos)
   // ----------------------------------------------------------------
   {
     id: 4,
@@ -189,7 +194,7 @@ export const blogPosts: BlogPost[] = [
   },
 
   // ----------------------------------------------------------------
-  // ARTÍCULO 5
+  // ARTÍCULO 5 (DINÁMICO - ZAPATILLAS)
   // ----------------------------------------------------------------
   {
     id: 5,
@@ -221,7 +226,7 @@ export const blogPosts: BlogPost[] = [
         </ul>
   
         <h3>2. Declara el valor real</h3>
-        <p>Un error común es declarar unas zapatillas de $300 USD por $50 USD para no pagar impuestos. La DIAN tiene bases de datos de precios. Si ven unos Jordan 1 Travis Scott declarados en $20 dólares, no solo te ajustarán el valor, sino que te sancionarán. Es mejor pagar el impuesto (30% si supera los $200 USD) que perder la mercancía.</p>
+        <p>Un error común es declarar unas zapatillas de $300 USD por $50 USD para no pagar impuestos. La DIAN tiene bases de datos de precios. Si ven unos Jordan 1 Travis Scott declarados en $20 dólares, no solo te ajustarán el valor, sino que te sancionarán. Es mejor pagar el impuesto (30% si supera los <strong>${TAX_LIMIT_TEXT}</strong>) que perder la mercancía.</p>
   
         <h3>3. Máximo 6 pares</h3>
         <p>Recuerda la norma: no traigas más de 6 pares de la misma referencia en un solo envío, o se considerará importación comercial y requerirá otros permisos.</p>
@@ -428,7 +433,7 @@ export const blogPosts: BlogPost[] = [
     title: "Rastreo 24/7: Cómo seguir tu paquete desde Miami hasta tu casa",
     seoTitle: "Rastreo de Paquetes: Sigue tu compra de Miami a Colombia",
     seoDescription: "Entiende los estados de tu guía de rastreo. Qué significa 'Delivered to Agent' y cómo monitorear el tránsito aduanero paso a paso.",
-    excerpt: "La incertidumbre es el peor enemigo de las compras online. Aprende a interpretar los estados de tu guía (tracking) y por qué a veces Amazon dice 'entregado' pero no lo ves.",
+    excerpt: "La incertidumbre es el peor enemigo de las compras online. Aprende a interpretar los estados de tu guía (tracking) y por qué a veces Amazon marca 'entregado' pero no lo ves.",
     date: "28 Oct 2025",
     category: "Logística y Tecnología",
     image: tracking,
@@ -606,6 +611,119 @@ export const blogPosts: BlogPost[] = [
   
         <h2>Garantía Internacional</h2>
         <p>Ten en cuenta que la mayoría de garantías de electrodomésticos comprados en USA solo son válidas allá. Si tu robot aspiradora falla a los 3 meses, la marca en Colombia podría no cubrirlo. Es el riesgo que asumes a cambio del precio bajo.</p>
+      `,
+  },
+
+  {
+    id: 15,
+    slug: "importar-electrodomesticos-usa-voltaje",
+    title: "Traer electrodomésticos de USA: ¿Mito o realidad rentable?",
+    seoTitle: "Importar Electrodomésticos de USA: Voltaje y Costos",
+    seoDescription: "¿Sirven los electrodomésticos de USA en Colombia? Guía sobre voltaje 110v, peso volumétrico y cuándo vale la pena importar Air Fryers o Robots.",
+    excerpt: "Desde Air Fryers hasta Robots aspiradora. Analizamos cuándo vale la pena importar aparatos para el hogar y el tema crucial del voltaje eléctrico.",
+    date: "05 Oct 2025",
+    category: "Nichos Especiales",
+    image: electro,
+    imageAlt: "Electrodomésticos de cocina modernos air fryer",
+    content: `
+        <p class="lead">Entras a Amazon y ves esa batidora KitchenAid por $200 USD que en Colombia cuesta $1.500.000 COP. Parece el negocio del siglo, pero debes hacer bien las cuentas del peso y la electricidad.</p>
+  
+        <h2>El factor Voltaje: 110v vs 220v</h2>
+        <p>¡Buenas noticias! Colombia y Estados Unidos comparten el mismo estándar eléctrico (110v - 120v) y el mismo tipo de enchufe (Patas planas). A diferencia de traer cosas de Europa (220v), <strong>los electrodomésticos de USA funcionan perfecto en Colombia</strong> sin transformadores.</p>
+  
+        <h2>El desafío del Peso Volumétrico</h2>
+        <p>Una <em>Air Fryer</em> es barata, pero es puro "aire". La caja es enorme.</p>
+        <ul>
+          <li><strong>Ejemplo real:</strong> Una freidora cuesta $50 USD. Pero su envío puede costar $60 USD por el volumen que ocupa en el avión.</li>
+          <li><strong>¿Cuándo vale la pena?</strong> En artículos de alta tecnología y densidad, o marcas premium no disponibles aquí:
+            <ul>
+              <li>Robots aspiradora (Roomba, Roborock).</li>
+              <li>Procesadores de alimentos potentes (Vitamix, Ninja).</li>
+              <li>Cafeteras de expreso compactas (Breville).</li>
+            </ul>
+          </li>
+        </ul>
+  
+        <h2>Garantía Internacional</h2>
+        <p>Ten en cuenta que la mayoría de garantías de electrodomésticos comprados en USA solo son válidas allá. Si tu robot aspiradora falla a los 3 meses, la marca en Colombia podría no cubrirlo. Es el riesgo que asumes a cambio del precio bajo.</p>
+      `,
+  },
+  // ----------------------------------------------------------------
+  // ARTÍCULO 16 - EMERGENCIA ECONÓMICA (NUEVO)
+  // ----------------------------------------------------------------
+ // ----------------------------------------------------------------
+  // ARTÍCULO 16 - EMERGENCIA ECONÓMICA (VERSIÓN PROFESIONAL)
+  // ----------------------------------------------------------------
+  {
+    id: 16,
+    slug: "normativa-2026-emergencia-economica-impuestos-50-usd",
+    title: "Decreto de Emergencia Económica: Análisis del nuevo límite de importación",
+    seoTitle: "Decreto 1474 y Nuevos Impuestos Aduaneros 2026 | Globus Cargo",
+    seoDescription: "Análisis técnico del Decreto Legislativo 1474. Entienda la reducción del cupo de importación a USD $50 y el impacto tributario en sus envíos de USA a Colombia.",
+    excerpt: "El Gobierno Nacional ha expedido el Decreto 1474 bajo el marco de la Emergencia Económica, modificando sustancialmente el régimen de tráfico postal. Analizamos el impacto fiscal para importadores.",
+    date: "06 Ene 2026",
+    category: "Normativa y Aduanas",
+    image: customs, // Asegúrate de tener importada esta variable arriba
+    imageAlt: "Gráfico estadístico sobre impacto fiscal y aduanero en Colombia",
+    content: `
+        <p class="lead">En el marco de la <strong>Emergencia Económica, Social y Ecológica</strong> declarada recientemente, el Gobierno Nacional ha expedido el <strong>Decreto Legislativo 1474 de 2026</strong>, introduciendo reformas estructurales al Estatuto Aduanero que impactan directamente la modalidad de Tráfico Postal y Envíos Urgentes.</p>
+  
+        <h2>Contexto Normativo</h2>
+        <p>Esta medida busca, según el Ministerio de Hacienda, fortalecer el recaudo fiscal y proteger la industria manufacturera nacional frente al comercio transfronterizo. La modificación más crítica recae sobre el <strong>artículo de exención de tributos</strong> para envíos de bajo valor.</p>
+        
+        <div style="background-color: #f8fafc; border-left: 4px solid #0f172a; padding: 20px; margin: 25px 0; border-radius: 4px;">
+          <h3 style="margin-top: 0; color: #0f172a; font-size: 1.1em;">Lo que establece la norma:</h3>
+          <p style="margin-bottom: 0; color: #334155;"><em>"Se reduce el umbral de minimis (exención total de gravámenes) de USD $200 a <strong>USD $50 FOB</strong>. Todo paquete que supere este valor estará sujeto al pago pleno de Arancel e IVA."</em></p>
+        </div>
+
+        <h2>Análisis de Impacto Tributario</h2>
+        <p>Para entender la magnitud del cambio, presentamos un ejercicio comparativo de liquidación para un artículo valorado en <strong>USD $60</strong> (apenas $10 por encima del nuevo límite).</p>
+
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em;">
+            <thead>
+              <tr style="background-color: #f1f5f9; text-align: left;">
+                <th style="padding: 12px; border-bottom: 2px solid #cbd5e1;">Concepto</th>
+                <th style="padding: 12px; border-bottom: 2px solid #cbd5e1;">Normativa Anterior (2025)</th>
+                <th style="padding: 12px; border-bottom: 2px solid #cbd5e1; color: #c2410c;">Nueva Normativa (2026)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">Valor FOB Producto</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">$60.00 USD</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">$60.00 USD</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">Arancel (10%)</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #16a34a;"><strong>$0.00 (Exento)</strong></td>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">$6.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">IVA (19%)</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #16a34a;"><strong>$0.00 (Exento)</strong></td>
+                <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">~$12.54</td>
+              </tr>
+              <tr style="font-weight: bold; background-color: #fff7ed;">
+                <td style="padding: 12px;">TOTAL IMPUESTOS</td>
+                <td style="padding: 12px; color: #16a34a;">$0.00 USD</td>
+                <td style="padding: 12px; color: #c2410c;">~$18.54 USD</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <p style="font-size: 0.9em; color: #64748b;">*Nota: El cálculo del IVA se realiza sobre la base gravable (Valor CIF + Arancel), lo que genera un efecto compuesto.</p>
+
+        <h2>Estrategias de Mitigación Logística</h2>
+        <p>Ante este nuevo panorama fiscal, en Globus Cargo hemos ajustado nuestros protocolos operativos para optimizar los costos de nuestros usuarios:</p>
+        
+        <ol>
+          <li><strong>Fraccionamiento de Envíos:</strong> Para compras múltiples (ej: ropa, repuestos), recomendamos dividir la carga en guías separadas cuyo valor individual no supere los USD $50. Aunque esto implica fletes adicionales, el ahorro tributario (aprox 30% del valor) suele justificar la operación.</li>
+          <li><strong>Gestión de Pre-Alertas:</strong> La declaración exacta es ahora un requisito crítico. Discrepancias de centavos pueden reclasificar un envío de "exento" a "gravado" por parte de la DIAN. Utilice nuestra plataforma para adjuntar facturas comerciales fidedignas.</li>
+        </ol>
+
+        <p>Como su aliado logístico, Globus Cargo continuará monitoreando la implementación de este decreto para garantizar el cumplimiento normativo y la eficiencia de sus importaciones.</p>
       `,
   },
 ];

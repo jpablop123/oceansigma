@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react"; 
 import logo from "@/assets/img/logo/globuswhite.png";
 
-// ==== Declaración global para TypeScript ====
 declare global {
   interface Window {
     chatbase?: {
@@ -15,28 +14,26 @@ declare global {
   }
 }
 
-// === Configuración ===
 const CHATBOT_ID = "w8KioDPJAl3hBxWR8jt7_";
 const SCRIPT_URL = "https://www.chatbase.co/embed.min.js";
 const BRAND_COLOR = "#FF8313";
-
 const LOGO_URL = logo?.src || ""; 
 
 export default function CustomChatbot() {
   const [isScriptInjected, setIsScriptInjected] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   
-  // Ref para bloquear el observador mientras animamos el cierre manual
+  // Usamos esta referencia para evitar conflictos cuando nosotros mismos damos click
   const isTogglingRef = useRef(false);
 
-  // 1. Verificar persistencia del script
+  // 1. Verificar si el script ya existe
   useEffect(() => {
     if (typeof window !== 'undefined' && document.getElementById("chatbase-script")) {
       setIsScriptInjected(true);
     }
   }, []);
 
-  // 2. Observer para sincronización
+  // 2. EL OBSERVER MEJORADO (Detecta cierre real)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -46,7 +43,14 @@ export default function CustomChatbot() {
       const chatWindow = document.getElementById("chatbase-bubble-window");
       if (!chatWindow) return;
 
-      const isVisible = chatWindow.style.display !== "none";
+      // ✅ SOLUCIÓN CLAVE: Usamos getComputedStyle
+      // Esto lee la verdad absoluta de si el elemento se ve o no,
+      // incluso si Chatbase lo oculta con clases CSS y no con estilos inline.
+      const computed = window.getComputedStyle(chatWindow);
+      const isVisible = 
+        computed.display !== "none" && 
+        computed.visibility !== "hidden" && 
+        computed.opacity !== "0";
       
       setIsOpen((prev) => {
         if (prev !== isVisible) return isVisible;
@@ -57,10 +61,14 @@ export default function CustomChatbot() {
     const intervalId = setInterval(() => {
       const chatWindow = document.getElementById("chatbase-bubble-window");
       if (chatWindow) {
-        observer.observe(chatWindow, { attributes: true, attributeFilter: ["style", "class"] });
+        // Observamos atributos para detectar cambios al instante
+        observer.observe(chatWindow, { 
+          attributes: true, 
+          attributeFilter: ["style", "class", "hidden"] 
+        });
         clearInterval(intervalId); 
       }
-    }, 500);
+    }, 1000);
 
     return () => {
       clearInterval(intervalId);
@@ -68,15 +76,14 @@ export default function CustomChatbot() {
     };
   }, [isScriptInjected]);
 
-  // ✅ CORRECCIÓN: Simplificamos para usar solo eventos nativos de React
+  // 3. Función para Abrir/Cerrar manualmente
   const toggleChatbot = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-
+    
     if (typeof window === "undefined") return;
 
     isTogglingRef.current = true;
 
-    // Inicialización Stub: Aseguramos que window.chatbase EXISTA
     if (!window.chatbase) {
       const cbStub: any = (...args: any[]) => {
         if (!cbStub.q) cbStub.q = [];
@@ -86,28 +93,40 @@ export default function CustomChatbot() {
     }
 
     if (isOpen) {
-      // CERRAR
-      // ✅ CORRECCIÓN CRÍTICA: Quitamos el `?.` para evitar que Next.js use .call() internamente
-      // Como ya garantizamos arriba que window.chatbase existe, esto es seguro.
+      // === CERRANDO ===
+      setIsOpen(false); // 1. Cambiamos icono YA
+      
       if (typeof window.chatbase === "function") {
-        window.chatbase("close");
+        window.chatbase("close"); // 2. Ordenamos cierre
       }
-      setIsOpen(false);
+
+      // 3. Forzamos ocultar visualmente para evitar parpadeos
+      const chatWindow = document.getElementById("chatbase-bubble-window");
+      if (chatWindow) {
+        chatWindow.style.display = "none";
+      }
+
     } else {
-      // ABRIR
+      // === ABRIENDO ===
+      setIsOpen(true);
+      
       if (!isScriptInjected) {
         injectChatbaseScript();
         setIsScriptInjected(true);
       }
       
-      // ✅ CORRECCIÓN CRÍTICA: Llamada directa sin `?.`
       if (typeof window.chatbase === "function") {
         window.chatbase("open");
       }
-      setIsOpen(true);
+      
+      // Restauramos display por si lo habíamos forzado a none
+      const chatWindow = document.getElementById("chatbase-bubble-window");
+      if (chatWindow) {
+        chatWindow.style.display = "block";
+      }
     }
 
-    // Desbloqueamos después de 1 segundo
+    // Liberamos el observer después de la animación
     setTimeout(() => {
       isTogglingRef.current = false;
     }, 1000);
@@ -126,30 +145,30 @@ export default function CustomChatbot() {
     };
 
     const style = document.createElement("style");
-    style.id = "chatbase-styles";
     style.innerHTML = `
       #chatbase-bubble-button { display: none !important; }
       
       /* Desktop */
       #chatbase-bubble-window { 
-        z-index: 9999 !important; 
+        z-index: 2147483640 !important; 
         bottom: 84px !important; 
         right: 24px !important;
         max-height: 700px !important;
+        transition: opacity 0.3s ease, transform 0.3s ease !important;
       }
 
-      /* Mobile Bottom Sheet */
+      /* Mobile */
       @media (max-width: 768px) {
         #chatbase-bubble-window {
           position: fixed !important;
           bottom: 0 !important;
-          right: 0 !important;
           left: 0 !important;
           width: 100% !important;
-          height: 80vh !important; 
+          height: 85dvh !important; 
           border-radius: 20px 20px 0 0 !important;
-          box-shadow: 0 -4px 20px rgba(0,0,0,0.15) !important;
-          pointer-events: auto !important;
+          box-shadow: 0 -4px 30px rgba(0,0,0,0.15) !important;
+          top: auto !important; 
+          right: 0 !important;
         }
       }
     `;
@@ -167,29 +186,29 @@ export default function CustomChatbot() {
     <button
       onClick={toggleChatbot}
       className={`
-        fixed z-[2147483647] flex h-14 w-14 cursor-pointer items-center justify-center rounded-full text-white shadow-lg transition-all focus:outline-none overflow-hidden active:scale-95 select-none
+        fixed z-[2147483647] flex h-14 w-14 cursor-pointer items-center justify-center rounded-full text-white shadow-lg transition-all duration-300 focus:outline-none active:scale-90 select-none
         ${isOpen 
-          // En móvil: Arriba a la derecha. Ajustado a top-6/right-6 para evitar área segura (notch/status bar)
-          ? "bottom-6 right-6 max-md:bottom-auto max-md:top-6 max-md:right-6" 
-          // Cerrado: Abajo a la derecha
+          // Estado ABIERTO:
+          ? "bottom-auto top-4 right-4 md:bottom-6 md:right-6 md:top-auto bg-gray-900" 
+          // Estado CERRADO:
           : "bottom-6 right-6 hover:scale-105 hover:shadow-xl"
         }
       `}
       style={{ 
-        backgroundColor: BRAND_COLOR,
-        pointerEvents: 'auto',
+        // Si está abierto gris oscuro (#333), si cerrado Naranja Globus
+        backgroundColor: isOpen ? "#333" : BRAND_COLOR,
         WebkitTapHighlightColor: 'transparent'
       }}
       aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
     >
       {isOpen ? (
-        <X size={28} />
+        <X size={28} className="animate-in fade-in zoom-in duration-200" />
       ) : (
         LOGO_URL ? (
           <img 
             src={LOGO_URL} 
             alt="Chat" 
-            className="h-9 w-9 object-contain drop-shadow-sm filter brightness-0 invert" 
+            className="h-9 w-9 object-contain drop-shadow-sm filter brightness-0 invert animate-in fade-in zoom-in duration-200" 
             style={{ filter: "none" }} 
             draggable={false}
           />

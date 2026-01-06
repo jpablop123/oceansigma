@@ -25,6 +25,9 @@ import {
   FaChevronUp,
 } from "react-icons/fa";
 
+// --- IMPORTACIÓN DE CONFIGURACIÓN ---
+import { TAX_FREE_LIMIT, TAX_LIMIT_TEXT, IS_EMERGENCY_MODE } from "@/utils/config";
+
 const REGISTER_URL =
   "https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7";
 
@@ -55,7 +58,8 @@ export default function EnvioDinamicoClient({
     },
     {
       q: "¿Debo pagar impuestos por mis compras?",
-      a: "Depende del valor declarado. Si tu paquete vale menos de $200 USD (y pesa menos de 50KG), está 100% exento de impuestos. Mayor a $200 USD paga impuestos (IVA y Arancel).",
+      // FAQ DINÁMICO: Se actualiza solo si cambias el config.ts
+      a: `Depende del valor declarado. Si tu paquete vale menos de ${TAX_LIMIT_TEXT} (y pesa menos de 50KG), está 100% exento de impuestos. Mayor a ${TAX_LIMIT_TEXT} paga impuestos (IVA y Arancel).`,
     },
     {
       q: "¿El casillero tiene algún costo?",
@@ -167,6 +171,19 @@ export default function EnvioDinamicoClient({
                 </svg>
               </span>
             </motion.h1>
+
+            {/* AVISO DE EMERGENCIA EN HERO (Opcional, pero recomendado) */}
+            {IS_EMERGENCY_MODE && (
+               <motion.div 
+                 variants={heroReveal}
+                 className="bg-white/10 backdrop-blur-sm border-l-4 border-yellow-300 p-3 mb-6 rounded-r-lg max-w-lg"
+               >
+                 <p className="text-white text-sm font-medium flex items-center gap-2">
+                   <FaExclamationTriangle className="text-yellow-300" />
+                   <span>Nuevo tope de impuestos 2026: <strong>{TAX_LIMIT_TEXT}</strong></span>
+                 </p>
+               </motion.div>
+            )}
 
             <motion.p
               variants={heroReveal}
@@ -292,7 +309,7 @@ export default function EnvioDinamicoClient({
                         <FaInfoCircle className="mt-0.5 shrink-0" />
                         <p>
                           <strong>Valor aproximado.</strong> Incluye flete base.
-                          No incluye seguro ni impuestos.
+                          No incluye seguro ni impuestos (si aplica &gt; {TAX_LIMIT_TEXT}).
                         </p>
                       </div>
                     </motion.div>

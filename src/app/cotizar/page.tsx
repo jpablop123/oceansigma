@@ -8,12 +8,10 @@ import Footer from "@/components/layout/footer";
 import Image from "next/image";
 import globusLogo from "@/assets/img/logo/globus22.png";
 import {
-  FaBox,
   FaPlaneDeparture,
   FaDollarSign,
   FaWeightHanging,
   FaArrowLeft,
-  FaPaperPlane,
   FaWhatsapp,
   FaChevronDown,
   FaCheckCircle,
@@ -21,6 +19,9 @@ import {
   FaCalculator
 } from "react-icons/fa";
 import Select from "react-select";
+
+// --- IMPORTACIÓN DE LA CONFIGURACIÓN (Lógica Dinámica) ---
+import { TAX_FREE_LIMIT, TAX_LIMIT_TEXT } from "@/utils/config";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
@@ -30,7 +31,7 @@ const departamentos = [
   "Risaralda", "Quindío", "Huila", "La Guajira", "Sucre", "Caldas", "Cauca",
 ].map((dep) => ({ value: dep, label: dep }));
 
-// Estilos personalizados para React Select que coincidan con el nuevo diseño
+// Estilos personalizados para React Select
 const customSelectStyles = {
   control: (base: any, state: any) => ({
     ...base,
@@ -66,11 +67,23 @@ export default function CotizarEnvioPage() {
     peso: "",
     valor: "",
   });
-  const [resultado, setResultado] = useState<any>(null);
+  
+  // Estado para guardar el resultado del cálculo
+  const [resultado, setResultado] = useState<{
+    total: number;
+    desglosado: {
+      base: number;
+      adicional: number;
+      seguro: number;
+      impuesto: number;
+    };
+  } | null>(null);
+
   const [showResult, setShowResult] = useState(false);
   const [shakeField, setShakeField] = useState<"peso" | "valor" | null>(null);
   const [showLegal, setShowLegal] = useState(false);
 
+  // Validación visual de límites
   const handleLimitedInput = (field: "peso" | "valor", value: string) => {
     let num = Number(value);
     const max = field === "peso" ? 110 : 2000;
@@ -83,18 +96,40 @@ export default function CotizarEnvioPage() {
     setForm((prev) => ({ ...prev, [field]: num.toString() }));
   };
 
+  // --- LÓGICA DE NEGOCIO ---
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const peso = Number(form.peso) || 0;
     const valor = Number(form.valor) || 0;
 
-    const base = 12;
-    const adicional = peso > 1 ? (peso - 1) * 1.8 : 0;
-    const seguro = valor * 0.05;
-    const impuesto = valor > 200 ? valor * 0.19 : 0;
-    const total = base + adicional + seguro + impuesto;
+    // Constantes de tarifas (Fáciles de editar)
+    const TARIFA_BASE = 12;
+    const TARIFA_ADICIONAL = 1.8;
+    const PCT_SEGURO = 0.05; // 5%
+    const PCT_IVA = 0.19;    // 19%
 
-    setResultado({ total, desglosado: { base, adicional, seguro, impuesto } });
+    // 1. Flete
+    const costoAdicional = peso > 1 ? (peso - 1) * TARIFA_ADICIONAL : 0;
+    
+    // 2. Seguro
+    const costoSeguro = valor * PCT_SEGURO;
+
+    // 3. Impuestos (Dinámico según config.ts)
+    // Si valor >= 50 (o 200 según config), cobra IVA.
+    const costoImpuesto = valor >= TAX_FREE_LIMIT ? valor * PCT_IVA : 0;
+
+    // 4. Total
+    const totalCalculado = TARIFA_BASE + costoAdicional + costoSeguro + costoImpuesto;
+
+    setResultado({ 
+      total: totalCalculado, 
+      desglosado: { 
+        base: TARIFA_BASE, 
+        adicional: costoAdicional, 
+        seguro: costoSeguro, 
+        impuesto: costoImpuesto 
+      } 
+    });
     setShowResult(true);
   };
 
@@ -109,11 +144,9 @@ export default function CotizarEnvioPage() {
 
       {/* === HERO: Diseño Premium === */}
       <section className="relative pt-44 pb-32 px-6 overflow-hidden bg-[#f58220]">
-        {/* Fondo Gradiente y Textura */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#f58220] via-[#ff9a44] to-[#e07116]"></div>
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #fff 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
         
-        {/* Elementos decorativos */}
         <motion.div animate={{ rotate: 360 }} transition={{ duration: 120, repeat: Infinity, ease: "linear" }} className="absolute -top-[50%] -right-[20%] w-[800px] h-[800px] border border-white/10 rounded-full border-dashed opacity-30 pointer-events-none"></motion.div>
 
         <div className="relative z-10 text-center max-w-3xl mx-auto">
@@ -165,7 +198,6 @@ export default function CotizarEnvioPage() {
                 transition={{ duration: 0.4 }}
                 className="bg-white rounded-[2rem] shadow-2xl shadow-gray-200 border border-white overflow-hidden"
               >
-                {/* Header del Formulario */}
                 <div className="bg-gray-50/50 p-8 border-b border-gray-100 flex items-center gap-3">
                     <div className="w-10 h-10 bg-orange-100 text-[#f58220] rounded-full flex items-center justify-center">
                         <FaCalculator />
@@ -301,66 +333,85 @@ export default function CotizarEnvioPage() {
                     <p className="text-white/80 text-sm">Resumen estimado de tu envío</p>
                 </div>
 
-                <div className="p-8 md:p-12">
-                    {/* Detalles del Ticket */}
-                    <div className="border-2 border-dashed border-gray-200 rounded-2xl p-6 bg-gray-50 mb-8">
-                        <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-200 border-dashed">
-                             <span className="text-gray-500 font-medium">Tarifa Base (1 lb)</span>
-                             <span className="font-bold text-gray-800">${resultado.desglosado.base.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-200 border-dashed">
-                             <span className="text-gray-500 font-medium">Peso Adicional</span>
-                             <span className="font-bold text-gray-800">${resultado.desglosado.adicional.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-200 border-dashed">
-                             <div className="flex items-center gap-1">
-                                <span className="text-gray-500 font-medium">Seguro (5%)</span>
-                                <div className="group relative">
-                                    <FaInfoCircle className="text-gray-300 hover:text-[#f58220] cursor-help text-xs"/>
+                {resultado && (
+                    <div className="p-8 md:p-12">
+                        {/* Detalles del Ticket */}
+                        <div className="border-2 border-dashed border-gray-200 rounded-2xl p-6 bg-gray-50 mb-8">
+                            {/* Flete Base */}
+                            <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-200 border-dashed">
+                                <span className="text-gray-500 font-medium">Tarifa Base (1 lb)</span>
+                                <span className="font-bold text-gray-800">${resultado.desglosado.base.toFixed(2)}</span>
+                            </div>
+                            
+                            {/* Peso Adicional */}
+                            <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-200 border-dashed">
+                                <span className="text-gray-500 font-medium">Peso Adicional</span>
+                                <span className="font-bold text-gray-800">${resultado.desglosado.adicional.toFixed(2)}</span>
+                            </div>
+                            
+                            {/* Seguro */}
+                            <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-200 border-dashed">
+                                <div className="flex items-center gap-1">
+                                    <span className="text-gray-500 font-medium">Seguro (5%)</span>
+                                    <div className="group relative">
+                                        <FaInfoCircle className="text-gray-300 hover:text-[#f58220] cursor-help text-xs"/>
+                                    </div>
                                 </div>
-                             </div>
-                             <span className="font-bold text-gray-800">${resultado.desglosado.seguro.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between items-center mb-2">
-                             <span className="text-gray-500 font-medium">Impuestos (IVA)</span>
-                             <span className={`font-bold ${resultado.desglosado.impuesto > 0 ? "text-gray-800" : "text-green-500"}`}>
-                                {resultado.desglosado.impuesto > 0 ? `$${resultado.desglosado.impuesto.toFixed(2)}` : "EXENTO"}
-                             </span>
-                        </div>
-                        
-                        {/* TOTAL */}
-                        <div className="mt-6 bg-white rounded-xl p-4 border border-orange-100 flex justify-between items-center shadow-sm">
-                            <span className="text-lg font-bold text-gray-700">TOTAL ESTIMADO</span>
-                            <span className="text-3xl font-black text-[#f58220]">${resultado.total.toFixed(2)} <span className="text-sm text-gray-400 font-normal">USD</span></span>
-                        </div>
-                    </div>
+                                <span className="font-bold text-gray-800">${resultado.desglosado.seguro.toFixed(2)}</span>
+                            </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button
-                            onClick={handleReset}
-                            className="px-6 py-3 rounded-xl border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
-                        >
-                            <FaArrowLeft /> Nueva Cotización
-                        </button>
+                            {/* Impuestos (Sección Inteligente) */}
+                            <div className="flex justify-between items-center mb-2">
+                                <div className="flex flex-col">
+                                    <span className="text-gray-500 font-medium">Impuestos (IVA)</span>
+                                    {/* Muestra explicación solo si aplica */}
+                                    {resultado.desglosado.impuesto > 0 && (
+                                        <span className="text-[10px] text-red-400 font-semibold">
+                                            Valor ≥ {TAX_LIMIT_TEXT}
+                                        </span>
+                                    )}
+                                </div>
+                                <span className={`font-bold ${resultado.desglosado.impuesto > 0 ? "text-gray-800" : "text-green-500"}`}>
+                                    {resultado.desglosado.impuesto > 0 
+                                        ? `$${resultado.desglosado.impuesto.toFixed(2)}` 
+                                        : "EXENTO 🎉"}
+                                </span>
+                            </div>
+                            
+                            {/* TOTAL */}
+                            <div className="mt-6 bg-white rounded-xl p-4 border border-orange-100 flex justify-between items-center shadow-sm">
+                                <span className="text-lg font-bold text-gray-700">TOTAL ESTIMADO</span>
+                                <span className="text-3xl font-black text-[#f58220]">${resultado.total.toFixed(2)} <span className="text-sm text-gray-400 font-normal">USD</span></span>
+                            </div>
+                        </div>
 
-                        <a
-                            href={`https://wa.me/573150122626?text=${encodeURIComponent(
-                            `Hola Globus Cargo 📦, quiero realizar este envío:
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button
+                                onClick={handleReset}
+                                className="px-6 py-3 rounded-xl border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
+                            >
+                                <FaArrowLeft /> Nueva Cotización
+                            </button>
+
+                            <a
+                                href={`https://wa.me/573150122626?text=${encodeURIComponent(
+                                `Hola Globus Cargo 📦, quiero realizar este envío:
 📍 Destino: ${form.departamento?.label || "Colombia"} - ${form.ciudad}
 ⚖️ Peso: ${form.peso} lb
 💰 Valor Declarado: $${form.valor} USD
 💵 Cotización Web: $${resultado.total.toFixed(2)} USD
 
 ¿Me ayudan a procesarlo?`
-                            )}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-8 py-3 rounded-xl bg-[#25D366] text-white font-bold hover:bg-[#20b358] shadow-lg shadow-green-100 transition-colors flex items-center justify-center gap-2"
-                        >
-                            <FaWhatsapp className="text-xl" /> Enviar por WhatsApp
-                        </a>
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-8 py-3 rounded-xl bg-[#25D366] text-white font-bold hover:bg-[#20b358] shadow-lg shadow-green-100 transition-colors flex items-center justify-center gap-2"
+                            >
+                                <FaWhatsapp className="text-xl" /> Enviar por WhatsApp
+                            </a>
+                        </div>
                     </div>
-                </div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -391,9 +442,9 @@ export default function CotizarEnvioPage() {
                     className="overflow-hidden"
                 >
                     <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-100 p-6 mt-2 text-xs text-gray-500 leading-relaxed text-center">
-                         <p className="mb-2">⚠️ <strong>Importante:</strong> Esta cotización es una estimación basada en la información suministrada. El costo final puede variar tras la verificación física del peso y volumen en nuestras bodegas de Miami.</p>
+                         <p className="mb-2">⚠️ <strong>Importante:</strong> Esta cotización es una estimación basada en la información suministrada.</p>
                          <ul className="space-y-1">
-                             <li>• Los impuestos (IVA/Aranceles) son determinados por la DIAN y pueden cambiar sin previo aviso.</li>
+                             <li>• <strong>Normativa Tributaria:</strong> Se aplican impuestos a envíos valorados en <strong>{TAX_LIMIT_TEXT}</strong> o más, según disposiciones vigentes.</li>
                              <li>• El peso volumétrico se aplicará si este supera al peso físico.</li>
                              <li>• No incluye costos por reempaque especial si la mercancía lo requiere.</li>
                          </ul>
