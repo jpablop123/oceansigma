@@ -172,7 +172,7 @@ export default function TarifasPage() {
                     
                     <ul className="space-y-4">
                         {[
-                            "Seguro (Cobertura $200)",
+                            "Seguro ",
                             "Trámite Aduanal",
                             "Entrega a Domicilio"
                         ].map((item, i) => (
