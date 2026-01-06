@@ -107,7 +107,7 @@ export default function ContactoPage() {
           {[
             { icon: <Phone className="w-6 h-6" />, title: "Llámanos", text: "+1 (786) 531-7987", sub: "Atención inmediata" },
             { icon: <Mail className="w-6 h-6" />, title: "Escríbenos", text: "info@globuscargo.com", sub: "Respuesta en 24h" },
-            { icon: <Clock className="w-6 h-6" />, title: "Visítanos", text: "Lun - Vie: 9AM – 6PM", sub: "Horario de oficina" },
+            { icon: <Clock className="w-6 h-6" />, title: "Visítanos", text: "Lun - Vie: 9AM – 5PM", sub: "Horario de oficina" },
           ].map((item, i) => (
             <motion.div
               key={i}
