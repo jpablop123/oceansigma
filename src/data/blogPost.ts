@@ -666,26 +666,26 @@ export const blogPosts: BlogPost[] = [
     image: customs, // Asegúrate de tener importada esta variable arriba
     imageAlt: "Gráfico estadístico sobre impacto fiscal y aduanero en Colombia",
     content: `
-        <p class="lead">En el marco de la <strong>Emergencia Económica, Social y Ecológica</strong> declarada recientemente, el Gobierno Nacional ha expedido el <strong>Decreto Legislativo 1474 de 2026</strong>, introduciendo reformas estructurales al Estatuto Aduanero que impactan directamente la modalidad de Tráfico Postal y Envíos Urgentes.</p>
-  
-        <h2>Contexto Normativo</h2>
-        <p>Esta medida busca, según el Ministerio de Hacienda, fortalecer el recaudo fiscal y proteger la industria manufacturera nacional frente al comercio transfronterizo. La modificación más crítica recae sobre el <strong>artículo de exención de tributos</strong> para envíos de bajo valor.</p>
-        
+        <p class="lead">En el marco de la <strong>Emergencia Económica, Social y Ecológica</strong>, el Gobierno Nacional ha expedido el <strong>Decreto Legislativo 1474 de 2026</strong>. Esta normativa introduce cambios importantes al Estatuto Aduanero que afectan la importación bajo la modalidad de Tráfico Postal y Envíos Urgentes.</p>
+
+        <h2>Cambios en la Normativa Aduanera</h2>
+        <p>La modificación principal afecta la exención de tributos para envíos de bajo valor. Anteriormente, los paquetes con un valor inferior a <strong>USD $200</strong> estaban exentos de impuestos.</p>
+
         <div style="background-color: #f8fafc; border-left: 4px solid #0f172a; padding: 20px; margin: 25px 0; border-radius: 4px;">
-          <h3 style="margin-top: 0; color: #0f172a; font-size: 1.1em;">Lo que establece la norma:</h3>
-          <p style="margin-bottom: 0; color: #334155;"><em>"Se reduce el umbral de minimis (exención total de gravámenes) de USD $200 a <strong>USD $50 FOB</strong>. Todo paquete que supere este valor estará sujeto al pago pleno de Arancel e IVA."</em></p>
+          <h3 style="margin-top: 0; color: #0f172a; font-size: 1.1em;">Nueva Regla (2026):</h3>
+          <p style="margin-bottom: 0; color: #334155;"><em>"Se reduce el tope de la exención (mínima cuantía) a <strong>USD $50 FOB</strong>. Todo paquete cuyo valor declarado supere los $50 USD estará sujeto al pago pleno de Arancel e IVA."</em></p>
         </div>
 
-        <h2>Análisis de Impacto Tributario</h2>
-        <p>Para entender la magnitud del cambio, presentamos un ejercicio comparativo de liquidación para un artículo valorado en <strong>USD $60</strong> (apenas $10 por encima del nuevo límite).</p>
+        <h2>Ejemplo de Liquidación de Impuestos</h2>
+        <p>Para mayor claridad, presentamos un ejemplo con un artículo valorado en <strong>USD $60</strong>. Al superar el nuevo límite de $50, este artículo pasa a pagar impuestos completos, a diferencia de la norma anterior donde estaba exento.</p>
 
         <div style="overflow-x: auto;">
           <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em;">
             <thead>
               <tr style="background-color: #f1f5f9; text-align: left;">
                 <th style="padding: 12px; border-bottom: 2px solid #cbd5e1;">Concepto</th>
-                <th style="padding: 12px; border-bottom: 2px solid #cbd5e1;">Normativa Anterior (2025)</th>
-                <th style="padding: 12px; border-bottom: 2px solid #cbd5e1; color: #c2410c;">Nueva Normativa (2026)</th>
+                <th style="padding: 12px; border-bottom: 2px solid #cbd5e1;">Normativa Anterior (Tope $200)</th>
+                <th style="padding: 12px; border-bottom: 2px solid #cbd5e1; color: #c2410c;">Nueva Normativa (Tope $50)</th>
               </tr>
             </thead>
             <tbody>
@@ -705,25 +705,26 @@ export const blogPosts: BlogPost[] = [
                 <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">~$12.54</td>
               </tr>
               <tr style="font-weight: bold; background-color: #fff7ed;">
-                <td style="padding: 12px;">TOTAL IMPUESTOS</td>
+                <td style="padding: 12px;">TOTAL IMPUESTOS A PAGAR</td>
                 <td style="padding: 12px; color: #16a34a;">$0.00 USD</td>
                 <td style="padding: 12px; color: #c2410c;">~$18.54 USD</td>
               </tr>
             </tbody>
           </table>
         </div>
-        
+
         <p style="font-size: 0.9em; color: #64748b;">*Nota: El cálculo del IVA se realiza sobre la base gravable (Valor CIF + Arancel), lo que genera un efecto compuesto.</p>
 
-        <h2>Estrategias de Mitigación Logística</h2>
-        <p>Ante este nuevo panorama fiscal, en Globus Cargo hemos ajustado nuestros protocolos operativos para optimizar los costos de nuestros usuarios:</p>
-        
-        <ol>
-          <li><strong>Fraccionamiento de Envíos:</strong> Para compras múltiples (ej: ropa, repuestos), recomendamos dividir la carga en guías separadas cuyo valor individual no supere los USD $50. Aunque esto implica fletes adicionales, el ahorro tributario (aprox 30% del valor) suele justificar la operación.</li>
-          <li><strong>Gestión de Pre-Alertas:</strong> La declaración exacta es ahora un requisito crítico. Discrepancias de centavos pueden reclasificar un envío de "exento" a "gravado" por parte de la DIAN. Utilice nuestra plataforma para adjuntar facturas comerciales fidedignas.</li>
-        </ol>
+        <h2>Estrategias y Recomendaciones</h2>
+        <p>Ante este nuevo panorama fiscal, adaptar la forma en que compramos en línea es clave para optimizar costos. En Globus Cargo le sugerimos:</p>
 
-        <p>Como su aliado logístico, Globus Cargo continuará monitoreando la implementación de este decreto para garantizar el cumplimiento normativo y la eficiencia de sus importaciones.</p>
-      `,
-  },
+        <ul>
+          <li style="margin-bottom: 10px;"><strong>Opte por Despachos Individuales (No Consolidar):</strong> Al realizar compras en sus tiendas favoritas, la estrategia más efectiva es enviar cada paquete por separado apenas llegue a nuestra bodega. Evite utilizar la opción de "consolidar" o agrupar múltiples compras en una sola caja si la suma total supera los USD $50, ya que esto activará automáticamente el cobro de impuestos sobre el total.</li>
+          <li style="margin-bottom: 10px;"><strong>Declaración Exacta:</strong> La precisión en el valor declarado es fundamental. Cualquier discrepancia puede generar reajustes por parte de la DIAN. Es vital declarar el valor real pagado por el producto.</li>
+          <li><strong>Gestión de Pre-Alertas:</strong> Utilice nuestra plataforma para adjuntar sus facturas comerciales antes de que el paquete sea procesado. Esto agiliza el trámite aduanero y asegura la correcta clasificación de sus envíos.</li>
+        </ul>
+
+        <p>Como su aliado logístico, Globus Cargo continuará monitoreando la implementación de este decreto para mantenerlo informado y garantizar la eficiencia de sus importaciones.</p>
+    `
+},
 ];
