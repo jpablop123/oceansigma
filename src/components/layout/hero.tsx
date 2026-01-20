@@ -1,188 +1,193 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import globusLogo from "@/assets/img/logo/globusorange.png";
-import { ArrowRight, CheckCircle, Package, Plane, ShieldCheck } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, CheckCircle2, FileText, Shield } from "lucide-react";
+import logo from "@/assets/img/logo/Gestionglobal1.webp"; 
 
-// === TUS FOTOS ===
-import slide1 from "@/assets/img/logo/fotosreveladas/AP0A0716.jpg";
-import slide2 from "@/assets/img/logo/fotosreveladas/AP0A0753.jpg";
-
-export default function HeroDinamico() {
-  const params = useParams();
-  const origen = params.origen?.toString() || "USA";
-  const destino = params.destino?.toString() || "Colombia";
-
-  const format = (str: string) =>
-    str.charAt(0).toUpperCase() + str.slice(1).replace("-", " ");
-
-  const formattedOrigen = format(origen);
-  const formattedDestino = format(destino);
+export default function HeroSST() {
 
   useEffect(() => {
-    document.title = `Envíos desde ${formattedOrigen} a ${formattedDestino} | Globus Cargo`;
-  }, [formattedOrigen, formattedDestino]);
+    document.title = `Gestión Global de Servicios | Expertos en SG-SST`;
+  }, []);
+
+  // Parallax Effect
+  const { scrollY } = useScroll();
+  const yBackground = useTransform(scrollY, [0, 500], [0, 100]);
+  const yCards = useTransform(scrollY, [0, 500], [0, -50]);
 
   return (
-    <section className="relative bg-white overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
+    <section className="relative bg-[#F8FAFC] overflow-hidden pt-36 pb-20 lg:pt-48 lg:pb-32">
       
-      {/* === 1. FONDO TÉCNICO & DECORACIÓN === */}
-      {/* Patrón de puntos sutil para dar textura "Logística" */}
-      <div className="absolute inset-0 z-0 opacity-[0.4]" 
-           style={{ backgroundImage: "radial-gradient(#e5e7eb 1.5px, transparent 1.5px)", backgroundSize: "32px 32px" }}>
-      </div>
+      {/* === 1. FONDO VIVO (PARALLAX) === */}
+      <motion.div style={{ y: yBackground }} className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none">
+         <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(#245CA7 1px, transparent 1px), linear-gradient(90deg, #245CA7 1px, transparent 1px)", backgroundSize: "50px 50px" }}></div>
+      </motion.div>
       
-      {/* Orbes de luz de marca (Blur) */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-100/60 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/4 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/60 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/4 pointer-events-none"></div>
+      {/* Luces Ambientales */}
+      <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-indigo-100/40 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           
-          {/* === 2. COLUMNA DE TEXTO === */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center lg:text-left space-y-8"
-          >
-            {/* Badge Superior */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-100 text-[#f58220] text-sm font-bold tracking-wide uppercase shadow-sm">
-              <Plane size={16} className="animate-pulse" />
-              Logística Internacional
-            </div>
+          {/* === 2. COLUMNA TEXTO === */}
+          <div className="text-center lg:text-left space-y-8 relative">
+             
+             {/* Badge Tech */}
+             <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#245CA7] text-[11px] font-bold uppercase tracking-widest mb-2"
+             >
+              <Shield size={12} className="text-blue-500"/>
+              Seguridad Industrial & Salud Ocupacional
+            </motion.div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[1.1] tracking-tight">
-              De <span className="text-gray-400 decoration-gray-200 underline decoration-4 underline-offset-4">{formattedOrigen}</span> a <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f58220] to-[#ff9a44]">
-                {formattedDestino}
-              </span>
-            </h1>
-
-            <p className="text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
-              Simplificamos tus envíos internacionales. <br className="hidden md:block"/>
-              Tu carga viaja segura, rápida y con el mejor precio del mercado.
-            </p>
-
-            {/* Botones de Acción */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7"
-                className="group flex items-center justify-center gap-2 bg-[#f58220] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#d96d15] transition-all shadow-[0_10px_25px_rgba(245,130,32,0.3)] hover:-translate-y-1"
-              >
-                Crear Casillero
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="https://wa.me/573150122626"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-[#f58220] hover:text-[#f58220] transition-all hover:bg-orange-50"
-              >
-                Cotizar Envío
-              </a>
-            </div>
-
-            {/* Trust Badges (Social Proof) */}
-            <div className="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-3 text-sm font-medium text-gray-500">
-                <div className="flex items-center gap-2">
-                    <CheckCircle size={18} className="text-green-500" /> Carga Asegurada
-                </div>
-                <div className="flex items-center gap-2">
-                    <CheckCircle size={18} className="text-green-500" /> Sin Costos Ocultos
-                </div>
-            </div>
-          </motion.div>
-
-          {/* === 3. COLUMNA VISUAL (SLIDER + ELEMENTOS FLOTANTES) === */}
-          <motion.div
-             initial={{ opacity: 0, scale: 0.9 }}
-             animate={{ opacity: 1, scale: 1 }}
-             transition={{ duration: 0.8, delay: 0.2 }}
-             className="relative"
-          >
-            {/* Marco del Slider */}
-            <div className="relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] max-h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-orange-900/10 border-[6px] border-white z-10">
-                <HeroSlider />
-                
-                {/* Gradiente Overlay inferior para legibilidad */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 pointer-events-none"></div>
-            </div>
-
-            {/* Elemento Flotante 1: Tarjeta de Tracking Simulada */}
-            <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                className="absolute -bottom-6 -left-6 md:bottom-10 md:-left-12 bg-white/90 backdrop-blur-xl p-5 rounded-2xl shadow-xl border border-white/50 z-20 max-w-[260px]"
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight"
             >
-                <div className="flex items-start gap-4">
-                    <div className="bg-green-100 p-3 rounded-full text-green-600">
-                        <Package size={24} />
-                    </div>
+              Protegemos <br/>
+              tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#245CA7] via-blue-500 to-cyan-500 animate-gradient">
+                Futuro Empresarial
+              </span>
+            </motion.h1>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg md:text-xl text-slate-500 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium"
+            >
+              Transformamos el cumplimiento normativo en una ventaja competitiva real. Gestión integral de riesgos con tecnología y experiencia.
+            </motion.p>
+
+            {/* Botones (CORREGIDOS) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
+            >
+              <a
+                href="#servicios"
+                className="group relative overflow-hidden bg-[#245CA7] text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-blue-900/20 transition-all hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <span className="relative flex items-center gap-2">
+                  Nuestros Servicios <ArrowRight size={20} />
+                </span>
+              </a>
+              
+              {/* ✅ CORREGIDO: Ahora coincide con tu Header */}
+              <a
+                href="https://wa.me/573166400840"
+                target="_blank"
+                className="flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-xl font-bold hover:border-[#245CA7] hover:text-[#245CA7] transition-all shadow-sm hover:shadow-md"
+              >
+                <Calendar size={20} className="text-[#245CA7]" />
+                Agendar Consultoría
+              </a>
+            </motion.div>
+
+            {/* Stats Minimalistas */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="pt-10 flex items-center justify-center lg:justify-start gap-10 border-t border-slate-200/60 mt-10"
+            >
+                <div>
+                    <p className="text-4xl font-black text-slate-900 tracking-tighter">+500</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mt-1">Empresas Seguras</p>
+                </div>
+                <div>
+                    <p className="text-4xl font-black text-slate-900 tracking-tighter">100%</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mt-1">Cumplimiento Legal</p>
+                </div>
+            </motion.div>
+          </div>
+
+          {/* === 3. COLUMNA VISUAL === */}
+          <motion.div style={{ y: yCards }} className="relative h-[600px] w-full hidden lg:block perspective-1000">
+            
+            {/* CÍRCULO BASE */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-blue-50 to-white rounded-full border border-white shadow-[0_0_80px_-20px_rgba(36,92,167,0.1)] flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border border-blue-100 opacity-50 scale-90"></div>
+                
+                {/* LOGO FLOTANTE 3D */}
+                <motion.div 
+                    animate={{ y: [0, -15, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative w-64 h-64 drop-shadow-2xl"
+                >
+                    <Image src={logo} alt="Logo 3D" fill className="object-contain" />
+                </motion.div>
+            </div>
+
+            {/* CARD 1: ALCANCE */}
+            <motion.div 
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+                className="absolute top-16 right-0 bg-white/80 backdrop-blur-xl p-5 rounded-2xl shadow-xl border border-white hover:scale-105 transition-transform"
+            >
+                <div className="flex items-center gap-3">
+                    <div className="bg-blue-100 p-2 rounded-lg text-[#245CA7]"><MapPin size={22}/></div>
                     <div>
-                        <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Estado del envío</p>
-                        <p className="text-gray-900 font-bold text-lg leading-none mb-1">En Tránsito ✈️</p>
-                        <p className="text-xs text-gray-400">Destino: {formattedDestino}</p>
+                        <p className="font-bold text-slate-900 text-sm">Cobertura Nacional</p>
+                        <p className="text-[10px] text-slate-500 font-medium">Gestión en todo el país</p>
                     </div>
                 </div>
             </motion.div>
 
-            {/* Elemento Flotante 2: Logo Flotante */}
-            <div className="absolute top-6 right-6 z-20 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/50">
-                <Image src={globusLogo} alt="Logo" width={40} height={40} className="w-10 h-10 object-contain" />
-            </div>
+            {/* CARD 2: LICENCIA (✅ CORREGIDO CON DATO REAL) */}
+            <motion.div 
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
+                className="absolute bottom-24 left-0 bg-[#0F172A] p-5 rounded-2xl shadow-2xl border border-slate-700 w-72"
+            >
+                <div className="flex justify-between items-start mb-3">
+                    <div>
+                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Certificación</p>
+                        {/* Dato real sacado de tu captura de pantalla */}
+                        <p className="font-bold text-white text-lg leading-none">Licencia SST</p>
+                        <p className="text-[#245CA7] font-mono text-sm mt-1">No. 2562</p>
+                    </div>
+                    <div className="bg-green-500/20 p-1.5 rounded-full text-green-400">
+                        <CheckCircle2 size={18} />
+                    </div>
+                </div>
+                <div className="flex items-center gap-2 mt-2">
+                    <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span className="text-[10px] text-slate-400">Vigente / Avalada</span>
+                </div>
+            </motion.div>
 
-            {/* Decoración Detrás del Slider */}
-            <div className="absolute -z-10 top-10 -right-10 w-full h-full border-2 border-[#f58220] rounded-[2.5rem] opacity-20"></div>
+            {/* CARD 3: GESTIÓN */}
+            <motion.div 
+                 animate={{ y: [0, -10, 0] }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                 className="absolute bottom-10 right-10 bg-white p-4 pr-6 rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center gap-4"
+            >
+                <div className="p-3 rounded-xl bg-orange-50 text-orange-500">
+                    <FileText size={24} />
+                </div>
+                <div>
+                    <p className="font-bold text-slate-900 leading-tight">Normativa al Día</p>
+                    <p className="text-xs text-slate-500 mt-0.5">Gestión documental</p>
+                </div>
+            </motion.div>
+
           </motion.div>
-
         </div>
       </div>
     </section>
-  );
-}
-
-// === SLIDER CON EFECTO KEN BURNS (ZOOM SUAVE) ===
-function HeroSlider() {
-  const [index, setIndex] = useState(0);
-
-  const slides = [
-    { image: slide1 },
-    { image: slide2 },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % slides.length);
-    }, 6000); // 6 segundos para dar tiempo al zoom
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative w-full h-full bg-gray-100">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 1.1 }} // Empieza con zoom
-          animate={{ opacity: 1, scale: 1 }}   // Hace zoom-out suave
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={slides[index].image}
-            alt={`Logística Globus Cargo ${index}`}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority={index === 0}
-            className="object-cover"
-          />
-        </motion.div>
-      </AnimatePresence>
-    </div>
   );
 }

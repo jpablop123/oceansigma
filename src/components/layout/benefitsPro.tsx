@@ -1,133 +1,151 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import globusWhite from "@/assets/img/logo/globuswhite.png";
 import {
   ShieldCheck,
-  Package,
-  Clock,
+  Users,
+  Activity,
   Headphones,
   Truck,
-  Boxes,
-  ArrowRight
+  ArrowRight,
+  Leaf,
+  CheckCircle2
 } from "lucide-react";
 
-const beneficios = [
+const diferenciales = [
   {
     icon: ShieldCheck,
-    title: "Seguridad Garantizada",
-    desc: "Tus envíos viajan asegurados y con manejo profesional desde la bodega hasta tu puerta.",
+    title: "Excelencia Normativa",
+    desc: "Garantizamos el cumplimiento estricto de la normativa vigente, mitigando riesgos legales y operativos.",
   },
   {
-    icon: Package,
-    title: "Casillero Gratuito",
-    desc: "Obtén tu dirección en EE. UU. y recibe todas tus compras sin costo de registro.",
+    icon: Users,
+    title: "Capital Humano",
+    desc: "Elevamos el perfil de sus trabajadores mediante capacitación técnica y una cultura de autocuidado.",
   },
   {
     icon: Truck,
     title: "Cobertura Nacional",
-    desc: "Entregamos en todo Colombia: desde las principales ciudades hasta zonas rurales.",
+    desc: "Capacidad operativa en las principales regiones del país con estandarización de procesos.",
   },
   {
-    icon: Clock,
-    title: "Envíos Express",
-    desc: "Opciones aéreas rápidas para quienes necesitan inmediatez y seguimiento preciso.",
+    icon: Activity,
+    title: "Gestión Basada en Datos",
+    desc: "Diagnósticos precisos y seguimiento de indicadores para la toma de decisiones gerenciales.",
   },
   {
-    icon: Boxes,
-    title: "Consolidación Inteligente",
-    desc: "Ahorra uniendo varios paquetes en un solo envío. Sin costos ocultos.",
+    icon: Leaf,
+    title: "Sostenibilidad Corporativa",
+    desc: "Integramos la seguridad y salud como pilares fundamentales del desarrollo sostenible de su empresa.",
   },
   {
     icon: Headphones,
-    title: "Soporte Personalizado",
-    desc: "Te atendemos por WhatsApp o correo con respuestas reales, no bots.",
+    title: "Soporte Especializado",
+    desc: "Acceso directo a un equipo multidisciplinario de expertos para resolver situaciones críticas.",
   },
 ];
 
-export default function BenefitsPro() {
+export default function DiferencialesSSTProfessionalDark() {
   return (
-    <section className="relative py-24 px-6 overflow-hidden bg-[#AFAFAF] text-white">
+    <section className="relative py-24 px-6 bg-[#0B1120] overflow-hidden">
       
-      {/* === 1. FONDO CON LOGO RECTO (Centrado y sutil) === */}
-      <div className="absolute inset-0 opacity-[0.1] flex justify-center items-center select-none pointer-events-none">
-        <Image
-          src={globusWhite}
-          alt="Globus Cargo Logo Marca"
-          width={1200}
-          height={1200}
-          className="object-contain" // Sin rotación, totalmente recto
-          priority
-        />
+      {/* === FONDO ELEGANTE === */}
+      {/* Foco de luz superior sutil (Spotlight) para dar profundidad sin ser "gamer" */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#245CA7] opacity-10 blur-[100px] rounded-full pointer-events-none"></div>
+      
+      {/* Patrón de puntos muy sutil */}
+      <div className="absolute inset-0 opacity-[0.05]" 
+           style={{ backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
       </div>
 
-      {/* Gradiente muy sutil para que no se vea plano el gris */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/5 pointer-events-none"></div>
-
-      {/* === CONTENIDO === */}
       <div className="relative z-10 max-w-7xl mx-auto">
         
-        {/* Encabezado */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
-            Beneficios Exclusivos <span className="text-[#f58220]">Globus Cargo</span>
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-white text-lg font-medium drop-shadow-sm">
-            Diseñamos nuestra logística pensando en tu tranquilidad y ahorro.
-          </p>
+        {/* === HEADER === */}
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6"
+          >
+             <ShieldCheck size={14} /> Por qué elegirnos
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight"
+          >
+            Respaldo Integral para su <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#245CA7]">
+                Gestión de Riesgos
+            </span>
+          </motion.h2>
+          
+          <motion.p 
+             initial={{ opacity: 0 }}
+             whileInView={{ opacity: 1 }}
+             viewport={{ once: true }}
+             transition={{ delay: 0.2 }}
+             className="mt-6 text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto"
+          >
+            Combinamos rigor técnico con visión estratégica para convertir la seguridad en una ventaja competitiva para su organización.
+          </motion.p>
         </div>
 
-        {/* Grid de 3 Columnas (Mejor organización) */}
+        {/* === GRID CORPORATIVO DARK === */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {beneficios.map((b, i) => (
+          {diferenciales.map((d, i) => (
             <motion.div
               key={i}
-              className="group p-8 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm
-              hover:bg-white/20 hover:border-[#f58220]/50 transition-all duration-300
-              hover:-translate-y-1 shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="group relative bg-[#111827] p-8 rounded-2xl border border-white/5 hover:border-[#245CA7]/50 transition-all duration-300"
             >
-              {/* Icono */}
-              <div
-                className="w-14 h-14 flex items-center justify-center rounded-xl 
-                bg-[#f58220] text-white shadow-md mb-5 group-hover:scale-110 transition-transform duration-300"
-              >
-                <b.icon size={28} />
+              {/* Efecto hover suave: cambio de fondo muy sutil */}
+              <div className="absolute inset-0 bg-[#245CA7] opacity-0 group-hover:opacity-[0.03] rounded-2xl transition-opacity duration-300 pointer-events-none"></div>
+
+              {/* Encabezado Tarjeta */}
+              <div className="flex items-start justify-between mb-6 relative z-10">
+                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-[#1F2937] text-blue-400 border border-white/5 group-hover:bg-[#245CA7] group-hover:text-white group-hover:border-[#245CA7] transition-all duration-300 shadow-lg">
+                  <d.icon size={26} strokeWidth={1.5} />
+                </div>
+                <CheckCircle2 size={20} className="text-slate-700 group-hover:text-blue-500 transition-colors" />
               </div>
 
-              {/* Texto */}
-              <div className="text-left">
-                <h3 className="text-xl font-bold text-white mb-2 drop-shadow-sm">
-                    {b.title}
-                </h3>
-                <p className="text-white/90 text-sm leading-relaxed font-medium">
-                    {b.desc}
-                </p>
-              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors relative z-10">
+                  {d.title}
+              </h3>
+              
+              <p className="text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-4 mt-4 group-hover:border-blue-500/20 transition-colors relative z-10">
+                  {d.desc}
+              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Botón CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
+        {/* === CTA === */}
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
         >
           <a
-            href="https://globuscargo.us/#/sign-up?a=cec123e3-17bf-4be8-8f46-1fe6ec3d31b7"
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-[#f58220] text-white font-bold text-lg
-            hover:bg-[#d96d15] shadow-xl hover:shadow-orange-500/30 transition-all transform hover:scale-105"
+            href="https://wa.me/573166400840"
+            target="_blank"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-[#245CA7] text-white font-bold text-lg hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/20 hover:shadow-blue-900/40 hover:-translate-y-1"
           >
-            Abrir mi Casillero Gratis
+            Solicitar Asesoría Corporativa
             <ArrowRight size={20} />
           </a>
+          <p className="mt-4 text-xs text-slate-500 font-medium uppercase tracking-wide">
+            Atención prioritaria para empresas
+          </p>
         </motion.div>
       </div>
     </section>

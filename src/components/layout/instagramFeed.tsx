@@ -3,10 +3,34 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaInstagram, FaExternalLinkAlt, FaArrowRight, FaPlay, FaClone, FaTimes } from "react-icons/fa";
+import { FaInstagram, FaPlay, FaClone, FaTimes, FaHeart } from "react-icons/fa";
 
-// Tu URL oficial de Behold
+// Importamos el logo
+import logo from "@/assets/img/logo/Gestionglobal1.webp";
+
 const INSTAGRAM_FEED_URL = "https://feeds.behold.so/7h145nVZyZOfwQmsbbAi"; 
+
+// --- MARQUEE ---
+const Marquee = () => {
+  return (
+    <div className="relative flex overflow-hidden py-3 bg-[#1e4b8a]/20 backdrop-blur-sm border-y border-white/5 z-20">
+      <motion.div 
+        className="flex whitespace-nowrap gap-20 items-center"
+        animate={{ x: [0, -1000] }}
+        transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+      >
+        {[...Array(10)].map((_, i) => (
+            <div key={i} className="flex items-center gap-3 opacity-50">
+                <FaInstagram className="text-white text-lg" />
+                <span className="text-white font-medium tracking-[0.2em] text-xs uppercase">
+                    @gestionglobal_sst
+                </span>
+            </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 export default function InstagramFeed() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -18,69 +42,81 @@ export default function InstagramFeed() {
       try {
         const response = await fetch(INSTAGRAM_FEED_URL);
         const data = await response.json();
-        
         const validPosts = data.posts ? data.posts : data;
-        if (Array.isArray(validPosts)) {
-            setPosts(validPosts.slice(0, 4));
-        }
+        if (Array.isArray(validPosts)) setPosts(validPosts.slice(0, 4));
       } catch (error) {
         console.error("Error cargando Instagram:", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchPosts();
   }, []);
+
+  // Bloquear scroll al abrir modal
+  useEffect(() => {
+    if (selectedPost) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+  }, [selectedPost]);
 
   const closeModal = () => setSelectedPost(null);
 
   return (
-    <section className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* === HEADER === */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="max-w-2xl">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2 mb-2"
-            >
-              <span className="p-2 bg-pink-50 rounded-lg text-pink-600">
-                <FaInstagram className="text-xl" />
-              </span>
-              <span className="text-sm font-bold tracking-wider text-pink-600 uppercase">
-                @globuscargo_
-              </span>
-            </motion.div>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900">
-              Lo último en <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">Instagram</span>
-            </h2>
-          </div>
+    <section className="relative bg-[#020617] overflow-hidden py-0">
+      
+      {/* Fondo */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1e3a8a]/20 via-[#020617] to-[#020617]"></div>
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-5"></div>
 
-          <a 
-            href="https://instagram.com/globuscargo_"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-full font-bold transition-all hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:shadow-lg hover:shadow-pink-500/30"
-          >
-            Ver Feed Completo
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </a>
+      <Marquee />
+
+      <div className="max-w-7xl mx-auto px-6 py-24 relative z-10">
+        
+        {/* === HEADER CENTRADO === */}
+        <div className="text-center mb-16 space-y-6">
+            <motion.div 
+                initial={{ opacity: 0, y: 10 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-300 text-[10px] font-bold uppercase tracking-widest"
+            >
+                <FaInstagram /> Comunidad Digital
+            </motion.div>
+
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 }}
+                className="flex flex-col items-center justify-center"
+            >
+                <h2 className="text-3xl md:text-4xl font-medium text-slate-300 mb-6">
+                  Todo lo nuevo de
+                </h2>
+                <div className="relative w-40 h-40 md:w-52 md:h-52">
+                    <Image 
+                        src={logo} 
+                        alt="Gestión Global Logo" 
+                        fill 
+                        className="object-contain brightness-0 invert drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" 
+                    />
+                </div>
+            </motion.div>
+
+            <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="text-slate-400 max-w-lg mx-auto text-sm md:text-base pt-4"
+            >
+                Mantente al día con nuestras últimas capacitaciones, noticias y cultura de prevención.
+            </motion.p>
         </div>
 
         {/* === GRID DE POSTS === */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {loading ? (
-            [1, 2, 3, 4].map((i) => (
-              <div key={i} className="aspect-square bg-slate-100 rounded-3xl animate-pulse"></div>
-            ))
-          ) : (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {loading ? [1, 2, 3, 4].map((i) => <div key={i} className="aspect-square bg-white/5 rounded-2xl animate-pulse"></div>) : 
             posts.map((post: any, index) => {
               const imageUrl = post.mediaType === "VIDEO" ? post.thumbnailUrl : post.mediaUrl;
               const TypeIcon = post.mediaType === "VIDEO" ? FaPlay : (post.children ? FaClone : FaInstagram);
-
+              
               return (
                 <motion.div
                   key={post.id}
@@ -90,127 +126,108 @@ export default function InstagramFeed() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative block aspect-square rounded-3xl overflow-hidden cursor-pointer bg-slate-100 shadow-sm hover:shadow-xl hover:shadow-pink-500/20 transition-all duration-300 z-10"
+                  className="group relative block aspect-square rounded-2xl overflow-hidden cursor-pointer bg-slate-900 border border-white/10 hover:border-blue-500 transition-all duration-300 shadow-lg"
                 >
-                  <Image
+                  <Image 
                     src={imageUrl} 
-                    alt="Instagram Post"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt="Post" 
+                    fill 
+                    className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
                     sizes="(max-width: 768px) 50vw, 25vw"
-                    unoptimized={true}
+                    unoptimized={true} 
                   />
-
-                  <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-md text-white p-2 rounded-full text-xs z-10 border border-white/10">
-                    <TypeIcon />
-                  </div>
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
-                    <p className="text-slate-200 text-xs font-medium line-clamp-2 mb-2 leading-relaxed">
-                      {post.caption || "Ver contenido"}
-                    </p>
-                    <div className="flex items-center gap-2 text-[#f58220] font-bold text-xs uppercase tracking-wider">
-                      {post.mediaType === "VIDEO" ? <FaPlay className="text-[10px]" /> : <FaExternalLinkAlt />} 
-                      {post.mediaType === "VIDEO" ? "Reproducir" : "Ver Foto"}
-                    </div>
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                  <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-md text-white p-2 rounded-full border border-white/10">
+                    <TypeIcon size={12} />
                   </div>
                 </motion.div>
               );
             })
-          )}
+          }
+        </div>
+
+        {/* Botón CTA */}
+        <div className="flex justify-center mt-12">
+            <a href="https://instagram.com/tu_usuario_real" target="_blank" rel="noopener noreferrer" 
+                className="group flex items-center gap-3 px-8 py-3 bg-[#245CA7] text-white rounded-full font-bold hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/30 hover:-translate-y-1"
+            >
+                <FaInstagram className="text-xl" />
+                <span>Seguir en Instagram</span>
+            </a>
         </div>
       </div>
 
-      {/* === MODAL / LIGHTBOX (CORREGIDO MOBILE) === */}
+      {/* === MODAL RESPONSIVE === */}
       <AnimatePresence>
         {selectedPost && (
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            // z-[99999] para asegurar que tape todo excepto quizás el chatbot si es muy intrusivo
-            className="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8 bg-slate-900/95 backdrop-blur-md"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[99999] flex flex-col md:flex-row items-end md:items-center justify-center bg-black/90 backdrop-blur-md md:p-8"
             onClick={closeModal}
           >
-            {/* Botón cerrar mejor posicionado para dedos en móvil */}
+            {/* Botón flotante solo para PC (Opcional, pero útil) */}
             <button 
-              onClick={closeModal}
-              className="absolute top-4 right-4 z-[100] text-white/80 hover:text-white bg-black/20 hover:bg-white/10 backdrop-blur-sm p-3 rounded-full transition-all"
+              onClick={closeModal} 
+              className="hidden md:block absolute top-6 right-6 z-[100] bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md border border-white/10 transition-transform hover:rotate-90"
             >
-              <FaTimes className="text-2xl md:text-3xl" />
+              <FaTimes size={24} />
             </button>
 
-            {/* Contenedor del Modal */}
+            {/* TARJETA DEL MODAL */}
             <motion.div 
               layoutId={`post-${selectedPost.id}`}
-              // Altura dinámica: max-h-[85vh] evita que se salga de pantalla en móviles con barra de navegación
-              className="relative w-full max-w-5xl max-h-[85vh] md:max-h-[90vh] bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
+              className="relative w-full h-[85vh] md:h-auto md:max-h-[85vh] md:max-w-6xl bg-[#0F172A] rounded-t-[2rem] md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
-              
-              {/* LADO IZQUIERDO: MEDIA */}
-              {/* flex-1 y overflow-hidden aseguran que la imagen/video ocupe el espacio disponible sin empujar el texto fuera */}
-              <div className="flex-1 bg-black flex items-center justify-center relative overflow-hidden min-h-[40vh] md:min-h-[60vh]">
+              {/* IMAGEN / VIDEO */}
+              <div className="w-full md:w-[60%] h-[40vh] md:h-auto bg-black flex items-center justify-center relative shrink-0">
                 {selectedPost.mediaType === "VIDEO" ? (
-                  // CORRECCIÓN VIDEO: muted, playsInline y loop son vitales para mobile
-                  <video 
-                    src={selectedPost.mediaUrl} 
-                    controls 
-                    autoPlay 
-                    muted 
-                    loop
-                    playsInline
-                    className="w-full h-full max-h-[50vh] md:max-h-full object-contain"
-                  />
+                  <video src={selectedPost.mediaUrl} controls autoPlay playsInline className="w-full h-full object-contain" />
                 ) : (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={selectedPost.mediaUrl}
-                      alt="Post Full"
-                      fill
-                      className="object-contain"
-                      unoptimized={true}
-                    />
-                  </div>
+                  <Image src={selectedPost.mediaUrl} alt="Post" fill className="object-contain" unoptimized={true} />
                 )}
               </div>
 
-              {/* LADO DERECHO: INFO */}
-              {/* Ajuste Mobile: Altura máxima controlada y scroll suave */}
-              <div className="w-full md:w-96 bg-white p-5 md:p-8 flex flex-col shrink-0 overflow-y-auto max-h-[40vh] md:max-h-auto">
-                <div className="flex items-center gap-3 mb-4 shrink-0">
-                  <div className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 p-[2px] rounded-full">
-                     <div className="bg-white w-full h-full rounded-full p-[2px] overflow-hidden">
-                       <FaInstagram className="w-full h-full text-slate-800"/>
-                     </div>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm text-slate-900">@globuscargo_</h4>
-                    <span className="text-xs text-slate-500">Instagram Oficial</span>
-                  </div>
-                </div>
+              {/* CONTENIDO TEXTO */}
+              <div className="flex-1 flex flex-col w-full h-full md:h-auto overflow-hidden bg-[#0F172A]">
                 
-                <p className="text-slate-600 text-sm leading-relaxed mb-6 whitespace-pre-line">
-                  {selectedPost.caption}
-                </p>
+                {/* HEADER DEL MODAL CON BOTÓN DE CERRAR RESPONSIVE */}
+                <div className="p-5 border-b border-white/5 flex items-center justify-between shrink-0 bg-[#0F172A]">
+                   <div className="flex items-center gap-3">
+                       <div className="w-10 h-10 relative rounded-full overflow-hidden bg-white/5 border border-white/10">
+                            <Image src={logo} alt="Logo" fill className="object-contain brightness-0 invert p-1" />
+                       </div>
+                       <div>
+                        <h4 className="font-bold text-white text-sm">Gestión Global</h4>
+                        <span className="text-xs text-blue-400 font-medium tracking-wide">@gestionglobal_sst</span>
+                       </div>
+                   </div>
 
-                <a 
-                  href={selectedPost.permalink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="mt-auto shrink-0 flex items-center justify-center gap-2 w-full py-3 bg-[#f58220] text-white font-bold rounded-xl hover:bg-orange-600 transition-colors text-sm shadow-md hover:shadow-orange-500/20"
-                >
-                  <FaInstagram className="text-lg" /> Ver publicación
-                </a>
+                   {/* BOTÓN CERRAR (VISIBLE SIEMPRE AQUÍ) */}
+                   <button 
+                     onClick={closeModal} 
+                     className="bg-white/10 hover:bg-red-500/20 text-slate-400 hover:text-red-400 p-2 rounded-full transition-colors"
+                   >
+                     <FaTimes size={20} />
+                   </button>
+                </div>
+
+                {/* TEXTO (CAPTION) */}
+                <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+                    <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line font-light">{selectedPost.caption}</p>
+                </div>
+
+                {/* BOTÓN VER EN INSTAGRAM */}
+                <div className="p-6 border-t border-white/5 bg-[#0F172A] shrink-0 pb-10 md:pb-6">
+                   <a href={selectedPost.permalink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-4 bg-[#245CA7] hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(36,92,167,0.3)]">
+                      <FaInstagram className="text-xl" /> Ver en Instagram
+                   </a>
+                </div>
               </div>
-
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
     </section>
   );
 }

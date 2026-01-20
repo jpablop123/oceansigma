@@ -1,44 +1,51 @@
 "use client";
 
-import Header from "@/components/layout/header";
+// --- IMPORTS DE COMPONENTES ---
 import Hero from "@/components/layout/hero";
-import StepCards from "@/components/layout/stepCards";
-import Testimonials from "@/components/layout/testimonials";
+import QuienesSomos from "@/components/layout/QuienesSomos"; 
+// ✅ CORREGIDO: Apuntaba mal antes
 import BenefitsPro from "@/components/layout/benefitsPro";
-import ServiciosConTracking from "@/components/layout/ServiciosConTracking";
-import QuoteForm from "@/components/layout/quoteForm";
-import Footer from "@/components/layout/footer";
-import ChatBubble from "@/components/layout/ChatBubble"; 
-import Videos from "@/components/layout/videos";
-import InstagramFeed from "@/components/layout/instagramFeed";
-import EmergencyTaxBanner from "@/app/EmergencyTaxBanner/page";
-
-// 👇 1. DESCOMENTA E IMPORTA EL POPUP CORRECTAMENTE
-// Asegúrate de que la ruta coincida con donde guardaste el archivo.
-// Si el archivo está en src/components/AnuncioPopup.tsx:
-import AnuncioPopup from "@/app/anuncio-popup/page"; 
+import ComoFunciona from "@/components/layout/comoFunciona";
+import Testimonials from "@/components/layout/testimonials"; // ✅ NUEVO: Los reviews anónimos
+import InstagramFeed from "@/components/layout/instagramFeed"; 
+import PartnersMarquee from "@/components/layout/Partners"; 
+import ContactSection from "@/components/layout/contactanos"; 
 
 export default function HomePage() {
   return (
-    <div className="font-sans text-gray-800 relative pt-20 lg:pt-28">
+    <div className="font-sans text-gray-800 relative">
       
-      {/* 👇 2. AGREGA EL COMPONENTE AQUÍ */}
-      {/* Al ponerlo aquí arriba, se cargará junto con la página. 
-          Como tiene "fixed" en su CSS, flotará sobre todo lo demás. */}
-      <AnuncioPopup />
+      {/* 1. HERO (ID: #inicio) */}
+      <section id="inicio">
+        <Hero />
+      </section>
 
-      <Header />
-      <EmergencyTaxBanner />
-      <Hero />
-      <ServiciosConTracking />
-      <QuoteForm />
+      {/* 2. QUIÉNES SOMOS (ID: #nosotros) */}
+      <section id="nosotros">
+        <QuienesSomos />
+      </section>
+
+      {/* 3. SERVICIOS (360°) */}
+
+
+      {/* 4. BENEFICIOS & PROCESO */}
       <BenefitsPro />
-      <InstagramFeed/>
-      <StepCards />
-      <Videos/>
+      <ComoFunciona />
+
+      {/* 5. TESTIMONIOS (Muro de la Confianza) */}
+      {/* Aquí encaja perfecto: ya saben qué haces, ahora ven que eres bueno */}
+
+
+      {/* 6. INSTAGRAM (Comunidad) */}
+      <InstagramFeed />
+
+      {/* 7. PARTNERS (Respaldo) */}
+      <PartnersMarquee />
       <Testimonials />
-      <Footer />
-      <ChatBubble />
+
+      {/* 8. CONTACTO (ID: #contacto) */}
+      <ContactSection />
+    
     </div>
   );
 }

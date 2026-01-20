@@ -1,226 +1,202 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Instagram, Quote, Star, CheckCircle } from "lucide-react";
-import Image from "next/image";
-import { Montserrat } from "next/font/google";
+import { motion } from "framer-motion";
+import { Star, CheckCircle2, ShieldCheck, User, Quote } from "lucide-react";
 
-// Importación de imágenes
-import adrianAlvarez from "@/assets/img/logo/fotosreveladas/adrianalvarez.jpeg";
-import catarodriguez from "@/assets/img/logo/fotosreveladas/catalianrodriguez.jpeg";
-import nicoCortes from "@/assets/img/logo/fotosreveladas/nicolas cortes.jpeg";
-import joseBravo from "@/assets/img/logo/fotosreveladas/josebravo.jpeg";
-import eduard from "@/assets/img/logo/fotosreveladas/eduardo oliveros.jpeg";
-import jose from "@/assets/img/logo/fotosreveladas/josealejandro.jpeg";
-import sebastian from "@/assets/img/logo/fotosreveladas/sebastian.jpeg";
+// --- FUNCIÓN DE FECHA ---
+const getTimeAgo = (dateString: string) => {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  const days = Math.floor(diffInSeconds / 86400);
+  if (days === 0) return "Hoy";
+  if (days === 1) return "Ayer";
+  if (days < 7) return `Hace ${days} días`;
+  if (days < 30) return `Hace ${Math.floor(days / 7)} semanas`;
+  if (days < 365) return `Hace ${Math.floor(days / 30)} meses`;
+  return "Hace más de un año";
+};
 
-const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-
-const testimonials = [
+// --- DATOS ---
+const reviews = [
   {
-    name: "Adrian Alvarez",
-    city: "Bogotá",
-    role: "Emprendedor",
-    ig: "@adrianzon",
-    text: "Excelente servicio, mis compras llegaron puntuales y en perfecto estado. Los recomiendo totalmente.",
-    imgSrc: adrianAlvarez,
+    sector: "Sector Construcción",
+    title: "Resolvieron un requerimiento crítico",
+    text: "Teníamos una visita del Ministerio encima y necesitábamos organizar todo el sistema de alturas. Su respuesta fue inmediata.",
     rating: 5,
+    date: "2025-01-15"
   },
   {
-    name: "Catalina Rodriguez",
-    city: "Bucaramanga",
-    role: "Cliente Frecuente",
-    ig: "@catalinarodriguez27",
-    text: "Me asesoraron en todo y el envío salió más económico de lo que pensaba. Cero estrés.",
-    imgSrc: catarodriguez,
+    sector: "Logística y Transporte",
+    title: "Excelente gestión documental",
+    text: "La plataforma para descargar los conceptos médicos nos ahorra horas de trabajo administrativo. Muy organizados.",
     rating: 5,
+    date: "2025-01-10"
   },
   {
-    name: "Nicolas Cortes",
-    city: "Bogotá",
-    role: "Comprador Online",
-    ig: "@nicolascortesd",
-    text: "La atención por WhatsApp fue inmediata, sentí mucha confianza. Seguiré usando Globus Cargo.",
-    imgSrc: nicoCortes,
+    sector: "Propiedad Horizontal",
+    title: "Auditoría RUC aprobada",
+    text: "Gracias a su acompañamiento logramos el puntaje necesario en la auditoría del RUC. Conocen la norma a la perfección.",
     rating: 5,
+    date: "2024-12-28"
   },
   {
-    name: "Jose Fernando Bravo",
-    city: "Bogotá",
-    role: "Cliente VIP",
-    ig: "@josebravo100",
-    text: "El proceso fue súper fácil, desde que registré mi casillero hasta que recibí en casa.",
-    imgSrc: joseBravo,
+    sector: "Sector Salud (IPS)",
+    title: "Respaldo jurídico real",
+    text: "Tuvimos un accidente laboral complejo y su equipo jurídico nos blindó completamente. Sentirse respaldado así da tranquilidad.",
     rating: 5,
+    date: "2024-12-15"
   },
   {
-    name: "Eduardo Oliveros",
-    city: "Medellín",
-    role: "Empresario",
-    ig: "@eduardoliveros",
-    text: "Rápidos, seguros y económicos. Mis pedidos siempre con Globus.",
-    imgSrc: eduard,
+    sector: "Industria Manufacturera",
+    title: "Eficiencia y cero papel",
+    text: "Por fin una empresa de SST que no te llena de papeles inútiles. Todo digital, rápido y enfocado.",
     rating: 5,
-  },
-  
-  {
-    name: "Sebastian Amaya",
-    city: "Bogota",
-    role: "Cliente Frecuente",
-    ig: "@sebastianamaya",
-    text: "Yo solo quería que llegara bien… y llegó perfecto, sin enredos ni vueltas raras. Hasta me sorprendió lo fácil que fue.",
-    imgSrc: sebastian,
-    rating: 5,
+    date: "2024-11-20"
   },
 ];
 
-export default function TestimonialsSection() {
-  const [current, setCurrent] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+const infiniteReviews = [...reviews, ...reviews, ...reviews];
 
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
-  const prev = () =>
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-
+export default function Testimonials() {
   return (
-    <section className={`${montserrat.className} relative py-24 px-6 overflow-hidden bg-slate-50`}>
+    <section className="relative py-32 bg-[#020617] overflow-hidden">
       
-      {/* === Background Decorativo Sutil === */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+      {/* === 1. FONDO AMBIENTAL (LUCES) === */}
+      {/* Luz Azul Izquierda */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#245CA7] opacity-20 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+      {/* Luz Cian Derecha */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-500 opacity-10 rounded-full blur-[100px] pointer-events-none translate-x-1/3 translate-y-1/3"></div>
       
-      <div className="max-w-6xl mx-auto relative z-10">
+      {/* Ruido sutil para textura */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 mb-20">
         
-        {/* === Header === */}
-        <div className="text-center mb-12 md:mb-16">
-          <span className="text-[#f58220] font-bold tracking-widest uppercase text-xs md:text-sm mb-3 block">
-            Voces Reales
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">
-            Clientes Felices
-          </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
-            Más de 50,000 envíos entregados con éxito. Así es como ayudamos a personas y empresas a conectar con el mundo.
-          </p>
-        </div>
-
-        {/* === Carrusel === */}
-        <div 
-            className="relative max-w-4xl mx-auto"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Botones Flotantes Desktop */}
-          <div className="absolute top-1/2 -translate-y-1/2 -left-12 xl:-left-16 z-20 hidden lg:block">
-             <button onClick={prev} className="p-3 bg-white rounded-full shadow-md text-gray-400 hover:text-[#f58220] hover:scale-110 transition-all border border-gray-100 group">
-                <ChevronLeft size={24} className="group-hover:-translate-x-0.5 transition-transform" />
-             </button>
-          </div>
-          <div className="absolute top-1/2 -translate-y-1/2 -right-12 xl:-right-16 z-20 hidden lg:block">
-             <button onClick={next} className="p-3 bg-white rounded-full shadow-md text-gray-400 hover:text-[#f58220] hover:scale-110 transition-all border border-gray-100 group">
-                <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
-             </button>
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-gray-200/50 border border-white relative overflow-hidden"
-            >
-              {/* Marca de agua decorativa */}
-              <Quote className="absolute top-6 right-8 text-orange-50 w-32 h-32 md:w-40 md:h-40 rotate-12 -z-0" />
-
-              <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10">
+        {/* === HEADER (Minimalista Dark) === */}
+        <div className="flex flex-col md:flex-row items-end justify-between gap-10">
+            <div className="max-w-2xl">
+                <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="flex items-center gap-3 mb-4"
+                >
+                    <div className="h-[2px] w-10 bg-gradient-to-r from-[#245CA7] to-cyan-400"></div>
+                    <span className="text-cyan-400 font-bold tracking-widest text-xs uppercase glow-text">Experiencias Reales</span>
+                </motion.div>
                 
-                {/* === IMAGEN (Avatar Controlado) === */}
-                <div className="shrink-0 relative">
-                   {/* Contenedor de imagen circular con borde */}
-                   <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-orange-50 shadow-inner relative">
-                        <Image
-                            src={testimonials[current].imgSrc}
-                            alt={testimonials[current].name}
-                            fill
-                            className="object-cover"
-                        />
-                   </div>
-                   {/* Badge de Verificado */}
-                   <div className="absolute bottom-1 right-1 bg-white p-1.5 rounded-full shadow-sm">
-                       <CheckCircle className="text-[#f58220] w-6 h-6 fill-orange-50" />
-                   </div>
-                </div>
+                <motion.h3 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className="text-4xl md:text-5xl font-black text-white leading-tight"
+                >
+                    La confianza se construye con <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#245CA7] via-blue-400 to-cyan-300">Resultados</span>
+                </motion.h3>
+            </div>
 
-                {/* === CONTENIDO === */}
-                <div className="flex-1 text-center md:text-left">
-                    {/* Estrellas */}
-                    <div className="flex justify-center md:justify-start gap-1 mb-4">
-                        {[...Array(5)].map((_, i) => (
-                            <Star key={i} size={18} fill="#fbbf24" className="text-[#fbbf24]" />
+            {/* Stats en Caja de Cristal */}
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                className="flex items-center gap-6 px-8 py-4 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md"
+            >
+                <div className="text-right">
+                    <div className="flex gap-1 mb-1">
+                        {[1,2,3,4,5].map(i => (
+                            <Star key={i} size={18} fill="#22c55e" strokeWidth={0} />
                         ))}
                     </div>
-
-                    {/* Texto Testimonio */}
-                    <p className="text-xl text-gray-700 italic font-medium leading-relaxed mb-6">
-                        &ldquo;{testimonials[current].text}&rdquo;
-                    </p>
-
-                    {/* Info del Usuario */}
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-t border-gray-100 pt-5 mt-auto">
-                        <div>
-                            <h3 className="text-lg font-bold text-gray-900">{testimonials[current].name}</h3>
-                            <p className="text-sm text-gray-500 font-medium">{testimonials[current].role} • {testimonials[current].city}</p>
-                        </div>
-
-                        <a 
-                             href={`https://instagram.com/${testimonials[current].ig.substring(1)}`}
-                             target="_blank"
-                             rel="noopener noreferrer"
-                             className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-50 hover:bg-[#f58220] text-gray-600 hover:text-white rounded-full text-xs font-bold transition-colors duration-300 self-center md:self-auto"
-                        >
-                            <Instagram size={14} />
-                            {testimonials[current].ig}
-                        </a>
-                    </div>
+                    <p className="text-xs text-slate-400 font-medium">4.9/5 Promedio</p>
                 </div>
-
-              </div>
+                <div className="h-10 w-[1px] bg-white/10"></div>
+                <div>
+                    <ShieldCheck size={32} className="text-white mb-1" />
+                    <p className="text-[10px] text-cyan-400 font-bold uppercase tracking-wider">Verificado</p>
+                </div>
             </motion.div>
-          </AnimatePresence>
-
-          {/* === Indicadores (Puntos) === */}
-          <div className="flex justify-center mt-10 gap-2">
-             {testimonials.map((_, i) => (
-               <button
-                 key={i}
-                 onClick={() => setCurrent(i)}
-                 className={`h-2 rounded-full transition-all duration-300 ${
-                   i === current ? "w-8 bg-[#f58220]" : "w-2 bg-gray-300 hover:bg-gray-400"
-                 }`}
-                 aria-label={`Ir al testimonio ${i + 1}`}
-               />
-             ))}
-          </div>
-
-           {/* Botones Móviles */}
-           <div className="flex justify-center gap-6 mt-6 lg:hidden">
-              <button onClick={prev} className="p-3 bg-white shadow rounded-full text-gray-600 active:scale-95"><ChevronLeft/></button>
-              <button onClick={next} className="p-3 bg-white shadow rounded-full text-gray-600 active:scale-95"><ChevronRight/></button>
-           </div>
-
         </div>
       </div>
+
+      {/* === BANDA INFINITA (Dark Glass Cards) === */}
+      <div className="relative w-full overflow-visible">
+        
+        {/* Máscaras de desvanecimiento laterales (Oscuras) */}
+        <div className="absolute top-0 left-0 z-20 h-full w-32 bg-gradient-to-r from-[#020617] to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 right-0 z-20 h-full w-32 bg-gradient-to-l from-[#020617] to-transparent pointer-events-none"></div>
+
+        <motion.div
+            className="flex gap-6 w-max pl-6"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ 
+                repeat: Infinity, 
+                ease: "linear", 
+                duration: 60 // Velocidad suave
+            }}
+        >
+            {infiniteReviews.map((review, index) => (
+                <div 
+                    key={index} 
+                    className="w-[350px] md:w-[420px] flex-shrink-0 group relative"
+                >
+                    {/* Tarjeta de Cristal */}
+                    <div className="bg-white/[0.03] hover:bg-white/[0.07] backdrop-blur-xl p-8 rounded-[2rem] border border-white/5 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]">
+                        
+                        {/* Comillas decorativas */}
+                        <Quote className="absolute top-8 right-8 text-white/5 group-hover:text-cyan-500/20 transition-colors duration-500" size={48} fill="currentColor" />
+
+                        {/* Estrellas */}
+                        <div className="flex justify-between items-start mb-6">
+                            <div className="flex gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star 
+                                        key={i} 
+                                        size={16} 
+                                        fill={i < review.rating ? "#22c55e" : "none"} // Verde vibrante
+                                        strokeWidth={i < review.rating ? 0 : 2}
+                                        className={i >= review.rating ? "text-slate-700" : ""}
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide bg-white/5 px-2 py-1 rounded-md">
+                                {getTimeAgo(review.date)}
+                            </span>
+                        </div>
+
+                        {/* Contenido */}
+                        <h4 className="text-lg font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors line-clamp-1">
+                            {review.title}
+                        </h4>
+                        <p className="text-slate-400 text-sm leading-relaxed mb-8 line-clamp-3 group-hover:text-slate-300 transition-colors">
+                            "{review.text}"
+                        </p>
+
+                        {/* Footer Card */}
+                        <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#245CA7] to-cyan-500 p-[1px]">
+                                <div className="w-full h-full rounded-full bg-[#0B1120] flex items-center justify-center">
+                                    <User size={16} className="text-white" />
+                                </div>
+                            </div>
+                            <div>
+                                <p className="text-white font-bold text-xs">Cliente Verificado</p>
+                                <p className="text-[10px] text-cyan-500 font-bold uppercase tracking-wide">
+                                    {review.sector}
+                                </p>
+                            </div>
+                            <div className="ml-auto text-green-500 opacity-50 group-hover:opacity-100 transition-opacity">
+                                <CheckCircle2 size={18} />
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    {/* Glow Effect detrás de la tarjeta al hover */}
+                    <div className="absolute inset-0 bg-blue-500/20 rounded-[2rem] blur-xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+            ))}
+        </motion.div>
+      </div>
+
     </section>
   );
 }
