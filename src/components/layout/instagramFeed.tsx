@@ -3,12 +3,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaInstagram, FaPlay, FaClone, FaTimes, FaHeart } from "react-icons/fa";
+import { FaInstagram, FaPlay, FaClone, FaTimes } from "react-icons/fa";
 
 // Importamos el logo
 import logo from "@/assets/img/logo/Gestionglobal1.webp";
 
-const INSTAGRAM_FEED_URL = "https://feeds.behold.so/7h145nVZyZOfwQmsbbAi"; 
+// --- URL REAL DE TU CLIENTE ---
+const INSTAGRAM_FEED_URL = "https://feeds.behold.so/CrclATc6qRt6qVBwvYid"; 
 
 // --- MARQUEE ---
 const Marquee = () => {
@@ -42,6 +43,7 @@ export default function InstagramFeed() {
       try {
         const response = await fetch(INSTAGRAM_FEED_URL);
         const data = await response.json();
+        // Behold a veces devuelve { posts: [...] } o directamente el array [...]
         const validPosts = data.posts ? data.posts : data;
         if (Array.isArray(validPosts)) setPosts(validPosts.slice(0, 4));
       } catch (error) {
@@ -146,9 +148,9 @@ export default function InstagramFeed() {
           }
         </div>
 
-        {/* Botón CTA */}
+        {/* Botón CTA - ENLACE REAL */}
         <div className="flex justify-center mt-12">
-            <a href="https://instagram.com/tu_usuario_real" target="_blank" rel="noopener noreferrer" 
+            <a href="https://instagram.com/gestionglobal_co" target="_blank" rel="noopener noreferrer" 
                 className="group flex items-center gap-3 px-8 py-3 bg-[#245CA7] text-white rounded-full font-bold hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/30 hover:-translate-y-1"
             >
                 <FaInstagram className="text-xl" />
@@ -165,7 +167,7 @@ export default function InstagramFeed() {
             className="fixed inset-0 z-[99999] flex flex-col md:flex-row items-end md:items-center justify-center bg-black/90 backdrop-blur-md md:p-8"
             onClick={closeModal}
           >
-            {/* Botón flotante solo para PC (Opcional, pero útil) */}
+            {/* Botón flotante solo para PC */}
             <button 
               onClick={closeModal} 
               className="hidden md:block absolute top-6 right-6 z-[100] bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md border border-white/10 transition-transform hover:rotate-90"
@@ -191,7 +193,7 @@ export default function InstagramFeed() {
               {/* CONTENIDO TEXTO */}
               <div className="flex-1 flex flex-col w-full h-full md:h-auto overflow-hidden bg-[#0F172A]">
                 
-                {/* HEADER DEL MODAL CON BOTÓN DE CERRAR RESPONSIVE */}
+                {/* HEADER DEL MODAL */}
                 <div className="p-5 border-b border-white/5 flex items-center justify-between shrink-0 bg-[#0F172A]">
                    <div className="flex items-center gap-3">
                        <div className="w-10 h-10 relative rounded-full overflow-hidden bg-white/5 border border-white/10">
@@ -199,11 +201,12 @@ export default function InstagramFeed() {
                        </div>
                        <div>
                         <h4 className="font-bold text-white text-sm">Gestión Global</h4>
-                        <span className="text-xs text-blue-400 font-medium tracking-wide">@gestionglobal_sst</span>
+                        {/* Usuario real aquí */}
+                        <span className="text-xs text-blue-400 font-medium tracking-wide">@gestionglobal_co</span>
                        </div>
                    </div>
 
-                   {/* BOTÓN CERRAR (VISIBLE SIEMPRE AQUÍ) */}
+                   {/* BOTÓN CERRAR RESPONSIVE */}
                    <button 
                      onClick={closeModal} 
                      className="bg-white/10 hover:bg-red-500/20 text-slate-400 hover:text-red-400 p-2 rounded-full transition-colors"
@@ -212,7 +215,7 @@ export default function InstagramFeed() {
                    </button>
                 </div>
 
-                {/* TEXTO (CAPTION) */}
+                {/* CAPTION */}
                 <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
                     <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line font-light">{selectedPost.caption}</p>
                 </div>
