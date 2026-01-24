@@ -43,7 +43,8 @@ export default function HeroSST() {
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#245CA7] text-[11px] font-bold uppercase tracking-widest mb-2"
              >
               <Shield size={12} className="text-blue-500"/>
-              Seguridad Industrial & Salud Ocupacional
+              {/* === CAMBIO AQUI === */}
+              Seguridad Industrial & Seguridad Salud en el Trabajo
             </motion.div>
 
             <motion.h1 

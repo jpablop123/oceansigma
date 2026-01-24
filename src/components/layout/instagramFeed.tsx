@@ -23,7 +23,7 @@ const Marquee = () => {
             <div key={i} className="flex items-center gap-3 opacity-50">
                 <FaInstagram className="text-white text-lg" />
                 <span className="text-white font-medium tracking-[0.2em] text-xs uppercase">
-                    @gestionglobal_sst
+                    @gestionglobal_co
                 </span>
             </div>
         ))}

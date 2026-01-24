@@ -10,7 +10,7 @@ import Testimonials from "@/components/layout/testimonials"; // ✅ NUEVO: Los r
 import InstagramFeed from "@/components/layout/instagramFeed"; 
 import PartnersMarquee from "@/components/layout/Partners"; 
 import ContactSection from "@/components/layout/contactanos"; 
-
+import ServiceHeroSlider from "@/components/layout/ServiceHeroSlider";
 export default function HomePage() {
   return (
     <div className="font-sans text-gray-800 relative">
@@ -29,6 +29,7 @@ export default function HomePage() {
 
 
       {/* 4. BENEFICIOS & PROCESO */}
+      <ServiceHeroSlider/>
       <BenefitsPro />
       <ComoFunciona />
 

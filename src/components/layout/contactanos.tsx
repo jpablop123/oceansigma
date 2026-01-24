@@ -167,7 +167,7 @@ export default function ContactSection() {
                 </motion.a>
 
                 <motion.a 
-                    href="mailto:contacto@gyg.net.co"
+                    href="mailto:auxadministrativo@gyg.net.co"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -180,7 +180,7 @@ export default function ContactSection() {
                     <div>
                         <p className="text-slate-400 text-xs font-bold uppercase mb-1 group-hover:text-[#245CA7]">Correo Electrónico</p>
                         <p className="text-slate-900 font-bold text-lg leading-tight break-words group-hover:text-[#245CA7] transition-colors">
-                            contacto@gyg.net.co
+                        auxadministrativo@gyg.net.co
                         </p>
                     </div>
                 </motion.a>

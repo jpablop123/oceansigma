@@ -19,7 +19,6 @@ import {
 
 export default function Footer() {
   return (
-    // CAMBIO CLAVE: Quitamos border-t y ajustamos el z-index para que se sienta encima
     <footer className="relative bg-[#0B1120] text-slate-300 font-sans overflow-hidden pt-20">
       
       {/* === 1. FONDO INTEGRADO === */}
@@ -40,7 +39,7 @@ export default function Footer() {
       {/* === CONTENIDO PRINCIPAL === */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pb-10">
         
-        {/* CTA FLOTANTE (Ahora integrado visualmente) */}
+        {/* CTA FLOTANTE */}
         <div className="relative flex flex-col md:flex-row justify-between items-center bg-[#111827] border border-white/5 rounded-2xl p-8 mb-20 shadow-2xl group overflow-hidden">
           {/* Luz decorativa hover */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#245CA7]/10 rounded-full blur-[80px] group-hover:bg-[#245CA7]/20 transition-all duration-500 pointer-events-none"></div>
@@ -147,11 +146,12 @@ export default function Footer() {
             <div className="lg:col-span-3">
                 <h4 className="text-white font-bold text-lg mb-6">Sede Principal</h4>
                 <ul className="space-y-5">
+                    {/* === DIRECCIÓN ACTUALIZADA AQUÍ === */}
                     <li className="flex items-start gap-4">
                         <MapPin className="mt-1 text-[#245CA7]" size={20} />
                         <div className="text-sm">
-                            <p className="text-slate-200 font-medium leading-snug">Carrera 30 Calle 1 #18 - 41</p>
-                            <p className="text-slate-500 text-xs mt-1">Sabanilla, Puerto Colombia</p>
+                            <p className="text-slate-200 font-medium leading-snug">Centro Empresarial Las Américas 2</p>
+                            <p className="text-slate-500 text-xs mt-1">Piso 6, Oficina 612</p>
                         </div>
                     </li>
                     <li className="flex items-center gap-4 group cursor-pointer">
@@ -160,7 +160,7 @@ export default function Footer() {
                     </li>
                     <li className="flex items-center gap-4 group cursor-pointer">
                         <Mail className="text-[#245CA7] group-hover:text-white transition-colors" size={20} />
-                        <p className="text-slate-300 group-hover:text-white transition-colors text-sm font-medium">contacto@gyg.net.co</p>
+                        <p className="text-slate-300 group-hover:text-white transition-colors text-sm font-medium">auxadministrativo@gyg.net.co</p>
                     </li>
                     <li className="flex items-start gap-4 pt-2 border-t border-white/5">
                         <Clock className="text-[#245CA7] mt-0.5" size={20} />

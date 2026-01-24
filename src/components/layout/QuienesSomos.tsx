@@ -56,14 +56,9 @@ export default function ServicesMission() {
   return (
     <section className="relative pt-32 pb-32 overflow-hidden bg-slate-50">
       
-      {/* === NUEVO SEPARADOR HORIZONTAL (Horizontal Premium) === */}
-      {/* Se ubica en la parte superior absoluta para crear el corte */}
+      {/* === SEPARADOR HORIZONTAL PREMIUM === */}
       <div className="absolute top-0 left-0 w-full flex items-center justify-center pt-10 pb-10 z-20">
-          
-          {/* Línea Izquierda */}
           <div className="w-1/3 h-px bg-gradient-to-r from-transparent via-slate-300 to-slate-300 opacity-50"></div>
-          
-          {/* Etiqueta Central */}
           <div className="mx-4 relative">
               <div className="absolute inset-0 bg-blue-100 blur-xl rounded-full opacity-50"></div>
               <span className="relative flex items-center gap-2 px-6 py-2 bg-white border border-blue-100 rounded-full text-[#245CA7] text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm">
@@ -71,20 +66,17 @@ export default function ServicesMission() {
                   Nuestro Propósito
               </span>
           </div>
-          
-          {/* Línea Derecha */}
           <div className="w-1/3 h-px bg-gradient-to-r from-slate-300 via-slate-300 to-transparent opacity-50"></div>
       </div>
 
-
-      {/* === 0. FONDO === */}
+      {/* === 0. FONDO AMBIENTAL === */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-50/60 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
       <div className="absolute inset-0 opacity-[0.4]" 
            style={{ backgroundImage: "radial-gradient(#cbd5e1 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mt-16"> {/* mt-16 para dar espacio tras el separador */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mt-16">
 
         {/* === 1. MISIÓN Y VISIÓN === */}
         <div className="grid lg:grid-cols-2 gap-8 mb-32">
@@ -148,8 +140,8 @@ export default function ServicesMission() {
             </Link>
         </div>
 
-        {/* === 2. HEADER SERVICIOS === */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        {/* === 2. HEADER SERVICIOS (ACTUALIZADO) === */}
+        <div className="text-center max-w-4xl mx-auto mb-20">
              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -161,8 +153,9 @@ export default function ServicesMission() {
                  <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight mb-6">
                     Soluciones <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#245CA7] to-blue-500">360°</span>
                  </h2>
-                 <p className="text-slate-500 text-lg font-medium">
-                    Diseñamos estrategias de seguridad a la medida de tu industria, combinando rigor técnico con innovación tecnológica.
+                 {/* TEXTO MODIFICADO AQUÍ */}
+                 <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-3xl mx-auto">
+                    Somos <span className="text-[#245CA7] font-bold">proveedores de ARL</span> y ejecutamos actividades especializadas de promoción y prevención para la gestión integral de <span className="text-slate-700 font-semibold">todos los riesgos laborales</span>.
                  </p>
              </motion.div>
         </div>
