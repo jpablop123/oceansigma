@@ -3,14 +3,17 @@
 // --- IMPORTS DE COMPONENTES ---
 import Hero from "@/components/layout/hero";
 import QuienesSomos from "@/components/layout/QuienesSomos"; 
-// ✅ CORREGIDO: Apuntaba mal antes
 import BenefitsPro from "@/components/layout/benefitsPro";
 import ComoFunciona from "@/components/layout/comoFunciona";
-import Testimonials from "@/components/layout/testimonials"; // ✅ NUEVO: Los reviews anónimos
+import Testimonials from "@/components/layout/testimonials"; 
 import InstagramFeed from "@/components/layout/instagramFeed"; 
 import PartnersMarquee from "@/components/layout/Partners"; 
 import ContactSection from "@/components/layout/contactanos"; 
 import ServiceHeroSlider from "@/components/layout/ServiceHeroSlider";
+
+// ✅ 1. IMPORTAR EL BANNER
+import CookieBanner from "@/components/layout/CookieBanner";
+
 export default function HomePage() {
   return (
     <div className="font-sans text-gray-800 relative">
@@ -27,15 +30,13 @@ export default function HomePage() {
 
       {/* 3. SERVICIOS (360°) */}
 
-
       {/* 4. BENEFICIOS & PROCESO */}
       <ServiceHeroSlider/>
       <BenefitsPro />
       <ComoFunciona />
 
-      {/* 5. TESTIMONIOS (Muro de la Confianza) */}
-      {/* Aquí encaja perfecto: ya saben qué haces, ahora ven que eres bueno */}
-
+      {/* 5. TESTIMONIOS */}
+      {/* ... */}
 
       {/* 6. INSTAGRAM (Comunidad) */}
       <InstagramFeed />
@@ -46,6 +47,9 @@ export default function HomePage() {
 
       {/* 8. CONTACTO (ID: #contacto) */}
       <ContactSection />
+
+      {/* ✅ 2. AGREGARLO AL FINAL (Para que flote encima de todo) */}
+      <CookieBanner />
     
     </div>
   );
