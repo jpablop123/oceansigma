@@ -9,15 +9,15 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import img1 from '../../assets/img/servicio1.jpeg';
-import img2 from '../../assets/img/servicio2.jpeg';
-import img3 from '../../assets/img/servicio3.jpeg';
-import img4 from '../../assets/img/servicio4.jpeg';
-import img5 from '../../assets/img/servicio5.jpeg';
-import img6 from '../../assets/img/servicio6.jpeg';
-import img7 from '../../assets/img/servicio7.jpeg';
-import img8 from '../../assets/img/servicio8.jpeg';
-import img9 from '../../assets/img/servicio9.jpeg';
+import img1 from '../../assets/img/servicio1.webp';
+import img2 from '../../assets/img/servicio2.webp';
+import img3 from '../../assets/img/servicio3.webp';
+import img4 from '../../assets/img/servicio4.webp';
+import img5 from '../../assets/img/servicio5.webp';
+import img6 from '../../assets/img/servicio6.webp';
+import img7 from '../../assets/img/servicio7.webp';
+import img8 from '../../assets/img/servicio8.webp';
+import img9 from '../../assets/img/servicio9.webp';
 
 interface SlideData {
   id: number;
