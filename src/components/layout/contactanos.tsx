@@ -14,8 +14,6 @@ export default function ContactSection() {
   };
 
   return (
-    // ✅ CAMBIO 1: Usamos 'section' en lugar de 'main'
-    // ✅ CAMBIO 2: Agregamos id="contacto" para que el botón del menú funcione
     <section id="contacto" className="relative py-24 bg-slate-50 overflow-hidden">
       
       {/* === FONDO MAPA MUNDI === */}
@@ -47,7 +45,7 @@ export default function ContactSection() {
         <div className="text-center mb-16 relative">
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }} // ✅ Animación al hacer scroll
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
@@ -72,6 +70,7 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="group relative h-[500px] rounded-[2.5rem] overflow-hidden border border-white shadow-2xl shadow-blue-900/10 bg-white"
           >
+             {/* NOTA: El mapa es estático visualmente, si quieres un mapa real de Google Maps de esa ubicación avísame para generar el link nuevo */}
              <iframe 
                 width="100%" 
                 height="100%" 
@@ -79,7 +78,7 @@ export default function ContactSection() {
                 scrolling="no" 
                 marginHeight={0} 
                 marginWidth={0} 
-                src="https://maps.google.com/maps?q=Puerto+Colombia+Atlantico&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Centro%20Empresarial%20Las%20Americas%20Barranquilla&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 style={{ filter: "grayscale(20%) contrast(1.05)" }}
                 className="absolute inset-0 opacity-100 transition-opacity duration-500"
              ></iframe>
@@ -101,9 +100,10 @@ export default function ContactSection() {
                     </div>
                     <div>
                         <h4 className="text-slate-900 font-bold text-lg">Sede Principal</h4>
+                        {/* ✅ DIRECCIÓN ACTUALIZADA */}
                         <p className="text-slate-500 text-sm mt-1">
-                            Carrera 30 Calle 1 #18 - 41 <br/>
-                            Sabanilla Montecarmelo, Puerto Colombia
+                            Centro Empresarial Las Américas 2 <br/>
+                            Piso 6, Oficina 612
                         </p>
                         <div className="mt-3 flex items-center gap-2">
                              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
