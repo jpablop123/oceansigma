@@ -160,7 +160,7 @@ export default function Footer() {
                     </li>
                     <li className="flex items-center gap-4 group cursor-pointer">
                         <Mail className="text-[#245CA7] group-hover:text-white transition-colors" size={20} />
-                        <p className="text-slate-300 group-hover:text-white transition-colors text-sm font-medium">auxadministrativo@gyg.net.co</p>
+                        <p className="text-slate-300 group-hover:text-white transition-colors text-sm font-medium">auxadministrativa@gyg.net.co</p>
                     </li>
                     <li className="flex items-start gap-4 pt-2 border-t border-white/5">
                         <Clock className="text-[#245CA7] mt-0.5" size={20} />

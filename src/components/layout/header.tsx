@@ -58,7 +58,7 @@ const TopBar = () => {
           </a>
           <div className="flex items-center gap-2 group cursor-pointer hover:text-white transition-colors">
             <Mail size={14} className="text-[#245CA7] group-hover:scale-110 transition-transform" />
-            <span>auxadministrativo@gyg.net.co</span>
+            <span>auxadministrativa@gyg.net.co</span>
           </div>
         </div>
         <div className="flex items-center gap-4">
