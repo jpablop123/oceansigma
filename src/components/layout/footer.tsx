@@ -125,13 +125,7 @@ export default function Footer() {
              <div className="lg:col-span-2">
                 <h4 className="text-white font-bold text-lg mb-6">Respaldo</h4>
                 <ul className="space-y-6">
-                    <li className="flex items-start gap-3 group">
-                        <Award className="text-[#245CA7] mt-0.5 shrink-0 group-hover:scale-110 transition-transform" size={20} />
-                        <div>
-                            <p className="text-slate-200 font-bold text-sm">Licencia SST</p>
-                            <p className="text-xs text-slate-500 font-mono mt-0.5">Res. 2562</p>
-                        </div>
-                    </li>
+                 
                     <li className="flex items-start gap-3 group">
                         <CheckCircle2 className="text-[#245CA7] mt-0.5 shrink-0 group-hover:scale-110 transition-transform" size={20} />
                         <div>
@@ -150,8 +144,10 @@ export default function Footer() {
                     <li className="flex items-start gap-4">
                         <MapPin className="mt-1 text-[#245CA7]" size={20} />
                         <div className="text-sm">
-                            <p className="text-slate-200 font-medium leading-snug">Centro Empresarial Las Américas 2</p>
-                            <p className="text-slate-500 text-xs mt-1">Piso 6, Oficina 612</p>
+                        Calle 77B # 59 - 61 <br/>
+                            Centro Empresarial Las Américas 2 <br/>
+                            Piso 6, Oficina 612
+                      
                         </div>
                     </li>
                     <li className="flex items-center gap-4 group cursor-pointer">

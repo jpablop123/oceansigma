@@ -66,9 +66,7 @@ const TopBar = () => {
             <MapPin size={14} className="text-[#245CA7]" />
             <span>Barranquilla, Atlántico</span>
           </div>
-          <span className="bg-[#245CA7]/10 text-blue-400 px-2 py-0.5 rounded border border-[#245CA7]/20 font-medium">
-            Licencia SST No. 2562
-          </span>
+       
         </div>
       </div>
     </div>

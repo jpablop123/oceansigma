@@ -10,6 +10,7 @@ import InstagramFeed from "@/components/layout/instagramFeed";
 import PartnersMarquee from "@/components/layout/Partners"; 
 import ContactSection from "@/components/layout/contactanos"; 
 import ServiceHeroSlider from "@/components/layout/ServiceHeroSlider";
+import PQRSection from "@/components/layout/PQRsection";
 
 // ✅ 1. IMPORTAR EL BANNER
 import CookieBanner from "@/components/layout/CookieBanner";
@@ -37,6 +38,7 @@ export default function HomePage() {
 
       {/* 5. TESTIMONIOS */}
       {/* ... */}
+      <PQRSection/>
 
       {/* 6. INSTAGRAM (Comunidad) */}
       <InstagramFeed />

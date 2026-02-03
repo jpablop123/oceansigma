@@ -5,15 +5,14 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Briefcase, Stethoscope, HardHat, ShieldAlert, Siren, 
+  Briefcase, HardHat, ShieldAlert, Siren, 
   ArrowUpCircle, BoxSelect, Activity, Zap, FlaskConical, 
   UserCheck, Target, Telescope, ArrowRight, ChevronRight, X, CheckCircle2, LayoutGrid, Sparkles
 } from "lucide-react";
 
-// --- DATOS ---
+// --- DATOS ACTUALIZADOS (SOLO 3 PRINCIPALES) ---
 const mainServices = [
   { name: "Consultoría SG-SST", icon: Briefcase, desc: "Estrategia legal y normativa." },
-  { name: "Servicios de IPS", icon: Stethoscope, desc: "Exámenes médicos laborales." },
   { name: "Elementos de Protección", icon: HardHat, desc: "Suministro de EPP certificados." },
   { name: "Seguridad Industrial", icon: ShieldAlert, desc: "Prevención de alto impacto." },
 ];
@@ -39,8 +38,8 @@ const catalogCategories = [
         items: ["Trabajo en Alturas", "Espacios Confinados", "Riesgo Eléctrico (RETIE)", "Bloqueo y Etiquetado"]
     },
     {
-        title: "Higiene & Salud",
-        items: ["Mediciones Higiénicas", "Exámenes Médicos", "Sistemas de Vigilancia", "Ergonomía"]
+        title: "Bienestar Laboral", // Nombre ajustado
+        items: ["Estudios de Puestos de Trabajo", "Sistemas de Vigilancia", "Ergonomía", "Capacitación"]
     }
 ];
 
@@ -140,7 +139,7 @@ export default function ServicesMission() {
             </Link>
         </div>
 
-        {/* === 2. HEADER SERVICIOS (ACTUALIZADO) === */}
+        {/* === 2. HEADER SERVICIOS === */}
         <div className="text-center max-w-4xl mx-auto mb-20">
              <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -153,15 +152,14 @@ export default function ServicesMission() {
                  <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight mb-6">
                     Soluciones <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#245CA7] to-blue-500">360°</span>
                  </h2>
-                 {/* TEXTO MODIFICADO AQUÍ */}
                  <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-3xl mx-auto">
-                    Somos <span className="text-[#245CA7] font-bold">proveedores de ARL</span> y ejecutamos actividades especializadas de promoción y prevención para la gestión integral de <span className="text-slate-700 font-semibold">todos los riesgos laborales</span>.
+                    Ejecutamos actividades especializadas de promoción, prevención y consultoría técnica para la gestión integral de <span className="text-slate-700 font-semibold">todos los riesgos laborales</span>.
                  </p>
              </motion.div>
         </div>
 
-        {/* === 3. GRID SERVICIOS === */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* === 3. GRID SERVICIOS (AHORA SON 3 COLUMNAS) === */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {mainServices.map((service, idx) => (
                 <motion.div
                     key={idx}

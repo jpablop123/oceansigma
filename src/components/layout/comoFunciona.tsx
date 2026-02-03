@@ -42,7 +42,7 @@ export default function AboutSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         
-        {/* === SECCIÓN SUPERIOR (Igual que antes, que te gustó) === */}
+        {/* === SECCIÓN SUPERIOR === */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-28">
           
           {/* TEXTO */}
@@ -63,7 +63,7 @@ export default function AboutSection() {
             <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6 leading-tight">
               Especialistas en <br/>
               <span className="text-[#245CA7] relative">
-                Gestión Sostenible
+                Gestión de Riesgo
                 <svg className="absolute w-full h-2 bottom-0 left-0 text-blue-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                     <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
                 </svg>
@@ -71,7 +71,7 @@ export default function AboutSection() {
             </h2>
             
             <p className="text-lg text-slate-600 leading-relaxed mb-6 font-medium">
-              Somos un equipo experto en SG-SST. Nuestra misión es transformar el cumplimiento normativo en una ventaja estratégica que garantice un <strong className="text-slate-900">desarrollo sostenible</strong>.
+              Somos un equipo experto en SG-SST. Nuestra misión es transformar el cumplimiento normativo en una ventaja estratégica que garantice un <strong className="text-slate-900">crecimiento seguro</strong>.
             </p>
             
             <p className="text-base text-slate-500 leading-relaxed">
@@ -141,7 +141,7 @@ export default function AboutSection() {
           </motion.div>
         </div>
 
-        {/* === AQUÍ ESTÁ EL CAMBIO BRUTAL: POLÍTICA EMPRESARIAL === */}
+        {/* === POLÍTICA EMPRESARIAL === */}
         <div className="relative">
             <div className="text-center mb-12">
                 <h3 className="text-3xl font-black text-slate-900 tracking-tight">
@@ -152,7 +152,7 @@ export default function AboutSection() {
                 </p>
             </div>
 
-            {/* Tarjetas Oscuras "Estilo Monolito" */}
+            {/* Tarjetas Oscuras */}
             <div className="grid md:grid-cols-3 gap-6">
                 {policyFeatures.map((feature, i) => (
                     <motion.div

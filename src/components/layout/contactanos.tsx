@@ -100,10 +100,11 @@ export default function ContactSection() {
                     </div>
                     <div>
                         <h4 className="text-slate-900 font-bold text-lg">Sede Principal</h4>
-                        {/* ✅ DIRECCIÓN ACTUALIZADA */}
                         <p className="text-slate-500 text-sm mt-1">
+                            Calle 77B # 59 - 61 <br/>
                             Centro Empresarial Las Américas 2 <br/>
-                            Piso 6, Oficina 612
+                            Piso 6, Oficina 612 <br/>
+                            Barranquilla, Colombia
                         </p>
                         <div className="mt-3 flex items-center gap-2">
                              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>

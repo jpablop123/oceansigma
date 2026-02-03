@@ -154,17 +154,16 @@ export default function HeroSST() {
                 transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
                 className="absolute bottom-24 left-0 bg-[#0F172A] p-5 rounded-2xl shadow-2xl border border-slate-700 w-72"
             >
-                <div className="flex justify-between items-start mb-3">
-                    <div>
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Certificación</p>
-                        {/* Dato real sacado de tu captura de pantalla */}
-                        <p className="font-bold text-white text-lg leading-none">Licencia SST</p>
-                        <p className="text-[#245CA7] font-mono text-sm mt-1">No. 2562</p>
-                    </div>
-                    <div className="bg-green-500/20 p-1.5 rounded-full text-green-400">
-                        <CheckCircle2 size={18} />
-                    </div>
-                </div>
+              <div className="flex justify-between items-start mb-3">
+    <div>
+        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Garantía</p>
+        <p className="font-bold text-white text-lg leading-none">Cumplimiento</p>
+        <p className="text-[#245CA7] font-bold text-xs mt-1">Normativa al 100%</p>
+    </div>
+    <div className="bg-blue-500/20 p-1.5 rounded-full text-blue-400">
+        <CheckCircle2 size={18} />
+    </div>
+</div>
                 <div className="flex items-center gap-2 mt-2">
                     <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
                     <span className="text-[10px] text-slate-400">Vigente / Avalada</span>
