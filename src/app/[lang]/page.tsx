@@ -6,8 +6,9 @@ import Services from '@/components/layout/services';
 import Stats from '@/components/layout/stats';
 // ❌ Borramos el import de Footer de aquí
 import Testimonials from '@/components/layout/testimonial';
-import PQR from '@/components/layout/pqr';
-
+import ContactForm from '@/components/layout/pqr';
+import PhotoGallery from '@/components/layout/photoGallery';
+import ImpactStats from '@/components/layout/ImpactStats';
 type Props = {
   params: Promise<{ lang: "en" | "es" }>;
 };
@@ -26,8 +27,11 @@ export default async function Home({ params }: Props) {
       <Services dict={dict} />
 
       <Stats dict={dict}  />
-      <Testimonials dict={dict}/>
-      <PQR dict={dict}/>
+      <Testimonials dict={dict}/> 
+      <PhotoGallery dict={dict} />
+    
+      <ImpactStats dict={dict} />
+       <ContactForm dict={dict}/>
       
 
       

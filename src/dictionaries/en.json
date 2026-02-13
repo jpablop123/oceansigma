@@ -69,5 +69,83 @@
       "r": "Claim (Process/Billing Irregularity)",
       "s": "Suggestion (Improvement Proposal)"
     }
+  },
+  "quote": {
+    "badge": "Online Quotes",
+    "title": "Get your quote with no obligation",
+    "subtitle": "Need to know the cost of your shipment? Fill out the form with your cargo details and get a personalized estimate fast.",
+    "email_subject": "Quote Request",
+    "features": {
+      "rates_title": "Transparent Rates",
+      "rates_desc": "Pay fairly for your weight and volume.",
+      "support_title": "Immediate Support",
+      "support_desc": "Complex questions? Call us at +1 (305) 123-4567",
+      "fast_title": "Fast Response",
+      "fast_desc": "Get your quote in your email in less than 24h."
+    },
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "service_label": "Service Type",
+      "details_label": "Cargo Details",
+      "details_placeholder": "Please describe: What you are shipping, approx weight, dimensions, origin/dest...",
+      "btn": "Request Quote"
+    },
+    "services": {
+      "air": "Air Freight",
+      "ocean": "Ocean Freight",
+      "door": "Door to Door",
+      "locker": "Virtual Locker / Shopping",
+      "container": "Full Container (FCL)"
+    }
+  },
+  "gallery": {
+    "badge": "Global Infrastructure",
+    "title": "Our Operational Reach",
+    "subtitle": "A visual glimpse into the logistics capacity, technology, and human team that moves global trade every day.",
+    "images": {
+      "img1": {
+        "title": "Distribution Centers",
+        "desc": "Strategic warehousing and inventory management."
+      },
+      "img2": {
+        "title": "Ocean Freight",
+        "desc": "Intercontinental connection via optimized routes."
+      },
+      "img3": {
+        "title": "Express Air Cargo",
+        "desc": "Agility for urgent and high-value shipments."
+      },
+      "img4": {
+        "title": "Port Operations",
+        "desc": "Efficient management at major global hubs."
+      },
+      "img5": {
+        "title": "Ground Logistics",
+        "desc": "Capillary distribution and inland transport."
+      },
+      "img6": {
+        "title": "Human Capital",
+        "desc": "Experts committed to the success of every operation."
+      }
+    }
+  },
+  "impact": {
+    "i1": { "val": "+5k", "label": "Operations", "sub": "Successful" },
+    "i2": { "val": "32", "label": "Countries", "sub": "Destinations" },
+    "i3": { "val": "+400", "label": "Suppliers", "sub": "Verified" },
+    "i4": { "val": "100%", "label": "Security", "sub": "Guaranteed" }
+  },
+  "process": {
+    "badge": "Operational Simplicity",
+    "title": "How it works?",
+    "s1_title": "Quote",
+    "s1_desc": "Send us your cargo details and receive a competitive offer.",
+    "s2_title": "We Receive",
+    "s2_desc": "Your goods arrive at our Miami warehouse or we pick them up.",
+    "s3_title": "We Ship",
+    "s3_desc": "Air or ocean freight with real-time tracking included.",
+    "s4_title": "We Deliver",
+    "s4_desc": "Customs clearance and final delivery to your doorstep."
   }
 }

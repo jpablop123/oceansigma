@@ -69,5 +69,83 @@
       "r": "Reclamo (Irregularidad en proceso/cobro)",
       "s": "Sugerencia (Propuesta de mejora)"
     }
+  },
+  "quote": {
+    "badge": "Cotizaciones Online",
+    "title": "Obtén tu presupuesto sin compromiso",
+    "subtitle": "¿Necesitas saber cuánto costará tu envío? Completa el formulario con los detalles de tu carga y recibe una estimación personalizada.",
+    "email_subject": "Solicitud de Cotización",
+    "features": {
+      "rates_title": "Tarifas Transparentes",
+      "rates_desc": "Pagas lo justo por tu peso y volumen.",
+      "support_title": "Asesoría Inmediata",
+      "support_desc": "¿Dudas complejas? Llámanos al +1 (305) 123-4567",
+      "fast_title": "Respuesta Rápida",
+      "fast_desc": "Recibe tu cotización en menos de 24h."
+    },
+    "form": {
+      "name": "Tu Nombre",
+      "email": "Tu Email",
+      "service_label": "Tipo de Servicio",
+      "details_label": "Detalles de la Carga",
+      "details_placeholder": "Describe qué envías, peso aprox, medidas y origen/destino...",
+      "btn": "Solicitar Cotización"
+    },
+    "services": {
+      "air": "Carga Aérea",
+      "ocean": "Carga Marítima",
+      "door": "Puerta a Puerta",
+      "locker": "Casillero Virtual",
+      "container": "Contenedor Completo (FCL)"
+    }
+  },
+  "gallery": {
+    "badge": "Infraestructura Global",
+    "title": "El Alcance de Nuestras Operaciones",
+    "subtitle": "Un vistazo visual a la capacidad logística, tecnología y equipo humano que mueve el comercio mundial día a día.",
+    "images": {
+      "img1": {
+        "title": "Centros de Distribución",
+        "desc": "Almacenamiento estratégico y gestión de inventario."
+      },
+      "img2": {
+        "title": "Transporte Marítimo",
+        "desc": "Conexión intercontinental mediante rutas optimizadas."
+      },
+      "img3": {
+        "title": "Carga Aérea Express",
+        "desc": "Agilidad para envíos urgentes y de alto valor."
+      },
+      "img4": {
+        "title": "Operaciones Portuarias",
+        "desc": "Gestión eficiente en los principales puertos."
+      },
+      "img5": {
+        "title": "Logística Terrestre",
+        "desc": "Distribución capilar y transporte nacional."
+      },
+      "img6": {
+        "title": "Capital Humano",
+        "desc": "Expertos comprometidos con el éxito de cada operación."
+      }
+    }
+  },
+  "impact": {
+    "i1": { "val": "+5k", "label": "Operaciones", "sub": "Exitosas" },
+    "i2": { "val": "32", "label": "Países", "sub": "Destinos" },
+    "i3": { "val": "+400", "label": "Proveedores", "sub": "Verificados" },
+    "i4": { "val": "100%", "label": "Seguridad", "sub": "Garantizada" }
+  },
+  "process": {
+    "badge": "Simplicidad Operativa",
+    "title": "¿Cómo trabajamos?",
+    "s1_title": "Cotiza",
+    "s1_desc": "Envíanos los detalles de tu carga y recibe una oferta competitiva.",
+    "s2_title": "Recibimos",
+    "s2_desc": "Tu mercancía llega a nuestra bodega en Miami o la recogemos.",
+    "s3_title": "Enviamos",
+    "s3_desc": "Transporte aéreo o marítimo con seguimiento en tiempo real.",
+    "s4_title": "Entregamos",
+    "s4_desc": "Desaduanaje y entrega final en la puerta de tu dirección."
   }
 }
