@@ -1,30 +1,42 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const locales = ["en", "es"];
-const defaultLocale = "es"; // Tu idioma por defecto
-
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Si la URL ya tiene /en o /es, o es un archivo (imagen, favicon), no hacemos nada
-  if (
-    pathname.startsWith("/en") ||
-    pathname.startsWith("/es") ||
-    pathname.includes(".") // Esto evita bloquear imágenes o CSS
-  ) {
-    return;
+  // CASO 1: Si el usuario entra a la raíz "/" exacta
+  if (pathname === "/") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/es"; // Redirigir a Español por defecto
+    return NextResponse.redirect(url);
   }
 
-  // Si no tiene idioma, redirigir al default (Español)
+  // CASO 2: Verificar si la ruta ya tiene el idioma (/es o /en)
+  const pathnameHasLocale = pathname.startsWith("/es") || pathname.startsWith("/en");
+
+  // Si ya tiene idioma, dejamos pasar la petición sin hacer nada
+  if (pathnameHasLocale) {
+    return NextResponse.next();
+  }
+
+  // CASO 3: Si intenta entrar a una ruta interna sin idioma (ej: /contacto), lo mandamos a /es/contacto
+  // (Solo si no es un archivo estático, que ya filtramos en el config)
   const url = request.nextUrl.clone();
-  url.pathname = `/${defaultLocale}${pathname}`;
+  url.pathname = `/es${pathname}`;
   return NextResponse.redirect(url);
 }
 
 export const config = {
+  // Este matcher es VITAL. Le dice a Next.js: "Ejecuta este middleware en TODO, MENOS en..."
   matcher: [
-    // Aplicar a todas las rutas excepto las internas de Next.js
-    '/((?!_next).*)',
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - Assets con extensiones comunes (png, jpg, svg, etc)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$).*)',
   ],
 };
