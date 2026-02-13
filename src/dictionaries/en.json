@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Solutions",
+    "about": "Company",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Global Trade Partner",
+    "subtitle": "Connecting markets with efficiency, transparency, and financial structure.",
+    "cta": "Start Partnership"
+  },
+  "ticker": {
+    "items": [
+      "Global Sourcing",
+      "Certified Logistics",
+      "Regulatory Compliance",
+      "International Payments",
+      "Factory Auditing",
+      "Customs Management"
+    ]
+  },
+  "services": {
+    "title": "Trade Infrastructure",
+    "subtitle": "Comprehensive solutions for the global supply chain.",
+    "s1_title": "Smart Sourcing",
+    "s1_desc": "Identification and validation of global suppliers with strict quality standards.",
+    "s2_title": "End-to-End Logistics",
+    "s2_desc": "Air and sea freight coordination with full traceability and customs management.",
+    "s3_title": "Financial Bridge",
+    "s3_desc": "Structuring of international payments and letters of credit for secure operations.",
+    "s1": "Smart Sourcing",
+    "s2": "End-to-End Logistics",
+    "s3": "Financial Bridge"
+  },
+  "about": {
+    "title": "Corporate DNA",
+    "mission_title": "Mission",
+    "mission_desc": "Facilitate international trade by connecting reliable suppliers with strategic clients under transparency standards.",
+    "vision_title": "Vision",
+    "vision_desc": "To be the leading international trade partner in the Americas, recognized for integrity and financial strength.",
+    "values_title": "Values",
+    "v1": "Transparency",
+    "v2": "Compliance",
+    "v3": "Trust",
+    "v4": "Efficiency"
+  },
+  "stats": {
+    "s1": "Operations",
+    "s2": "Suppliers",
+    "s3": "Guarantee",
+    "s4": "Countries"
+  },
+  "testimonials": {
+    "title": "GLOBAL TRUST NETWORK",
+    "subtitle": "Strategic partners trusting our logistics infrastructure."
+  },
+  "pqr": {
+    "title": "TRANSPARENCY CHANNEL",
+    "subtitle": "We are committed to continuous improvement. Use this channel to file your formal requests.",
+    "form_name": "Full Name",
+    "form_email": "Corporate Email",
+    "form_type": "Request Type",
+    "form_msg": "Request Details",
+    "btn": "Submit Request",
+    "types": {
+      "p": "Petition (Information Request)",
+      "q": "Complaint (Service Dissatisfaction)",
+      "r": "Claim (Process/Billing Irregularity)",
+      "s": "Suggestion (Improvement Proposal)"
+    }
+  }
+}

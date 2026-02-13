@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "services": "Soluciones",
+    "about": "Empresa",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Socio Comercial Global",
+    "subtitle": "Conectando mercados con eficiencia, transparencia y estructura financiera.",
+    "cta": "Iniciar Alianza"
+  },
+  "ticker": {
+    "items": [
+      "Sourcing Global",
+      "Logística Certificada",
+      "Cumplimiento Normativo",
+      "Pagos Internacionales",
+      "Auditoría de Fábrica",
+      "Gestión Aduanera"
+    ]
+  },
+  "services": {
+    "title": "Infraestructura de Comercio",
+    "subtitle": "Soluciones integrales para la cadena de suministro global.",
+    "s1_title": "Sourcing Inteligente",
+    "s1_desc": "Identificación y validación de proveedores globales con estrictos estándares de calidad.",
+    "s2_title": "Logística End-to-End",
+    "s2_desc": "Coordinación de carga aérea y marítima con trazabilidad total y gestión aduanera.",
+    "s3_title": "Puente Financiero",
+    "s3_desc": "Estructuración de pagos internacionales y cartas de crédito para operaciones seguras.",
+    "s1": "Sourcing Inteligente",
+    "s2": "Logística End-to-End",
+    "s3": "Puente Financiero"
+  },
+  "about": {
+    "title": "ADN Corporativo",
+    "mission_title": "Misión",
+    "mission_desc": "Facilitar el comercio internacional conectando proveedores confiables con clientes estratégicos bajo estándares de transparencia.",
+    "vision_title": "Visión",
+    "vision_desc": "Ser el socio líder en comercio internacional en América, reconocidos por nuestra integridad y solidez financiera.",
+    "values_title": "Valores",
+    "v1": "Transparencia",
+    "v2": "Cumplimiento",
+    "v3": "Confianza",
+    "v4": "Eficiencia"
+  },
+  "stats": {
+    "s1": "Operaciones",
+    "s2": "Proveedores",
+    "s3": "Garantía",
+    "s4": "Países"
+  },
+  "testimonials": {
+    "title": "RED GLOBAL DE CONFIANZA",
+    "subtitle": "Socios estratégicos que confían en nuestra infraestructura logística."
+  },
+  "pqr": {
+    "title": "CANAL DE TRANSPARENCIA",
+    "subtitle": "Estamos comprometidos con la mejora continua. Utiliza este canal para radicar tus solicitudes formales.",
+    "form_name": "Nombre Completo",
+    "form_email": "Correo Corporativo",
+    "form_type": "Tipo de Solicitud",
+    "form_msg": "Detalle de su solicitud",
+    "btn": "Radicar Solicitud",
+    "types": {
+      "p": "Petición (Solicitud de información)",
+      "q": "Queja (Insatisfacción con el servicio)",
+      "r": "Reclamo (Irregularidad en proceso/cobro)",
+      "s": "Sugerencia (Propuesta de mejora)"
+    }
+  }
+}
