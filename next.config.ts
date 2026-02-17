@@ -1,11 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // 1. reactStrictMode va en la raíz del objeto
+  // --- CAMBIO 1: OBLIGATORIO PARA CLOUDFLARE PAGES ---
+  output: 'export', 
+  // ---------------------------------------------------
+
   reactStrictMode: true,
 
-  // 2. Configuración de imágenes
   images: {
+    // --- CAMBIO 2: OBLIGATORIO EN MODO STATIC ---
+    unoptimized: true, 
+    // --------------------------------------------
+
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,15 +22,15 @@ const nextConfig: NextConfig = {
       // === AGREGADO PARA INSTAGRAM ===
       {
         protocol: 'https',
-        hostname: '**.cdninstagram.com', // Cubre todos los subdominios de Instagram (scontent, etc.)
+        hostname: '**.cdninstagram.com', 
       },
       {
         protocol: 'https',
-        hostname: '**.fbcdn.net', // A veces Instagram sirve imágenes desde servidores de Facebook
+        hostname: '**.fbcdn.net', 
       },
       {
         protocol: 'https',
-        hostname: 'feeds.behold.so', // Por si Behold sirve alguna imagen cacheada
+        hostname: 'feeds.behold.so', 
       },
     ],
   },
