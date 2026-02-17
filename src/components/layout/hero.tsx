@@ -10,70 +10,62 @@ type HeroProps = {
 
 const Hero = ({ dict, lang }: HeroProps) => {
   return (
-    // CAMBIO: Fondo con un toque de gradiente vertical sutil
     <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-gradient-to-b from-[#020617] via-[#0a1128] to-[#020617]">
       
-      {/* --- FONDO DECORATIVO (LUCES Y GRID) --- */}
+      {/* FONDO */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-          {/* CAMBIO: Luz CIAN a la izquierda para contraste */}
           <div className="absolute top-0 -left-[10%] w-[600px] h-[600px] bg-cyan-600/20 rounded-full blur-[120px] opacity-40 animate-pulse"></div>
-          {/* Luz Azul a la derecha */}
           <div className="absolute bottom-0 -right-[10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] opacity-30"></div>
-          
-          {/* Grid Táctico (igual que antes) */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center flex flex-col items-center">
         
-        {/* 1. BADGE DE ESTADO (System Online) */}
-        {/* CAMBIO: Bordes y texto en CIAN */}
+        {/* BADGE */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/5 backdrop-blur-md mb-8 animate-fade-in-up">
           <span className="relative flex h-2.5 w-2.5">
-            {/* Punto verde se mantiene (es universal para "online") */}
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
           </span>
           <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-300">Global Logistics Network • Active</span>
         </div>
 
-        {/* 2. TÍTULO GIGANTE */}
+        {/* TÍTULO */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 text-white drop-shadow-2xl">
           OCEAN SIGMA <br />
-          {/* CAMBIO: Gradiente de CIAN a Azul con brillo turquesa */}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_35px_rgba(34,211,238,0.4)]">
             EXPORT
           </span>
         </h1>
 
-        {/* 3. SUBTÍTULO */}
-        {/* CAMBIO: Borde lateral en CIAN */}
+        {/* SUBTÍTULO */}
         <p className="text-lg md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light border-l-2 border-cyan-500 pl-6 text-left md:text-center md:border-l-0 md:pl-0">
           {dict.hero.subtitle}
         </p>
 
-        {/* 4. BOTONES DE ACCIÓN */}
+        {/* BOTONES */}
         <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
-          {/* CAMBIO: Botón principal en CIAN vibrante */}
+          {/* BOTÓN PRINCIPAL: Va a #quote */}
           <Link 
-            href={`/${lang}#contact`}
+            href={`/${lang}#quote`}
             className="group px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all shadow-[0_0_25px_rgba(8,145,178,0.3)] hover:shadow-[0_0_50px_rgba(8,145,178,0.5)] flex items-center justify-center gap-2"
           >
             {dict.hero.cta}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
           
-          {/* CAMBIO: Botón secundario con hover CIAN */}
-          <button className="px-8 py-4 bg-transparent border border-slate-700 text-slate-300 font-bold rounded-lg hover:border-cyan-400 hover:text-cyan-400 transition-all flex items-center justify-center gap-2 group">
+          <Link 
+            href={`/${lang}#services`}
+            className="px-8 py-4 bg-transparent border border-slate-700 text-slate-300 font-bold rounded-lg hover:border-cyan-400 hover:text-cyan-400 transition-all flex items-center justify-center gap-2 group"
+          >
             <Globe className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors"/>
             Explorar Red Global
-          </button>
+          </Link>
         </div>
 
-        {/* 5. DATOS FLOTANTES (Decoración Técnica) */}
+        {/* DATOS */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center opacity-70 border-t border-slate-800/50 pt-8 w-full max-w-4xl">
             <div className="flex flex-col items-center gap-1 group">
-                {/* CAMBIO: Iconos en CIAN */}
                 <ShieldCheck className="w-5 h-5 text-cyan-500 mb-1 group-hover:text-cyan-300 transition-colors" />
                 <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">Security</span>
                 <span className="text-white font-bold group-hover:text-cyan-200 transition-colors">Tier-1</span>

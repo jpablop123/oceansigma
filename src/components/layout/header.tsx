@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Montserrat, Roboto_Mono } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Mail, Globe, Zap, ArrowRight, BarChart3 } from "lucide-react";
+import { Menu, X, Mail, Globe, Zap, ArrowRight } from "lucide-react";
 
-// Importa tu logo
+// Asegúrate de que la ruta de tu logo sea correcta
 import logo from "@/assets/img/logo/oceansigma.png";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
@@ -31,7 +31,6 @@ const TopBar = () => (
           </span>
           <span className="tracking-widest uppercase text-[#007BFF] font-bold">SYSTEM: ONLINE</span>
         </div>
-        
       </div>
 
       <div className="flex items-center gap-6 font-medium">
@@ -40,7 +39,7 @@ const TopBar = () => (
           <span>Oceansigmacorp@gmail.com</span>
         </a>
         <span className="text-[#2C3E50]">|</span>
-        <a href="tel:+573166400840" className="hover:text-white transition-colors">
+        <a href="tel:+17866200121" className="hover:text-white transition-colors">
             +1 (786) 620-0121
         </a>
       </div>
@@ -48,7 +47,7 @@ const TopBar = () => (
   </div>
 );
 
-// --- COMPONENTE HEADER ---
+// --- HEADER PRINCIPAL ---
 const Header = ({ dict, lang }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -65,7 +64,11 @@ const Header = ({ dict, lang }: HeaderProps) => {
   const switchLang = (newLang: string) => {
     if (!pathname) return "/";
     const segments = pathname.split("/");
-    segments[1] = newLang;
+    if (segments.length > 1) {
+        segments[1] = newLang;
+    } else {
+        return `/${newLang}`;
+    }
     return segments.join("/");
   };
 
@@ -73,7 +76,8 @@ const Header = ({ dict, lang }: HeaderProps) => {
     { key: "home", href: `/${lang}`, label: dict.navigation.home },
     { key: "services", href: `/${lang}#services`, label: dict.navigation.services },
     { key: "about", href: `/${lang}#about`, label: dict.navigation.about },
-    { key: "contact", href: `/${lang}#contact`, label: dict.navigation.contact },
+    // AHORA APUNTA A #quote PARA QUE COINCIDA CON EL FORMULARIO
+    { key: "contact", href: `/${lang}#quote`, label: dict.navigation.contact },
   ];
 
   return (
@@ -82,22 +86,21 @@ const Header = ({ dict, lang }: HeaderProps) => {
       
       <nav className={`w-full transition-all duration-500 border-b relative z-50 ${
         scrolled 
-          ? "bg-[#121212]/80 backdrop-blur-xl border-[#2C3E50] py-2 shadow-[0_0_20px_rgba(0,123,255,0.1)]" 
+          ? "bg-[#121212]/90 backdrop-blur-xl border-[#2C3E50] py-2 shadow-2xl" 
           : "bg-transparent border-transparent py-4"
       }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
           
-          {/* --- LOGO SÚPER GRANDE --- */}
+          {/* LOGO */}
           <Link href={`/${lang}`} className="relative group flex items-center shrink-0">
              <Image
                 src={logo}
                 alt="Ocean Sigma"
-                width={800} // Aumentado la resolución base
+                width={800} 
                 height={300}
                 quality={100}
-                priority // Carga prioritaria para que no parpadee
-                // CAMBIOS AQUÍ: h-16 (64px) en móvil, lg:h-24 (96px) en escritorio
-                className="h-16 lg:h-24 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:drop-shadow-[0_0_20px_rgba(0,123,255,0.9)]" 
+                priority 
+                className="h-12 lg:h-20 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-all duration-500" 
               />
           </Link>
 
@@ -128,7 +131,7 @@ const Header = ({ dict, lang }: HeaderProps) => {
             </div>
 
             <Link
-              href={`/${lang}#contact`}
+              href={`/${lang}#quote`}
               className="group relative px-6 py-2.5 bg-transparent border border-[#007BFF] text-[#007BFF] font-bold text-xs uppercase tracking-widest overflow-hidden rounded hover:text-white transition-colors duration-300 hover:shadow-[0_0_20px_rgba(0,123,255,0.6)]"
             >
               <span className="relative z-10 flex items-center gap-2">
@@ -188,7 +191,7 @@ const Header = ({ dict, lang }: HeaderProps) => {
               </div>
 
                <Link
-                href={`/${lang}#contact`}
+                href={`/${lang}#quote`}
                 onClick={() => setIsOpen(false)}
                 className="mt-6 w-full py-5 bg-[#007BFF] text-white font-bold text-center uppercase tracking-widest rounded-xl hover:bg-blue-600 transition-all shadow-[0_0_20px_rgba(0,123,255,0.4)] flex justify-center items-center gap-2"
               >

@@ -4,15 +4,13 @@ import { useState } from "react";
 import { Mail, Phone, Calculator, Send, PackageSearch } from "lucide-react";
 
 const ContactForm = ({ dict }: { dict: any }) => {
-  // Estado para guardar los datos del formulario
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    serviceType: "air", // Valor por defecto (clave interna)
+    serviceType: "air",
     message: ""
   });
 
-  // Manejador de cambios en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
@@ -20,13 +18,10 @@ const ContactForm = ({ dict }: { dict: any }) => {
     });
   };
 
-  // Helper para obtener el nombre del servicio traducido en el mailto
-  // Si por alguna razón falla, usa la key original
   const getServiceName = (key: string) => {
     return dict.quote?.services?.[key] || key;
   };
 
-  // Construcción del link mailto
   const mailtoLink = `mailto:info@globuscargo.com?subject=${encodeURIComponent(
     `${dict.quote.email_subject}: ${getServiceName(formData.serviceType)} - ${formData.name}`
   )}&body=${encodeURIComponent(
@@ -38,7 +33,8 @@ const ContactForm = ({ dict }: { dict: any }) => {
   )}`;
 
   return (
-    <section id="quote" className="py-24 bg-white relative overflow-hidden">
+    // CAMBIO IMPORTANTE: id="quote" y scroll-mt-32
+    <section id="quote" className="py-24 bg-white relative overflow-hidden scroll-mt-32">
       
       {/* Decoración de fondo */}
       <div className="absolute inset-0 bg-[linear-gradient(#f1f5f9_1px,transparent_1px),linear-gradient(90deg,#f1f5f9_1px,transparent_1px)] bg-[size:40px_40px]"></div>
@@ -47,7 +43,7 @@ const ContactForm = ({ dict }: { dict: any }) => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
-          {/* COLUMNA IZQUIERDA: Contexto (Textos dinámicos) */}
+          {/* COLUMNA IZQUIERDA */}
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-6">
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
@@ -61,7 +57,6 @@ const ContactForm = ({ dict }: { dict: any }) => {
               {dict.quote.subtitle}
             </p>
 
-            {/* Features (Iconos estáticos, textos del diccionario) */}
             <div className="grid gap-6">
                 <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 transition-colors group hover:border-blue-200">
                     <div className="p-3 bg-white rounded-lg shadow-sm text-blue-600"><Calculator size={20}/></div>
@@ -132,7 +127,6 @@ const ContactForm = ({ dict }: { dict: any }) => {
                         onChange={handleChange}
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all appearance-none cursor-pointer"
                     >
-                        {/* Las opciones vienen del diccionario */}
                         <option value="air">{dict.quote.services.air}</option>
                         <option value="ocean">{dict.quote.services.ocean}</option>
                         <option value="door">{dict.quote.services.door}</option>
@@ -157,7 +151,6 @@ const ContactForm = ({ dict }: { dict: any }) => {
                   ></textarea>
               </div>
 
-              {/* Botón */}
               <a 
                 href={mailtoLink}
                 className="group w-full py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-lg transition-all duration-300 shadow-xl hover:shadow-blue-500/20 flex items-center justify-center gap-2 mt-4"
