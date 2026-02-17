@@ -22,7 +22,7 @@ const ContactForm = ({ dict }: { dict: any }) => {
     return dict.quote?.services?.[key] || key;
   };
 
-  const mailtoLink = `mailto:oceangima@gmail.com?subject=${encodeURIComponent(
+  const mailtoLink = `mailto:Oceansigmacorp@gmail.com?subject=${encodeURIComponent(
     `${dict.quote.email_subject}: ${getServiceName(formData.serviceType)} - ${formData.name}`
   )}&body=${encodeURIComponent(
     `Hola/Hello Globus Cargo,\n\n` +
