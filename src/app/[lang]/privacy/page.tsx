@@ -2,6 +2,12 @@ import { getDictionary } from '../../../dictionaries/get-dictionary';
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link"; 
 
+// --- ESTO SOLUCIONA EL ERROR EN CLOUDFLARE ---
+export async function generateStaticParams() {
+  return [{ lang: 'es' }, { lang: 'en' }];
+}
+// ---------------------------------------------
+
 type Props = {
   params: Promise<{ lang: "es" | "en" }>;
 };
@@ -9,12 +15,11 @@ type Props = {
 export default async function PrivacyPage({ params }: Props) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const t = dict.legal.privacy; // Acceso directo a la sección de privacidad
+  const t = dict.legal.privacy; 
 
   return (
     <div className="min-h-screen">
       
-      {/* HEADER OSCURO (pt-48 para evitar solapamiento) */}
       <section className="bg-[#0f172a] text-white pt-48 pb-16 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
             style={{ backgroundImage: "linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)", backgroundSize: "30px 30px" }}>
@@ -38,7 +43,6 @@ export default async function PrivacyPage({ params }: Props) {
         </div>
       </section>
 
-      {/* CONTENIDO (Conectado al JSON) */}
       <section className="bg-white py-16 px-6 md:px-12">
         <div className="max-w-4xl mx-auto space-y-16 text-slate-700 leading-relaxed text-lg">
           

@@ -2,6 +2,12 @@ import { getDictionary } from '../../../dictionaries/get-dictionary';
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link"; 
 
+// --- ESTO SOLUCIONA EL ERROR EN CLOUDFLARE ---
+export async function generateStaticParams() {
+  return [{ lang: 'es' }, { lang: 'en' }];
+}
+// ---------------------------------------------
+
 type Props = {
   params: Promise<{ lang: "es" | "en" }>;
 };
