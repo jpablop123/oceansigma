@@ -22,18 +22,26 @@ const ContactForm = ({ dict }: { dict: any }) => {
     return dict.quote?.services?.[key] || key;
   };
 
-  const mailtoLink = `mailto:Oceansigmacorp@gmail.com?subject=${encodeURIComponent(
-    `${dict.quote.email_subject}: ${getServiceName(formData.serviceType)} - ${formData.name}`
-  )}&body=${encodeURIComponent(
-    `Hola/Hello Ocean Sigma,\n\n` +
-    `Name: ${formData.name}\n` +
-    `Email: ${formData.email}\n` +
-    `Service: ${getServiceName(formData.serviceType)}\n\n` +
-    `Details:\n${formData.message}`
-  )}`;
+  // Lógica de envío controlada por el formulario
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Evita recarga de página
+
+    // La validación 'required' del HTML ya pasó si llegamos aquí.
+    // Construimos el link y redirigimos.
+    const mailtoLink = `mailto:Oceansigmacorp@gmail.com?subject=${encodeURIComponent(
+      `${dict.quote.email_subject}: ${getServiceName(formData.serviceType)} - ${formData.name}`
+    )}&body=${encodeURIComponent(
+      `Hola/Hello Ocean Sigma,\n\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Service: ${getServiceName(formData.serviceType)}\n\n` +
+      `Details:\n${formData.message}`
+    )}`;
+
+    window.location.href = mailtoLink;
+  };
 
   return (
-    // CAMBIO IMPORTANTE: id="quote" y scroll-mt-32
     <section id="quote" className="py-24 bg-white relative overflow-hidden scroll-mt-32">
       
       {/* Decoración de fondo */}
@@ -91,29 +99,36 @@ const ContactForm = ({ dict }: { dict: any }) => {
                 <PackageSearch size={60} strokeWidth={1} />
             </div>
 
-            <form className="flex flex-col gap-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
+            {/* CAMBIO: onSubmit maneja la lógica ahora */}
+            <form className="flex flex-col gap-6 relative z-10" onSubmit={handleSubmit}>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">{dict.quote.form.name}</label>
+                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    {dict.quote.form.name} <span className="text-red-500">*</span>
+                  </label>
                   <input 
                     type="text" 
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-400" 
-                    placeholder="Nombre/Name" 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-400 invalid:border-red-300" 
+                    placeholder="Nombre/Name"
+                    required // 👈 OBLIGATORIO
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">{dict.quote.form.email}</label>
+                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    {dict.quote.form.email} <span className="text-red-500">*</span>
+                  </label>
                   <input 
                     type="email" 
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-400" 
-                    placeholder="tu@empresa.com" 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-400 invalid:border-red-300" 
+                    placeholder="tu@empresa.com"
+                    required // 👈 OBLIGATORIO
                   />
                 </div>
               </div>
@@ -140,24 +155,28 @@ const ContactForm = ({ dict }: { dict: any }) => {
               </div>
 
               <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">{dict.quote.form.details_label}</label>
+                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    {dict.quote.form.details_label} <span className="text-red-500">*</span>
+                  </label>
                   <textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows={4} 
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none placeholder:text-slate-400" 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none placeholder:text-slate-400 invalid:border-red-300" 
                     placeholder={dict.quote.form.details_placeholder}
+                    required // 👈 OBLIGATORIO
                   ></textarea>
               </div>
 
-              <a 
-                href={mailtoLink}
-                className="group w-full py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-lg transition-all duration-300 shadow-xl hover:shadow-blue-500/20 flex items-center justify-center gap-2 mt-4"
+              {/* CAMBIO: Ahora es un <button> real, no un <a> */}
+              <button 
+                type="submit"
+                className="group w-full py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-lg transition-all duration-300 shadow-xl hover:shadow-blue-500/20 flex items-center justify-center gap-2 mt-4 cursor-pointer"
               >
                 {dict.quote.form.btn}
                 <Send size={18} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
 
             </form>
           </div>
