@@ -9,6 +9,13 @@ import Testimonials from '@/components/layout/testimonial';
 import ContactForm from '@/components/layout/pqr';
 import PhotoGallery from '@/components/layout/photoGallery';
 import ImpactStats from '@/components/layout/ImpactStats';
+
+// --- ESTO SOLUCIONA EL ERROR: Define qué idiomas generar ---
+export async function generateStaticParams() {
+  return [{ lang: 'es' }, { lang: 'en' }];
+}
+// -----------------------------------------------------------
+
 type Props = {
   params: Promise<{ lang: "en" | "es" }>;
 };
@@ -33,9 +40,6 @@ export default async function Home({ params }: Props) {
       <ImpactStats dict={dict} />
        <ContactForm dict={dict}/>
       
-
-      
-
       {/* Aquí NO ponemos el Footer, porque ya está en el Layout */}
 
     </main>
