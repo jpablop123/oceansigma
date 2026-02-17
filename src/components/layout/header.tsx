@@ -31,20 +31,17 @@ const TopBar = () => (
           </span>
           <span className="tracking-widest uppercase text-[#007BFF] font-bold">SYSTEM: ONLINE</span>
         </div>
-        <div className="flex items-center gap-4 opacity-70">
-          <span className="flex items-center gap-1"><BarChart3 size={10} className="text-green-500"/> USD/COP: +0.4%</span>
-          <span className="flex items-center gap-1"><BarChart3 size={10} className="text-red-500"/> EUR/USD: -0.1%</span>
-        </div>
+        
       </div>
 
       <div className="flex items-center gap-6 font-medium">
-        <a href="mailto:miguelsalazar@gmail.com" className="flex items-center gap-2 hover:text-[#007BFF] transition-colors cursor-pointer group">
+        <a href="mailto:Oceansigmacorp@gmail.com" className="flex items-center gap-2 hover:text-[#007BFF] transition-colors cursor-pointer group">
           <Mail size={12} className="text-[#BDC3C7] group-hover:text-[#007BFF] transition-colors" />
-          <span>miguelsalazar@gmail.com</span>
+          <span>Oceansigmacorp@gmail.com</span>
         </a>
         <span className="text-[#2C3E50]">|</span>
         <a href="tel:+573166400840" className="hover:text-white transition-colors">
-            +57 316 640 0840
+            +1 (786) 620-0121
         </a>
       </div>
     </div>

@@ -107,7 +107,7 @@ const ContactForm = ({ dict }: { dict: any }) => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-400" 
-                    placeholder="Juan Pinto" 
+                    placeholder="Nombre/Name" 
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -118,7 +118,7 @@ const ContactForm = ({ dict }: { dict: any }) => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-400" 
-                    placeholder="juan@empresa.com" 
+                    placeholder="tu@empresa.com" 
                   />
                 </div>
               </div>

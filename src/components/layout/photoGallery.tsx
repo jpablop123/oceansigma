@@ -1,13 +1,22 @@
 "use client";
 
 import { ArrowUpRight, Plus } from "lucide-react";
+import Image from "next/image"; // Importamos el componente Image de Next.js para optimización
 
-// Configuración de las imágenes MEJORADA
+// IMPORTACIÓN DE IMÁGENES (Deben estar en src/assets/img)
+// Nota: Ajusta la cantidad de '../' según dónde esté guardado este archivo
+import imgBodega from "@/assets/img/bodegadistribucion.webp";
+import imgBarco from "@/assets/img/cargoship.webp";
+import imgAvion from "@/assets/img/avion.webp";
+import imgPuerto from "@/assets/img//puerto.webp";
+import imgCamion from "@/assets/img/camion.webp";
+import imgNegocios from "@/assets/img/negocios.webp";
+
+// Configuración de las imágenes
 const galleryItems = [
   {
     // 1. EL ANCLA (Grande, Cuadrado)
-    // Mantiene el foco visual a la izquierda
-    src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1470&auto=format&fit=crop",
+    src: imgBodega,
     alt: "Logistics Warehouse",
     colSpan: "md:col-span-2",
     rowSpan: "md:row-span-2",
@@ -15,8 +24,7 @@ const galleryItems = [
   },
   {
     // 2. PANORÁMICA SUPERIOR (Ancha)
-    // Rompe la monotonía vertical
-    src: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1470&auto=format&fit=crop",
+    src: imgBarco,
     alt: "Cargo Ship",
     colSpan: "md:col-span-2", 
     rowSpan: "md:row-span-1",
@@ -24,7 +32,7 @@ const galleryItems = [
   },
   {
     // 3. DETALLE 1 (Pequeño)
-    src: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1474&auto=format&fit=crop",
+    src: imgAvion,
     alt: "Air Freight",
     colSpan: "md:col-span-1",
     rowSpan: "md:row-span-1",
@@ -32,7 +40,7 @@ const galleryItems = [
   },
   {
     // 4. DETALLE 2 (Pequeño)
-    src: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1470&auto=format&fit=crop",
+    src: imgPuerto,
     alt: "Port Operations",
     colSpan: "md:col-span-1",
     rowSpan: "md:row-span-1",
@@ -40,8 +48,7 @@ const galleryItems = [
   },
   {
     // 5. BASE SÓLIDA IZQUIERDA (Ancha)
-    // Ideal para mostrar vehículos en movimiento
-    src: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1470&auto=format&fit=crop",
+    src: imgCamion,
     alt: "Trucking",
     colSpan: "md:col-span-2",
     rowSpan: "md:row-span-1",
@@ -49,8 +56,7 @@ const galleryItems = [
   },
   {
     // 6. BASE SÓLIDA DERECHA (Ancha)
-    // Ideal para fotos de grupo o reuniones
-    src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1469&auto=format&fit=crop",
+    src: imgNegocios,
     alt: "Team",
     colSpan: "md:col-span-2",
     rowSpan: "md:row-span-1",
@@ -86,7 +92,6 @@ const PhotoGallery = ({ dict }: { dict: any }) => {
         </div>
 
         {/* Bento Grid Optimizado */}
-        {/* Ajusté la altura base a 280px para que el layout completo se vea bien en pantallas estándar */}
         <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[280px] gap-6">
           
           {galleryItems.map((item, index) => (
@@ -96,15 +101,19 @@ const PhotoGallery = ({ dict }: { dict: any }) => {
             >
               {/* Imagen de fondo */}
               <div className="absolute inset-0 w-full h-full bg-slate-200">
-                 <img 
+                 {/* Al usar imports, 'src' es un objeto, así que pasamos item.src directamente al componente Image */}
+                 <Image 
                     src={item.src} 
                     alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 will-change-transform"
+                    fill // Propiedad mágica de Next.js para llenar el contenedor
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110 will-change-transform"
+                    placeholder="blur" // Efecto de carga borroso automático (solo funciona con imports)
                   />
               </div>
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/30 transition-colors duration-500"></div>
+              <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/30 transition-colors duration-500 z-10"></div>
 
               {/* Botón Flotante */}
               <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 z-20">

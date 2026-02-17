@@ -79,7 +79,7 @@
       "rates_title": "Transparent Rates",
       "rates_desc": "Pay fairly for your weight and volume.",
       "support_title": "Immediate Support",
-      "support_desc": "Complex questions? Call us at +1 (305) 123-4567",
+      "support_desc": "Complex questions? Call us at +1 (786) 620-0121",
       "fast_title": "Fast Response",
       "fast_desc": "Get your quote in your email in less than 24h."
     },
@@ -147,5 +147,70 @@
     "s3_desc": "Air or ocean freight with real-time tracking included.",
     "s4_title": "We Deliver",
     "s4_desc": "Customs clearance and final delivery to your doorstep."
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "date": "Last updated: February 2026",
+      "back": "Back to Home",
+      "sections": {
+        "s1_title": "1. Information Collection",
+        "s1_text": "At Ocean Sigma Export Corp, we value your privacy. We collect information you provide directly to us, such as your name, email address, and company details when you use our contact forms, create a client account, or request quotes for logistics services.",
+        "s2_title": "2. Use of Information",
+        "s2_text": "We use your information strictly for operational and commercial purposes, such as: processing and managing your shipments, tracking, and export orders; direct communication regarding the status of your services or incidents; and compliance with international customs regulations and billing.",
+        "s3_title": "3. Information Sharing",
+        "s3_text": "We do not sell or rent your personal information. We only share data with third parties (such as port authorities, customs agencies, or ground transport partners) when strictly necessary for the successful execution of the contracted logistics service.",
+        "s4_title": "4. Data Security",
+        "s4_text": "We implement technical and organizational security protocols to protect your data against unauthorized access, loss, or alteration. However, no internet transmission is 100% secure.",
+        "s5_title": "5. Your Rights",
+        "s5_text": "You have the right to access, correct, or request the deletion of your personal information from our records, except for data we are required to retain by fiscal or customs laws."
+      }
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "date": "Last updated: February 2026",
+      "back": "Back to Home",
+      "sections": {
+        "s1_title": "1. Acceptance of Terms",
+        "s1_text": "By accessing and using Ocean Sigma Export Corp's services, you agree to comply with these terms and conditions. If you do not agree with any part of these terms, we recommend not using our export and logistics services.",
+        "s2_title": "2. Use of Services",
+        "s2_text": "Our services are intended exclusively for legitimate commercial use. It is strictly prohibited to use our infrastructure for fraudulent activities, smuggling, or any action that violates international trade laws.",
+        "s3_title": "3. Intellectual Property",
+        "s3_text": "All content, trademarks, logos (including Ocean Sigma), and software present on this site are the exclusive property of Ocean Sigma Export Corp and are protected by applicable intellectual property laws.",
+        "s4_title": "4. Limitation of Liability",
+        "s4_text": "Ocean Sigma is not responsible for indirect, incidental, or consequential damages derived from the use of this website, transport delays due to force majeure, or the inability to use our digital services."
+      }
+    },
+    "compliance": {
+      "title": "Compliance & Ethics",
+      "subtitle": "We operate under the strictest standards of international legality and commercial transparency.",
+      "back": "Back to Home",
+      "sections": {
+        "s1_title": "1. Trade Compliance",
+        "s1_text": "We strictly adhere to international trade regulations, including those of the US Office of Foreign Assets Control (OFAC) and local customs laws in every jurisdiction where we operate.",
+        "s2_title": "2. Anti-Money Laundering (AML)",
+        "s2_text": "We maintain strict 'Know Your Customer' (KYC) policies and transaction monitoring to prevent the use of our logistics infrastructure for illicit activities, money laundering, or terrorist financing.",
+        "s3_title": "3. Code of Ethics",
+        "s3_text": "Our employees and business partners are required to act with integrity, honesty, and transparency in all operations. We reject any form of bribery or corruption in our supply chains.",
+        "report_title": "Whistleblowing Channel",
+        "report_text": "If you are aware of any irregularity or violation of our compliance policies, please report it immediately."
+      }
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "subtitle": "Transparency in our navigation.",
+      "back": "Back to Home",
+      "sections": {
+        "s1_title": "What are cookies?",
+        "s1_text": "Cookies are small text files stored on your device when you visit our website. They help us improve your experience, remember your preferences, and understand how you interact with our content.",
+        "s2_title": "Types of Cookies We Use",
+        "s2_sub1_title": "Essential Cookies",
+        "s2_sub1_text": "Necessary for the basic functioning of the site, such as secure navigation and access to protected areas.",
+        "s2_sub2_title": "Analytics Cookies",
+        "s2_sub2_text": "Allow us to count visits and traffic sources to measure and improve our site's performance. All information is anonymous.",
+        "s3_title": "Cookie Management",
+        "s3_text": "You can configure your browser to reject all cookies. However, please note that some site functions may not work properly without them."
+      }
+    }
   }
 }
