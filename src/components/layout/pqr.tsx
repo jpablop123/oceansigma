@@ -25,7 +25,7 @@ const ContactForm = ({ dict }: { dict: any }) => {
   const mailtoLink = `mailto:Oceansigmacorp@gmail.com?subject=${encodeURIComponent(
     `${dict.quote.email_subject}: ${getServiceName(formData.serviceType)} - ${formData.name}`
   )}&body=${encodeURIComponent(
-    `Hola/Hello Globus Cargo,\n\n` +
+    `Hola/Hello Ocean Sigma,\n\n` +
     `Name: ${formData.name}\n` +
     `Email: ${formData.email}\n` +
     `Service: ${getServiceName(formData.serviceType)}\n\n` +
