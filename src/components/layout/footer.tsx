@@ -67,7 +67,7 @@ const Footer = ({ lang, dict }: FooterProps) => {
              
               <li className="flex items-center gap-3 group">
                 <Phone className="text-blue-500 shrink-0 group-hover:rotate-12 transition-transform" size={16} />
-                <a href="tel:+17866200121" className="hover:text-white transition-colors decoration-blue-500/30 hover:underline">+1 (786) 620-0121</a>
+                <a href="tel:+17866200121" className="hover:text-white transition-colors decoration-blue-500/30 hover:underline">+1 (786) 694-9244</a>
               </li>
               <li className="flex items-center gap-3 group">
                 <Mail className="text-blue-500 shrink-0 group-hover:scale-110 transition-transform" size={16} />

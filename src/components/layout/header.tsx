@@ -40,7 +40,7 @@ const TopBar = () => (
         </a>
         <span className="text-[#2C3E50]">|</span>
         <a href="tel:+17866200121" className="hover:text-white transition-colors">
-            +1 (786) 620-0121
+            +1 (786) 694-9244
         </a>
       </div>
     </div>
