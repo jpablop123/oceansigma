@@ -4,15 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Montserrat, Roboto_Mono } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Mail, Globe, Zap, ArrowRight } from "lucide-react";
 
-// Asegúrate de que la ruta de tu logo sea correcta
 import logo from "@/assets/img/logo/oceansigma.png";
-
-const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-const robotoMono = Roboto_Mono({ subsets: ["latin"], weight: ["400", "500"] });
 
 type HeaderProps = {
   lang: "es" | "en";
@@ -23,7 +18,7 @@ type HeaderProps = {
 const TopBar = () => (
   <div className="bg-[#080808] text-[#BDC3C7] text-[10px] py-1.5 hidden lg:block border-b border-[#2C3E50]/50 relative z-[60]">
     <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-      <div className={`flex gap-6 ${robotoMono.className}`}>
+      <div className={`flex gap-6 font-mono`}>
         <div className="flex items-center gap-2 px-2 py-0.5 rounded bg-[#121212] border border-[#2C3E50]/60">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#007BFF] opacity-75"></span>
@@ -81,7 +76,7 @@ const Header = ({ dict, lang }: HeaderProps) => {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${montserrat.className}`}>
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
       <TopBar />
       
       <nav className={`w-full transition-all duration-500 border-b relative z-50 ${
@@ -121,7 +116,7 @@ const Header = ({ dict, lang }: HeaderProps) => {
 
           {/* ACTIONS */}
           <div className="hidden lg:flex items-center gap-6">
-            <div className={`flex items-center p-1 border border-[#2C3E50] rounded-lg bg-[#0a0a0a] ${robotoMono.className}`}>
+            <div className={`flex items-center p-1 border border-[#2C3E50] rounded-lg bg-[#0a0a0a] font-mono`}>
               <Globe size={14} className="ml-2 mr-3 text-[#007BFF] animate-spin-slow" />
               <div className="flex relative">
                   <Link href={switchLang("es")} className={`relative z-10 px-3 py-1 text-[10px] font-bold transition-colors ${lang === 'es' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}>ES</Link>
@@ -178,7 +173,7 @@ const Header = ({ dict, lang }: HeaderProps) => {
                   className="group flex items-center justify-between p-4 border border-[#2C3E50] bg-[#1a1a1a]/50 backdrop-blur rounded-xl hover:border-[#007BFF] hover:bg-[#007BFF]/10 transition-all duration-300"
                 >
                   <span className="flex items-center gap-4">
-                    <span className={`text-[#007BFF] font-bold text-sm bg-[#007BFF]/10 px-2 py-1 rounded ${robotoMono.className}`}>0{idx + 1}</span>
+                    <span className={`text-[#007BFF] font-bold text-sm bg-[#007BFF]/10 px-2 py-1 rounded font-mono`}>0{idx + 1}</span>
                     <span className="text-xl font-medium text-gray-200 group-hover:text-white">{item.label}</span>
                   </span>
                   <ArrowRight className="text-[#2C3E50] group-hover:text-[#007BFF] group-hover:translate-x-2 transition-transform" size={20} />

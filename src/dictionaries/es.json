@@ -33,12 +33,30 @@
     "s2": "Logística End-to-End",
     "s3": "Puente Financiero"
   },
+  "autoparts": {
+    "badge": "División Especializada",
+    "title": "Autopartes y Mecánica",
+    "subtitle": "Sourcing global y exportación de repuestos premium para vehículos ligeros, maquinaria pesada y flotas industriales.",
+    "cta": "Cotizar Repuestos",
+    "categories": {
+      "light_title": "Mecánica Ligera",
+      "light_desc": "Componentes de alto rendimiento, suspensión, frenos y sistemas eléctricos para vehículos de pasajeros y comerciales.",
+      "heavy_title": "Servicio Pesado y Diésel",
+      "heavy_desc": "Repuestos de grado industrial para camiones, maquinaria agrícola y equipos de construcción y minería.",
+      "engine_title": "Motor y Transmisión",
+      "engine_desc": "Piezas originales y de repuesto (OEM/Aftermarket) que garantizan la máxima durabilidad y eficiencia.",
+      "logistics_title": "Logística de Precisión",
+      "logistics_desc": "Manejo cuidadoso de piezas sensibles, motores completos y envíos consolidados para distribuidores."
+    }
+  },
   "about": {
     "title": "ADN Corporativo",
-    "mission_title": "Misión",
-    "mission_desc": "Facilitar el comercio internacional conectando proveedores confiables con clientes estratégicos bajo estándares de transparencia.",
-    "vision_title": "Visión",
-    "vision_desc": "Ser el socio líder en comercio internacional en América, reconocidos por nuestra integridad y solidez financiera.",
+    "who_we_are_title": "Quiénes Somos",
+    "who_we_are_desc": "Somos una plataforma logística de vanguardia especializada en la importación, exportación y distribución global. Con sede estratégica en Miami y conexiones directas en Asia y Latinoamérica, facilitamos el comercio internacional eliminando barreras y optimizando la cadena de suministro para empresas de todos los tamaños.",
+    "mission_title": "Nuestra Misión",
+    "mission_desc": "Facilitar el comercio internacional conectando proveedores confiables con clientes estratégicos bajo los más altos estándares de transparencia, velocidad y seguridad operativa.",
+    "vision_title": "Nuestra Visión",
+    "vision_desc": "Ser el socio logístico líder en el continente americano, reconocidos por nuestra integridad, solidez financiera e innovación tecnológica en la gestión de carga general y autopartes.",
     "values_title": "Valores",
     "v1": "Transparencia",
     "v2": "Cumplimiento",

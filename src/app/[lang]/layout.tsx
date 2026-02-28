@@ -3,8 +3,8 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 type Props = {
+  params: Promise<{ lang: string }>; // <-- EL CAMBIO ESTÁ AQUÍ
   children: React.ReactNode;
-  params: Promise<{ lang: "es" | "en" }>;
 };
 
 export default async function LangLayout({ children, params }: Props) {
@@ -20,7 +20,7 @@ export default async function LangLayout({ children, params }: Props) {
     <div className="flex flex-col min-h-screen">
       
       {/* Header recibe el diccionario y el idioma actual */}
-      <Header dict={dict} lang={lang} />
+<Header dict={dict} lang={lang as "es" | "en"} />
       
       {/* Main crece para ocupar el espacio vacío */}
       <main className="flex-grow">

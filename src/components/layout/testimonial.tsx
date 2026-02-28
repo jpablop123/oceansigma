@@ -81,7 +81,7 @@ const Testimonials = ({ dict }: { dict: any }) => {
         <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-[#020617] to-transparent z-20 pointer-events-none"></div>
 
         {/* Track Animado */}
-        <div className="flex gap-6 w-max animate-scroll hover:pause">
+        <div className="flex gap-6 w-max animate-scroll">
           
           {infiniteTestimonials.map((item, index) => (
             <div 
@@ -123,19 +123,6 @@ const Testimonials = ({ dict }: { dict: any }) => {
 
         </div>
       </div>
-
-      <style jsx>{`
-        .animate-scroll {
-          animation: scroll 60s linear infinite;
-        }
-        .hover\:pause:hover {
-          animation-play-state: paused;
-        }
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.33%); }
-        }
-      `}</style>
 
     </section>
   );

@@ -33,12 +33,30 @@
     "s2": "End-to-End Logistics",
     "s3": "Financial Bridge"
   },
+  "autoparts": {
+    "badge": "Specialized Division",
+    "title": "Auto Parts & Mechanics",
+    "subtitle": "Global sourcing and export of premium spare parts for light vehicles, heavy machinery, and industrial fleets.",
+    "cta": "Quote Spare Parts",
+    "categories": {
+      "light_title": "Light Mechanics",
+      "light_desc": "High-performance components, suspension, brakes, and electrical systems for passenger and commercial vehicles.",
+      "heavy_title": "Heavy Duty & Diesel",
+      "heavy_desc": "Industrial-grade spare parts for trucks, agricultural machinery, mining, and construction equipment.",
+      "engine_title": "Engine & Transmission",
+      "engine_desc": "OEM and aftermarket parts ensuring maximum durability and efficiency for demanding environments.",
+      "logistics_title": "Precision Logistics",
+      "logistics_desc": "Careful handling of sensitive parts, complete engines, and consolidated shipping for distributors."
+    }
+  },
   "about": {
     "title": "Corporate DNA",
-    "mission_title": "Mission",
-    "mission_desc": "Facilitate international trade by connecting reliable suppliers with strategic clients under transparency standards.",
-    "vision_title": "Vision",
-    "vision_desc": "To be the leading international trade partner in the Americas, recognized for integrity and financial strength.",
+    "who_we_are_title": "Who We Are",
+    "who_we_are_desc": "We are a cutting-edge logistics platform specializing in global import, export, and distribution. With a strategic headquarters in Miami and direct connections across Asia and Latin America, we facilitate international trade by breaking down barriers and optimizing the supply chain for businesses of all sizes.",
+    "mission_title": "Our Mission",
+    "mission_desc": "To facilitate international trade by connecting reliable suppliers with strategic clients under the highest standards of transparency, speed, and operational security.",
+    "vision_title": "Our Vision",
+    "vision_desc": "To be the leading logistics partner in the Americas, recognized for our integrity, financial strength, and technological innovation in general freight and auto parts management.",
     "values_title": "Values",
     "v1": "Transparency",
     "v2": "Compliance",
