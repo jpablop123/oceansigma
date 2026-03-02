@@ -12,7 +12,7 @@ import Testimonials from '@/components/layout/testimonial';
 import ContactForm from '@/components/layout/pqr';
 import PhotoGallery from '@/components/layout/photoGallery';
 import ImpactStats from '@/components/layout/ImpactStats';
-
+import ValueAndProducts from '@/components/layout/ValueAndProducts';
 // --- ESTO SOLUCIONA EL ERROR: Define qué idiomas generar ---
 export async function generateStaticParams() {
   return [{ lang: 'es' }, { lang: 'en' }];
@@ -46,6 +46,7 @@ export default async function Home({ params }: Props) {
 
       {/* 5. Métricas, Confianza y Galería */}
       <Stats dict={dict}  />
+      <ValueAndProducts dict={dict} />
       <PhotoGallery dict={dict} />
       <Testimonials dict={dict}/> 
       <ImpactStats dict={dict} />

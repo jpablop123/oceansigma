@@ -33,6 +33,27 @@
     "s2": "Logística End-to-End",
     "s3": "Puente Financiero"
   },
+  "catalog": {
+    "badge": "Propuesta de Valor",
+    "title": "Ventajas Competitivas y Catálogo",
+    "subtitle": "Conectamos demanda global con proveedores élite, ofreciendo seguridad financiera y un catálogo especializado.",
+    "advantages_title": "¿Por qué elegirnos?",
+    "adv1_title": "Sourcing Directo de Fábrica",
+    "adv1_desc": "Eliminamos intermediarios. Auditamos y negociamos directamente con fabricantes para asegurar el mejor precio y calidad.",
+    "adv2_title": "Respaldo y Puente Financiero",
+    "adv2_desc": "Estructuramos cartas de crédito y opciones de pago internacionales para que tu capital siempre esté seguro.",
+    "adv3_title": "Logística Blindada",
+    "adv3_desc": "Nos encargamos de aduanas, fletes marítimos/aéreos y entregas puerta a puerta sin estrés operacional.",
+    "products_title": "Líneas de Exportación",
+    "prod1_title": "Repuestos de Mecánica Ligera",
+    "prod1_desc": "Suspensión, frenos, electrónica y piezas de desgaste (OEM/Aftermarket) para vehículos de pasajeros y flotas comerciales.",
+    "prod2_title": "Línea Pesada y Diésel",
+    "prod2_desc": "Componentes de alta resistencia para camiones de carga, maquinaria amarilla (construcción) y equipos agrícolas.",
+    "prod3_title": "Motores y Transmisiones",
+    "prod3_desc": "Ensambles completos y refacciones internas diseñadas para máxima durabilidad en entornos exigentes.",
+    "prod4_title": "Carga General e Insumos",
+    "prod4_desc": "Sourcing a la medida de materias primas, tecnología y bienes de consumo para importadores mayoristas."
+  },
   "autoparts": {
     "badge": "División Especializada",
     "title": "Autopartes y Mecánica",

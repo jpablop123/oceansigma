@@ -33,6 +33,27 @@
     "s2": "End-to-End Logistics",
     "s3": "Financial Bridge"
   },
+  "catalog": {
+    "badge": "Value Proposition",
+    "title": "Competitive Edge & Catalog",
+    "subtitle": "We connect global demand with elite suppliers, offering financial security and a specialized catalog.",
+    "advantages_title": "Why Choose Us?",
+    "adv1_title": "Direct Factory Sourcing",
+    "adv1_desc": "We eliminate middlemen. We audit and negotiate directly with manufacturers to ensure the best price and quality.",
+    "adv2_title": "Financial Bridge & Backing",
+    "adv2_desc": "We structure letters of credit and international payment options so your capital is always secure.",
+    "adv3_title": "Bulletproof Logistics",
+    "adv3_desc": "We handle customs, ocean/air freight, and door-to-door deliveries with zero operational stress.",
+    "products_title": "Export Lines",
+    "prod1_title": "Light Mechanics Spare Parts",
+    "prod1_desc": "Suspension, brakes, electronics, and wear parts (OEM/Aftermarket) for passenger vehicles and commercial fleets.",
+    "prod2_title": "Heavy Duty & Diesel Line",
+    "prod2_desc": "High-resistance components for cargo trucks, yellow machinery (construction), and agricultural equipment.",
+    "prod3_title": "Engines & Transmissions",
+    "prod3_desc": "Complete assemblies and internal parts designed for maximum durability in demanding environments.",
+    "prod4_title": "General Cargo & Commodities",
+    "prod4_desc": "Custom sourcing of raw materials, technology, and consumer goods for wholesale importers."
+  },
   "autoparts": {
     "badge": "Specialized Division",
     "title": "Auto Parts & Mechanics",

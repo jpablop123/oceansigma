@@ -51,35 +51,36 @@ export default function About({ dict }: Props) {
           </div>
 
           {/* COLUMNA DERECHA: Tarjetas de Misión y Visión */}
-          <div className="space-y-6">
+          {/* El grid auto-rows-[1fr] obliga a que ambas cajas tengan la altura de la más grande */}
+          <div className="grid grid-cols-1 gap-6 auto-rows-[1fr]">
             
             {/* Tarjeta Misión */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-slate-900 to-[#0f172a] border border-slate-800 hover:border-blue-500/50 transition-all duration-500 shadow-2xl relative overflow-hidden group">
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-slate-900 to-[#0f172a] border border-slate-800 hover:border-blue-500/50 transition-all duration-500 shadow-2xl relative overflow-hidden group flex flex-col h-full">
               {/* Detalle visual de la esquina */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-bl-[100px] -z-0 group-hover:bg-blue-500/10 transition-colors duration-500"></div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col h-full">
                 <div className="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 border border-blue-500/20 text-blue-400 group-hover:scale-110 transition-transform duration-300">
                   <Target size={28} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{t.mission_title}</h3>
-                <p className="text-slate-400 leading-relaxed">
+                <p className="text-slate-400 leading-relaxed flex-grow">
                   {t.mission_desc}
                 </p>
               </div>
             </div>
 
-            {/* Tarjeta Visión (Desplazada hacia la derecha en desktop para un efecto de "cascada") */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-slate-900 to-[#0f172a] border border-slate-800 hover:border-cyan-500/50 transition-all duration-500 shadow-2xl relative overflow-hidden group ml-0 lg:ml-12">
+            {/* Tarjeta Visión */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-slate-900 to-[#0f172a] border border-slate-800 hover:border-cyan-500/50 transition-all duration-500 shadow-2xl relative overflow-hidden group flex flex-col h-full">
               {/* Detalle visual de la esquina */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-bl-[100px] -z-0 group-hover:bg-cyan-500/10 transition-colors duration-500"></div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col h-full">
                 <div className="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform duration-300">
                   <Eye size={28} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{t.vision_title}</h3>
-                <p className="text-slate-400 leading-relaxed">
+                <p className="text-slate-400 leading-relaxed flex-grow">
                   {t.vision_desc}
                 </p>
               </div>
@@ -90,11 +91,9 @@ export default function About({ dict }: Props) {
         </div>
       </div>
 
-      {/* LÍNEA SEPARADORA CON GLOW (MÁS GRANDE Y NOTORIA) */}
+      {/* LÍNEA SEPARADORA CON GLOW */}
       <div className="absolute bottom-0 left-0 w-full">
-        {/* Resplandor (glow) de color para darle volumen y separación */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[12px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent blur-md"></div>
-        {/* Línea principal más gruesa y brillante */}
         <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-slate-300/60 to-transparent"></div>
       </div>
 
