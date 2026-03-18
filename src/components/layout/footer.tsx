@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
+import logo from "@/assets/img/logo/oceansigmanegro.png";
 
 // Definimos que el Footer espera recibir el idioma
 interface FooterProps {
@@ -37,9 +39,19 @@ const Footer = ({ lang, dict }: FooterProps) => {
           
           {/* COLUMNA 1: BRANDING (Sin redes sociales) */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white tracking-tighter">
-              OCEAN SIGMA <span className="text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">EXPORT</span>
-            </h3>
+            <Link href={`/${lang}`} className="flex items-center gap-3 group w-fit">
+              <Image
+                src={logo}
+                alt="Ocean Sigma"
+                width={200}
+                height={120}
+                className="h-10 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.6)] transition-all duration-500"
+              />
+              <span className="flex flex-col leading-none">
+                <span className="text-white font-bold text-lg tracking-tighter group-hover:text-blue-400 transition-colors">OCEAN SIGMA</span>
+                <span className="text-[10px] text-blue-500 tracking-[0.25em] font-mono uppercase drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">Export Corp</span>
+              </span>
+            </Link>
             <p className="text-sm leading-relaxed opacity-90 max-w-xs">
               Infraestructura logística de precisión para mercados globales. Conectamos tu negocio con el mundo.
             </p>

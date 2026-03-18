@@ -7,7 +7,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Mail, Globe, Zap, ArrowRight } from "lucide-react";
 
-import logo from "@/assets/img/logo/oceansigma.png";
+import logo from "@/assets/img/logo/oceansigmanegro.png";
 
 type HeaderProps = {
   lang: "es" | "en";
@@ -87,16 +87,20 @@ const Header = ({ dict, lang }: HeaderProps) => {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
           
           {/* LOGO */}
-          <Link href={`/${lang}`} className="relative group flex items-center shrink-0">
+          <Link href={`/${lang}`} className="relative group flex items-center gap-3 shrink-0">
              <Image
                 src={logo}
                 alt="Ocean Sigma"
-                width={800} 
-                height={300}
+                width={200}
+                height={120}
                 quality={100}
-                priority 
-                className="h-12 lg:h-20 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-all duration-500" 
+                priority
+                className="h-10 lg:h-14 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_rgba(0,123,255,0.6)] transition-all duration-500"
               />
+             <span className="hidden sm:flex flex-col leading-none">
+               <span className="text-white font-bold text-sm lg:text-base tracking-tight group-hover:text-[#007BFF] transition-colors">OCEAN SIGMA</span>
+               <span className="text-[10px] lg:text-[11px] text-slate-500 tracking-[0.25em] font-mono uppercase">Export Corp</span>
+             </span>
           </Link>
 
           {/* DESKTOP NAV */}
