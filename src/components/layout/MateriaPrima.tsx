@@ -78,7 +78,7 @@ export default function MateriaPrima({ dict }: Props) {
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 tracking-tight leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight leading-tight">
             {t.title}
           </h2>
           <p className="text-gray-500 text-lg md:text-xl leading-relaxed font-light max-w-2xl mx-auto">
