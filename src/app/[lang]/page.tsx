@@ -40,16 +40,18 @@ export default async function Home({ params }: Props) {
 
       {/* 3. Servicios Generales Logísticos */}
       <Services dict={dict} />
-
+   <MateriaPrima dict={dict} />
       {/* 4. División Especializada: Autopartes */}
       <AutoPartsHero dict={dict} lang={lang} />
       <AutoPartsGrid dict={dict} />
 
       {/* 4.5 Gestión de Materia Prima y Mercancía */}
-      <MateriaPrima dict={dict} />
+   
+
 
       {/* 5. Métricas, Confianza y Galería */}
       <Stats dict={dict}  />
+  
       <ValueAndProducts dict={dict} />
       <PhotoGallery dict={dict} />
       <Testimonials dict={dict}/> 
