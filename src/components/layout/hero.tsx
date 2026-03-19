@@ -38,6 +38,11 @@ const Hero = ({ dict, lang }: HeroProps) => {
           </span>
         </h1>
 
+        {/* SLOGAN */}
+        <p className="text-sm md:text-base text-cyan-400 font-mono uppercase tracking-[0.2em] mb-6">
+          {dict.hero.slogan}
+        </p>
+
         {/* SUBTÍTULO */}
         <p className="text-lg md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light border-l-2 border-cyan-500 pl-6 text-left md:text-center md:border-l-0 md:pl-0">
           {dict.hero.subtitle}

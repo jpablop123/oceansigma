@@ -6,9 +6,10 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Global Trade Partner",
-    "subtitle": "Connecting markets with efficiency, transparency, and financial structure.",
-    "cta": "Start Partnership"
+    "title": "Your Global Trade Partner",
+    "subtitle": "We find the world's best suppliers, negotiate on your behalf, and deliver your goods to your door. Purchasing, shipping, paperwork, negotiations — we handle everything.",
+    "cta": "Get a Quote",
+    "slogan": "From the ideal supplier to your door, hassle-free."
   },
   "ticker": {
     "items": [
@@ -16,34 +17,39 @@
       "Certified Logistics",
       "Regulatory Compliance",
       "International Payments",
-      "Factory Auditing",
+      "Raw Materials",
+      "Chemical Products",
+      "Industrial Equipment",
       "Customs Management"
     ]
   },
   "services": {
     "title": "Trade Infrastructure",
-    "subtitle": "Comprehensive solutions for the global supply chain.",
+    "subtitle": "Complete purchasing, shipping, and management solutions for your global supply chain.",
     "s1_title": "Smart Sourcing",
-    "s1_desc": "Identification and validation of global suppliers with strict quality standards.",
+    "s1_desc": "We locate and validate the best international suppliers based on your needs: guaranteed price, quality, and compliance.",
     "s2_title": "End-to-End Logistics",
-    "s2_desc": "Air and sea freight coordination with full traceability and customs management.",
+    "s2_desc": "Full coordination of air, ocean, and ground freight with total traceability, customs management, and door-to-door delivery.",
     "s3_title": "Financial Bridge",
-    "s3_desc": "Structuring of international payments and letters of credit for secure operations.",
+    "s3_desc": "Structuring of international payments, letters of credit, and financial negotiations for secure operations across multiple countries.",
+    "s4_title": "General Cargo & Supplies",
+    "s4_desc": "Custom sourcing of raw materials, technology, industrial equipment, and consumer goods for wholesale importers.",
     "s1": "Smart Sourcing",
     "s2": "End-to-End Logistics",
-    "s3": "Financial Bridge"
+    "s3": "Financial Bridge",
+    "s4": "General Cargo & Supplies"
   },
   "catalog": {
     "badge": "Value Proposition",
-    "title": "Competitive Edge & Catalog",
-    "subtitle": "We connect global demand with elite suppliers, offering financial security and a specialized catalog.",
-    "advantages_title": "Why Choose Us?",
+    "title": "Why Ocean Sigma?",
+    "subtitle": "We don't just sell products — we offer a complete service: purchasing, shipping, paperwork, and international negotiations. We find the best suppliers based on what your business needs.",
+    "advantages_title": "Competitive Advantages",
     "adv1_title": "Direct Factory Sourcing",
-    "adv1_desc": "We eliminate middlemen. We audit and negotiate directly with manufacturers to ensure the best price and quality.",
+    "adv1_desc": "We find the world's best suppliers based on your specific needs. We audit, negotiate, and secure the best price — no unnecessary middlemen.",
     "adv2_title": "Financial Bridge & Backing",
-    "adv2_desc": "We structure letters of credit and international payment options so your capital is always secure.",
+    "adv2_desc": "We structure letters of credit and payment options across multiple countries so your capital is always protected and operations flow smoothly.",
     "adv3_title": "Bulletproof Logistics",
-    "adv3_desc": "We handle customs, ocean/air freight, and door-to-door deliveries with zero operational stress.",
+    "adv3_desc": "We handle customs, ocean and air freight, paperwork, negotiations, and door-to-door delivery. You focus on selling — we move your goods.",
     "products_title": "Export Lines",
     "prod1_title": "Light Mechanics Spare Parts",
     "prod1_desc": "Suspension, brakes, electronics, and wear parts (OEM/Aftermarket) for passenger vehicles and commercial fleets.",
@@ -70,19 +76,38 @@
       "logistics_desc": "Careful handling of sensitive parts, complete engines, and consolidated shipping for distributors."
     }
   },
+  "materiaprima": {
+    "badge": "Specialized Management",
+    "title": "Raw Materials & Cargo",
+    "subtitle": "We offer comprehensive solutions for handling raw materials, chemical products, and cargo preparation — backed by efficient, secure processes aligned with international standards.",
+    "card1_title": "Raw Materials",
+    "card1_desc": "We manage the sourcing and control of raw materials with a focus on quality, traceability, and regulatory compliance at every stage of the operation.",
+    "card2_title": "Chemical Products",
+    "card2_desc": "We operate under strict safety protocols for handling chemical substances, ensuring full compliance with national and international regulations.",
+    "card3_title": "Cargo Inspection",
+    "card3_desc": "We perform detailed inspections to verify the condition, quality, and conformity of each product, ensuring everything ships in optimal conditions.",
+    "card4_title": "Cargo Preparation",
+    "card4_desc": "We condition and organize goods for transport and export, ensuring protection, order, and compliance with all logistics requirements.",
+    "value_title": "Why Ocean Sigma?",
+    "value_desc": "Every process is designed to minimize risks, optimize delivery times, and preserve cargo integrity — giving our clients peace of mind and confidence in every operation.",
+    "value1": "Efficient processes",
+    "value2": "Regulatory compliance",
+    "value3": "Full traceability",
+    "value4": "Custom solutions"
+  },
   "about": {
     "title": "Corporate DNA",
     "who_we_are_title": "Who We Are",
-    "who_we_are_desc": "We are a cutting-edge logistics platform specializing in global import, export, and distribution. With a strategic headquarters in Miami and direct connections across Asia and Latin America, we facilitate international trade by breaking down barriers and optimizing the supply chain for businesses of all sizes.",
+    "who_we_are_desc": "We are your strategic ally in international trade. Based in Miami with direct connections across Asia, Europe, and Latin America, we specialize in finding the world's best suppliers based on what your business needs. We handle purchasing, shipping, paperwork, and negotiations — so you can focus on growing.",
     "mission_title": "Our Mission",
-    "mission_desc": "To facilitate international trade by connecting reliable suppliers with strategic clients under the highest standards of transparency, speed, and operational security.",
+    "mission_desc": "To facilitate international trade as a reliable and approachable partner. We connect our clients with the best global suppliers, managing every stage of the process — from negotiation to final delivery — with transparency, efficiency, and commitment.",
     "vision_title": "Our Vision",
-    "vision_desc": "To be the leading logistics partner in the Americas, recognized for our integrity, financial strength, and technological innovation in general freight and auto parts management.",
+    "vision_desc": "To be the go-to trade partner in the Americas for businesses that need to import with confidence. Recognized for our approachability, financial strength, and ability to execute operations across construction, petrochemicals, industrial equipment, auto parts, and consolidated cargo.",
     "values_title": "Values",
     "v1": "Transparency",
     "v2": "Compliance",
     "v3": "Trust",
-    "v4": "Efficiency"
+    "v4": "Approachability"
   },
   "stats": {
     "s1": "Operations",
@@ -92,7 +117,7 @@
   },
   "testimonials": {
     "title": "GLOBAL TRUST NETWORK",
-    "subtitle": "Strategic partners trusting our logistics infrastructure."
+    "subtitle": "Strategic partners trusting our capacity to move goods around the world."
   },
   "pqr": {
     "title": "TRANSPARENCY CHANNEL",
@@ -111,14 +136,14 @@
   },
   "quote": {
     "badge": "Online Quotes",
-    "title": "Get your quote with no obligation",
-    "subtitle": "Need to know the cost of your shipment? Fill out the form with your cargo details and get a personalized estimate fast.",
+    "title": "Tell us what you need and we'll handle the rest",
+    "subtitle": "Whether it's raw materials, auto parts, industrial equipment, or consolidated cargo — fill out the form and receive a personalized, no-obligation quote.",
     "email_subject": "Quote Request",
     "features": {
       "rates_title": "Transparent Rates",
-      "rates_desc": "Pay fairly for your weight and volume.",
-      "support_title": "Immediate Support",
-      "support_desc": "Complex questions? Call us at +1 (786) 694-9244",
+      "rates_desc": "No hidden costs. You pay fairly for your operation.",
+      "support_title": "Personalized Support",
+      "support_desc": "Questions? Call us at +1 (786) 694-9244",
       "fast_title": "Fast Response",
       "fast_desc": "Get your quote in your email in less than 24h."
     },
@@ -126,8 +151,8 @@
       "name": "Your Name",
       "email": "Your Email",
       "service_label": "Service Type",
-      "details_label": "Cargo Details",
-      "details_placeholder": "Please describe: What you are shipping, approx weight, dimensions, origin/dest...",
+      "details_label": "Operation Details",
+      "details_placeholder": "Describe what you need: product, quantity, origin/destination, approx weight...",
       "btn": "Request Quote"
     },
     "services": {
@@ -178,14 +203,14 @@
   "process": {
     "badge": "Operational Simplicity",
     "title": "How it works?",
-    "s1_title": "Quote",
-    "s1_desc": "Send us your cargo details and receive a competitive offer.",
-    "s2_title": "We Receive",
-    "s2_desc": "Your goods arrive at our Miami warehouse or we pick them up.",
+    "s1_title": "Tell Us",
+    "s1_desc": "Tell us what you need to import and we'll find the best supplier for you.",
+    "s2_title": "We Negotiate",
+    "s2_desc": "We handle purchasing, negotiation, and all supplier management.",
     "s3_title": "We Ship",
-    "s3_desc": "Air or ocean freight with real-time tracking included.",
+    "s3_desc": "Air, ocean, or ground freight with real-time tracking and paperwork included.",
     "s4_title": "We Deliver",
-    "s4_desc": "Customs clearance and final delivery to your doorstep."
+    "s4_desc": "Customs clearance and final delivery to your doorstep, stress-free."
   },
   "legal": {
     "privacy": {

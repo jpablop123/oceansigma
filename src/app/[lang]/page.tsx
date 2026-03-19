@@ -13,6 +13,7 @@ import ContactForm from '@/components/layout/pqr';
 import PhotoGallery from '@/components/layout/photoGallery';
 import ImpactStats from '@/components/layout/ImpactStats';
 import ValueAndProducts from '@/components/layout/ValueAndProducts';
+import MateriaPrima from '@/components/layout/MateriaPrima';
 // --- ESTO SOLUCIONA EL ERROR: Define qué idiomas generar ---
 export async function generateStaticParams() {
   return [{ lang: 'es' }, { lang: 'en' }];
@@ -43,6 +44,9 @@ export default async function Home({ params }: Props) {
       {/* 4. División Especializada: Autopartes */}
       <AutoPartsHero dict={dict} lang={lang} />
       <AutoPartsGrid dict={dict} />
+
+      {/* 4.5 Gestión de Materia Prima y Mercancía */}
+      <MateriaPrima dict={dict} />
 
       {/* 5. Métricas, Confianza y Galería */}
       <Stats dict={dict}  />

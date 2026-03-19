@@ -95,11 +95,11 @@ const Header = ({ dict, lang }: HeaderProps) => {
                 height={120}
                 quality={100}
                 priority
-                className="h-10 lg:h-14 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_rgba(0,123,255,0.6)] transition-all duration-500"
+                className="h-14 lg:h-20 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_rgba(0,123,255,0.6)] transition-all duration-500"
               />
              <span className="hidden sm:flex flex-col leading-none">
-               <span className="text-white font-bold text-sm lg:text-base tracking-tight group-hover:text-[#007BFF] transition-colors">OCEAN SIGMA</span>
-               <span className="text-[10px] lg:text-[11px] text-slate-500 tracking-[0.25em] font-mono uppercase">Export Corp</span>
+               <span className="text-white font-bold text-base lg:text-xl tracking-tight group-hover:text-[#007BFF] transition-colors">OCEAN SIGMA</span>
+               <span className="text-[11px] lg:text-xs text-slate-500 tracking-[0.25em] font-mono uppercase">Export Corp</span>
              </span>
           </Link>
 

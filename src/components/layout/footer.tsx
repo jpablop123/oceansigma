@@ -45,15 +45,17 @@ const Footer = ({ lang, dict }: FooterProps) => {
                 alt="Ocean Sigma"
                 width={200}
                 height={120}
-                className="h-10 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.6)] transition-all duration-500"
+                className="h-14 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.6)] transition-all duration-500"
               />
               <span className="flex flex-col leading-none">
-                <span className="text-white font-bold text-lg tracking-tighter group-hover:text-blue-400 transition-colors">OCEAN SIGMA</span>
-                <span className="text-[10px] text-blue-500 tracking-[0.25em] font-mono uppercase drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">Export Corp</span>
+                <span className="text-white font-bold text-xl tracking-tighter group-hover:text-blue-400 transition-colors">OCEAN SIGMA</span>
+                <span className="text-[11px] text-blue-500 tracking-[0.25em] font-mono uppercase drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">Export Corp</span>
               </span>
             </Link>
             <p className="text-sm leading-relaxed opacity-90 max-w-xs">
-              Infraestructura logística de precisión para mercados globales. Conectamos tu negocio con el mundo.
+              {lang === 'en'
+                ? 'From the ideal supplier to your door, hassle-free. Purchasing, shipping, paperwork — we handle everything.'
+                : 'Del proveedor ideal a tu puerta, sin complicaciones. Compra, transporte, papeleo — nosotros nos encargamos de todo.'}
             </p>
           </div>
 

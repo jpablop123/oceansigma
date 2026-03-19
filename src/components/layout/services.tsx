@@ -1,4 +1,4 @@
-import { Globe, Container, Landmark } from "lucide-react";
+import { Globe, Container, Landmark, Package } from "lucide-react";
 
 const Services = ({ dict }: { dict: any }) => {
   // Color de sombra en blanco puro (RGB: 255, 255, 255)
@@ -22,7 +22,7 @@ const Services = ({ dict }: { dict: any }) => {
         </div>
 
         {/* Grid de Tarjetas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Tarjeta 1: Sourcing */}
           <div className={`group p-8 rounded-2xl bg-[#0a1128] border border-slate-800 hover:border-white/60 transition-all duration-500 hover:shadow-[0_0_30px_rgba(${shadowColorRGB},0.10)] hover:-translate-y-1`}>
@@ -57,6 +57,17 @@ const Services = ({ dict }: { dict: any }) => {
               {dict.services.s3_title}
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">{dict.services.s3_desc}</p>
+          </div>
+
+          {/* Tarjeta 4: Carga General e Insumos */}
+          <div className={`group p-8 rounded-2xl bg-[#0a1128] border border-slate-800 hover:border-white/60 transition-all duration-500 hover:shadow-[0_0_30px_rgba(${shadowColorRGB},0.10)] hover:-translate-y-1`}>
+            <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform border border-white/10 group-hover:border-white/50 group-hover:bg-white/20">
+              <Package className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-white transition-colors group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+              {dict.services.s4_title}
+            </h3>
+            <p className="text-slate-400 text-sm leading-relaxed">{dict.services.s4_desc}</p>
           </div>
 
         </div>
