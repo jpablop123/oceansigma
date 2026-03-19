@@ -66,6 +66,7 @@ export default function AutoPartsGrid({ dict }: Props) {
           </div>
 
         </div>
+
       </div>
     </section>
   );

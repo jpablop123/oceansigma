@@ -89,6 +89,7 @@ export default function About({ dict }: Props) {
           </div>
 
         </div>
+
       </div>
 
       {/* LÍNEA SEPARADORA CON GLOW */}

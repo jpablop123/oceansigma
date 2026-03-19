@@ -142,6 +142,7 @@ export default function ValueAndProducts({ dict }: Props) {
           </div>
 
         </div>
+
       </div>
     </section>
   );
