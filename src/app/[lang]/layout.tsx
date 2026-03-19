@@ -1,6 +1,7 @@
 import { getDictionary } from '../../dictionaries/get-dictionary';
-import Header from '@/components/layout/header'; 
+import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import WhatsAppButton from '@/components/layout/WhatsAppButton';
 
 type Props = {
   params: Promise<{ lang: string }>; // <-- EL CAMBIO ESTÁ AQUÍ
@@ -29,7 +30,8 @@ export default async function LangLayout({ children, params }: Props) {
 
       {/* ✅ AHORA SÍ: Pasamos 'lang' y 'dict' al Footer para que los links funcionen */}
       <Footer lang={lang} dict={dict} />
-      
+      <WhatsAppButton />
+
     </div>
   );
 }

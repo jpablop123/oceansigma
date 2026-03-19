@@ -5,7 +5,7 @@ const Services = ({ dict }: { dict: any }) => {
   const shadowColorRGB = "255,255,255";
 
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-[#020617] to-[#0f172a]">
+    <section id="services" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#020617] to-[#0f172a]">
       
       {/* CAMBIO: Luz ambiental blanca/plateada muy sutil */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px] pointer-events-none"></div>
